@@ -1,2 +1,2 @@
-# pixelcant
+# pixelcan't
 Oksanas projekts
