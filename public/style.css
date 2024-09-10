@@ -1,65 +1,71 @@
 body {
-    font-family: 'Press Start 2P', cursive; /* Пиксельный шрифт */
-    background-color: #1a1a1a;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    }
-    
-    form {
-    background-color: #333;
-    padding: 20px;
-    border: 3px solid #00ff00; /* Пиксельная рамка */
-    box-shadow: 0 0 20px #00ff00;
-    text-align: center;
-    width: 280px;
-    }
-    
-    form h1 {
-    margin-bottom: 20px;
-    color: #00ff00;
-    font-size: 18px;
-    }
-    
-    label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    }
-    
-    input[type="text"], input[type="password"] {
-    width: 90%; /* Уменьшенная ширина */
-    padding: 8px 10px; /* Уменьшенный padding */
-    margin-bottom: 15px;
-    border: 2px solid #00ff00;
-    background-color: #000;
-    color: #fff;
-    font-size: 12px; /* Меньший размер текста */
-    border-radius: 3px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    
-    input[type="text"]:focus, input[type="password"]:focus {
-    border-color: #fff; /* Изменение цвета рамки при фокусе */
-    box-shadow: 0 0 10px #00ff00; /* Эффект свечения */
-    outline: none;
-    }
-    
-    button {
-    padding: 10px 15px;
-    width: 100%;
-    border: 2px solid #00ff00;
-    background-color: #000;
-    color: #00ff00;
-    font-size: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    }
-    
-    button:hover {
-    background-color: #00ff00;
-    color: #000;
-    }
+  font-family: "Press Start 2P", cursive; /* Пиксельный шрифт */
+  background-color: #1a1a1a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+form {
+  background-color: #333;
+  padding: 20px;
+  border: 3px solid #00ff00; /* Пиксельная рамка */
+  box-shadow: 0 0 20px #00ff00;
+  text-align: center;
+  width: 280px;
+}
+
+form h1 {
+  margin-bottom: 20px;
+  color: #00ff00;
+  font-size: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 90%; /* Уменьшенная ширина */
+  padding: 8px 10px; /* Уменьшенный padding */
+  margin-bottom: 15px;
+  border: 2px solid #00ff00;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px; /* Меньший размер текста */
+  border-radius: 3px;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #fff; /* Изменение цвета рамки при фокусе */
+  box-shadow: 0 0 10px #00ff00; /* Эффект свечения */
+  outline: none;
+}
+
+button {
+  padding: 10px 15px;
+  width: 100%;
+  border: 2px solid #00ff00;
+  background-color: #000;
+  color: #00ff00;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+button:hover {
+  background-color: #00ff00;
+  color: #000;
+}
