@@ -16,3 +16,4 @@ Nākotnē jābūt:
 [ ] Čats
 [ ] Register/login sistēma
 [ ] Adminu iespēja banot/dzēst čata īsziņas
+
