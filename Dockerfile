@@ -1,6 +1,6 @@
 FROM nimlang/nim:2.0.4-regular
 
-# RUN apt-get update && apt-get install libpq5 -y
+RUN apt-get update && apt-get install libpq5 -y
 
 WORKDIR /app
 
@@ -18,6 +18,6 @@ EXPOSE 5000
 
 COPY public/ public/
 
-# COPY .env .
+COPY .env .
 
 CMD ./pixelcant
