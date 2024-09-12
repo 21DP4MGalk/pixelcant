@@ -1,0 +1,16 @@
+canvas{
+	border-style: dotted;
+	border-color: black;
+	border-width: 2px;
+}
+div#picker{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100px;
+	height: 20px;
+}
+select{
+	width: 100px;
+	height: 20px;
+}
