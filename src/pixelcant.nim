@@ -2,15 +2,8 @@ import jester
 import norm/[postgres, types, model]
 import dotenv, std/os
 import strutils
-
-type 
-  User = ref object of Model
-    name: StringOfCap[20]
-    banned: bool
-    admin: bool
-    password: PaddedStringOfCap[60]
-    lastpixel: int
-    login: PaddedStringOfCap[80]
+import "models.nim"
+import "api"/["auth.nim"]
 
 settings:
   numThreads = 1
@@ -37,4 +30,5 @@ let dbConn = dbAwaitRunning()
 echo "Connected to database"
 
 routes:
-  discard
+
+  extend auth, "/auth"

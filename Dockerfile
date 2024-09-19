@@ -8,7 +8,7 @@ COPY pixelcant.nimble .
 
 RUN nimble install -dy
 
-COPY src/pixelcant.nim src/
+COPY src/ src/
 
 # COPY nim.cfg .
 
