@@ -1,6 +1,8 @@
 import jester
 import norm/[postgres, types, model]
-import nimcrypto
+import checksums/bcrypt
+import strutils
+import "../models.nim"
 
 router auth:
   
@@ -18,19 +20,19 @@ router auth:
 
   post "/register":
     try:
-      let usernameInput = request.params["username"]
-      let passwordInput = request.params["password"]
-      if usernameInput.length() > 16:
+      let nameInput = request.formData["name"].body
+      let passwordInput = request.formData["password"].body
+      if nameInput.len > 16:
         resp Http400
 
       withDb:
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(passwordInput, generateSalt(8)))
-        let convertedUsername = newStringOfCap[16](usernameInput)
-        let userQuery = User()
-        userQuery.username = convertedUsername
+        let convertedName = newStringOfCap[16](nameInput)
+        var userQuery = newUser()
+        userQuery.name = convertedName
         userQuery.password = hashedPass
 
-        if db.exists(User, "username = ?", convertedUsername):
+        if db.exists(User, "name = $1", convertedName):
           resp Http400
 
         db.insert(userQuery)

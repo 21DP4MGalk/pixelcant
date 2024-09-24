@@ -36,7 +36,8 @@ Slider
 }
 .cd-slider > li:first-of-type {
   background-color: #4a3553;
-  background-image: url(../img/img-1.jpg);
+  background-image: url(../img/img-1.png);
+  image-rendering: pixelated;
 }
 .cd-slider > li:nth-of-type(2) {
   background-color: #ffb251;
