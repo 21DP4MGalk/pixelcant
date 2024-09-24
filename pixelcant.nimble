@@ -13,4 +13,5 @@ bin           = @["pixelcant"]
 requires "nim >= 1.0.0"
 requires "jester"
 requires "norm"
+requires "checksums"
 requires "dotenv"

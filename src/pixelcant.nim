@@ -1,7 +1,8 @@
 import jester
 import norm/[postgres, types, model]
 import dotenv, std/os
-import strutils
+import checksums/bcrypt
+import strutils, json
 import "models.nim"
 import "api"/["auth.nim"]
 
