@@ -1,71 +1,69 @@
 body {
-  font-family: "Press Start 2P", cursive; /* Пиксельный шрифт */
-  background-color: #1a1a1a;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+    margin: 0;
+    padding: 0;    background:url(https://cojo.ru/wp-content/uploads/2022/12/vindovs-1-1.webp)
+}
+     
+.signup-form {
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    background: url(img/bg.png);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
 }
 
-form {
-  background-color: #333;
-  padding: 20px;
-  border: 3px solid #00ff00; /* Пиксельная рамка */
-  box-shadow: 0 0 20px #00ff00;
-  text-align: center;
-  width: 280px;
+.signup-form h1 {
+    margin-top: 100px;
+    font-family: 'Permanent Marker', cursive;
+    color: #fff;
+    font-size: 40px;
 }
 
-form h1 {
-  margin-bottom: 20px;
-  color: #00ff00;
-  font-size: 18px;
+.signup-form input {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 44px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: "montserrat", sans-serif;
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+.txtb {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 6px;
 }
 
-input[type="text"],
-input[type="password"] {
-  width: 90%; /* Уменьшенная ширина */
-  padding: 8px 10px; /* Уменьшенный padding */
-  margin-bottom: 15px;
-  border: 2px solid #00ff00;
-  background-color: #000;
-  color: #fff;
-  font-size: 12px; /* Меньший размер текста */
-  border-radius: 3px;
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
+.signup-btn {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    background: #487eb0;
+    color: #fff;
+    border-radius: 44px;
+    cursor: pointer;
+    transition: 0.8s;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-color: #fff; /* Изменение цвета рамки при фокусе */
-  box-shadow: 0 0 10px #00ff00; /* Эффект свечения */
-  outline: none;
+.signup-btn:hover {
+    transform: scale(0.96);
 }
 
-button {
-  padding: 10px 15px;
-  width: 100%;
-  border: 2px solid #00ff00;
-  background-color: #000;
-  color: #00ff00;
-  font-size: 12px;
-  cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+.signup-form a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "montserrat", sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    transition: 0.8s;
+    display: block;
 }
 
-button:hover {
-  background-color: #00ff00;
-  color: #000;
+.signup-form a:hover {
+    
 }
