@@ -1,111 +1,157 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>PixelCan't</title>
 
-<head>
-	<title>PixelCan't</title> (loading) - </title>
+    <meta charset="utf-8" />
 
-	<meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Serif&subset=latin,cyrillic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-<link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Noto+Serif&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap.min.css"
+      media="screen"
+    />
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">
-	
-	
-	<link rel="stylesheet" type="text/css" href="css/stroke-gap-icons.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/pe-icon-7-stroke.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/elegant-icons.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/slider.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/stroke-gap-icons.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/pe-icon-7-stroke.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/elegant-icons.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/font-awesome.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/style.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/responsive.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/animate.css"
+      media="screen"
+    />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+  </head>
 
+  <body>
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
 
-</head>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#navbar-collapse"
+              >
+                <span class="sr-only">Open menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
-<body>
+              <div class="logo">
+                <a href="index.html">
+                  <i>PixelCan't</i>
+                </a>
+              </div>
+            </div>
 
-	<div id="preloader">
-	    <div id="status">&nbsp;</div>
-	</div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                  <a href="index.html">Beginning </a>
+                </li>
 
-	<header>
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-				<nav class="navigation">
-						<div class="container">
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-										<span class="sr-only">Open menu</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-			        	</button>	        	 
-						
-						<div class="logo">
-				        	<a href="index.html">
-				        		<i>PixelCan't</i>
-				          	</a>
-			        	</div>         
-			        </div> 
+                <li>
+                  <a href="Use.html">How to use</a>
+                </li>
 
-			        <div class="collapse navbar-collapse" id="navbar-collapse">
-			          
-			        	<ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="Login.html">Login</a>
+                </li>
 
-				          	<li class="active">
-				            	<a href="index.html">Beginning </a>
-				            </li>
+                <li>
+                  <a href="Sing.html">Sign up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </nav>
+    </header>
 
-				            <li>
-				            	<a href="Use.html">How to use</a>
-				            </li>
+    <div class="main-wrapper"></div>
 
-				            
+    <section class="cd-slider-wrapper">
+      <ul class="cd-slider">
+        <li class="visible">
+          <div>
+            <h2>Welcome!</h2>
+            <a href="#0" class="cd-btn">Play</a>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-				            <li>
-				            	<a href="Login.html">Login</a>
-				            </li>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/snap.svg-min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Resource jQuery -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/jquery.appear.js"></script>
+    <script type="text/javascript" src="js/plugins-scroll.js"></script>
+    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/wow.min.js"></script>
 
-				            <li>
-
-                    <a href="Sing.html">Sign up</a>
-				            </li>
-
-
-				            	
-
-	</header>
-
-	<div class="main-wrapper">
-
-	<section class="cd-slider-wrapper">
-		<ul class="cd-slider">
-			<li class="visible">
-				<div>
-					<h2>Welcome!</h2>
-					<a href="#0" class="cd-btn">Play</a>
-				</div>
-			</li>
-
-		<script src="js/jquery.min.js"></script>
-		<script src="js/snap.svg-min.js"></script>
-		<script src="js/main.js"></script> <!-- Resource jQuery -->
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/jquery.countTo.js"></script>
-		<script type="text/javascript" src="js/jquery.appear.js"></script>
-		<script type="text/javascript" src="js/plugins-scroll.js"></script>
-		<script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.min.js"></script>
-		<script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
-		<script src="js/wow.min.js"></script>
-
-
-			<script src="js/scripts.js"></script>
-
-	</body>
-
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
