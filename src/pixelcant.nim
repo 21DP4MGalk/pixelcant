@@ -1,8 +1,8 @@
 import jester
 import norm/[postgres, types, model]
-import dotenv, std/os
+import dotenv
 import checksums/bcrypt
-import strutils, json
+import os, strutils, json, options
 import "models.nim"
 import "api"/["auth.nim"]
 
@@ -29,6 +29,10 @@ proc dbAwaitRunning(): DbConn =
  
 let dbConn = dbAwaitRunning()
 echo "Connected to database"
+
+dbConn.createTables(newUser())
+dbConn.createTables(newMessage())
+dbConn.createTables(newPixel())
 
 routes:
 
