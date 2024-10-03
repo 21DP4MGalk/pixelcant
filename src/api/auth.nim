@@ -7,8 +7,9 @@ import "../models.nim"
 router auth:
   
   post "/login":
-    # try:
-    #   let username = request.params["username"]
+    try:
+      let username = request.params["username"]
+      resp username
     #   let password = request.params["password"]
     # except:
     #   resp Http400
