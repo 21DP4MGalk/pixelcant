@@ -1,10 +1,12 @@
 import jester
 import norm/[postgres, types, model]
+import ws, ws/jester_extra
 import dotenv
 import checksums/bcrypt
-import os, strutils, json, options
+import std/[os, strutils, json, options, locks]
 import "models.nim"
-import "api"/["auth.nim"]
+import "websockets.nim"
+import "api"/["auth.nim", "canvas.nim"]
 
 settings:
   numThreads = 1
@@ -30,10 +32,13 @@ proc dbAwaitRunning(): DbConn =
 let dbConn = dbAwaitRunning()
 echo "Connected to database"
 
-dbConn.createTables(newUser())
-dbConn.createTables(newMessage())
-dbConn.createTables(newPixel())
+# dbConn.createTables(newUser())
+# dbConn.createTables(newMessage())
+# dbConn.createTables(newPixel())
+dbConn.close()
 
 routes:
 
   extend auth, "/auth"
+
+  extend canvas, "/canvas"
