@@ -105,3 +105,67 @@ footer p {
         padding: 10px; /* Less padding for mobile */
     }
 }
+#progress-bar-container {
+    margin: 20px 0;
+    color:green
+}
+
+.completed {
+    background-color: #7afc7a81; /* Change color for completed steps */
+}
+ /* Progress Bar Styles */
+ #progress-bar {
+    height: 20px;
+    background: #4caf50; /* Green color */
+    width: 0%;
+    transition: width 0.5s;
+}
+
+/* Step Hover Effect */
+.step {
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background 0.3s;
+}
+
+.step:hover {
+    background: #f0f0f0; /* Light gray background on hover */
+}
+.checkmark {
+    color: green; /* Color for the checkmark */
+    display: none; /* Initially hidden */
+    font-size: 1.5em; /* Adjust size as needed */
+    margin-left: 10px; /* Space between the title and checkmark */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Slide from below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: fadeIn 0.5s ease forwards; /* Apply fade-in animation to the body */
+}
+
+/* Existing styles */
+.step {
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 0.5s ease forwards; /* Fade-in animation */
+    animation-delay: 0.3s; /* Delay to stagger the appearance of steps */
+}
+
+.step.visible {
+    opacity: 1; /* Make visible when the class is added */
+    animation: fadeIn 0.5s ease forwards; /* Ensure it fades in when visible */
+}
+
+
+
+
+
+
+
