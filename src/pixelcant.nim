@@ -8,8 +8,12 @@ import "models.nim"
 import "websockets.nim"
 import "api"/["auth.nim", "canvas.nim"]
 
+# import logging
+# var consoleLog = newConsoleLogger()
+# addHandler(consoleLog)
+
 settings:
-  numThreads = 1
+  numThreads = 4
 
 overload()  # Load dotenv file
 let dbhost = getEnv("DB_HOST")
@@ -32,9 +36,9 @@ proc dbAwaitRunning(): DbConn =
 let dbConn = dbAwaitRunning()
 echo "Connected to database"
 
-# dbConn.createTables(newUser())
-# dbConn.createTables(newMessage())
-# dbConn.createTables(newPixel())
+dbConn.createTables(newUser())
+dbConn.createTables(newMessage())
+dbConn.createTables(newPixel())
 dbConn.close()
 
 routes:

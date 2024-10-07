@@ -1,8 +1,12 @@
 import std/locks
 import ws
 
-type Sockets = object
-  connections*: seq[WebSocket]
-  lock*: Lock
+var socketLock*: Lock
+initLock(socketLock)
 
-var sockets* = Sockets(connections: newSeq[WebSocket]())
+var sockets* {.guard: socketLock.} = newSeq[WebSocket]()
+
+template lockedSockets*(body: untyped) =
+  {.gcsafe.}:
+    withLock(socketLock):
+      body

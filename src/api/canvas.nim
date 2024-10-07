@@ -7,16 +7,16 @@ import "../websockets.nim"
 
 router canvas:
   get "/connect":
-    {.gcsafe.}:
-      withLock(sockets.lock):
-        sockets.connections.add (await newWebSocket(request))
-        let connLen = sockets.connections.len
-        echo connLen
-        echo sockets.connections[connLen - 1].key
-      resp Http200
+    lockedSockets:
+      sockets.add (await newWebSocket(request))
+      let connLen = sockets.len
+      echo connLen
+      echo sockets[connLen - 1].key
+    resp Http200
 
   get "/pingall":
-    {.gcsafe.}:
-      for conn in sockets.connections:
+    lockedSockets:
+      for conn in sockets:
+        echo conn.key
         await conn.send("ping")
-      resp Http200
+    resp Http200
