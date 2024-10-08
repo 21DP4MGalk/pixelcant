@@ -1,5 +1,5 @@
 import norm/[types, model, pragmas]
-import options
+import std/options
 
 type 
   User* {.tableName: "Users".} = ref object of Model

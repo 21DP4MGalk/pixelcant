@@ -5,12 +5,15 @@ import ws, ws/jester_extra
 import "../websockets.nim"
 
 router canvas:
-  get "/connect":
+  
+  get "/fullcanvas":
+    resp Http200
+
+  get "/updatestream":
     let ws = await newWebSocket(request)
     sockets.add ws
     resp Http200
 
-  get "/pingall":
-    for sock in sockets:
-      discard sock.send("pling")
+  post "/placepixel":
     resp Http200
+
