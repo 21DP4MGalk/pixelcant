@@ -13,7 +13,7 @@ import "api"/["auth.nim", "canvas.nim"]
 # addHandler(consoleLog)
 
 settings:
-  numThreads = 4
+  numThreads = 1
 
 overload()  # Load dotenv file
 let dbhost = getEnv("DB_HOST")
