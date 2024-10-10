@@ -12,11 +12,16 @@ router canvas:
   
   get "/fullcanvas/@xfrom/@yfrom/@xto/@yto":
     try:
+      let
+        xfrom = parseInt(@"xfrom")
+        xto = parseInt(@"xto")
+        yfrom = parseInt(@"yfrom")
+        yto = parseInt(@"yto")
       var pixelQuery = @[newPixel()]
       withDb:
-        if not db.exists(Pixel, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", parseInt(@"xfrom"), parseInt(@"xto"), parseInt(@"yfrom"), parseInt(@"yto")):
+        if not db.exists(Pixel, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", xfrom, xto, yfrom, yto):
           resp Http204
-        db.select(pixelQuery, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", parseInt(@"xfrom"), parseInt(@"xto"), parseInt(@"yfrom"), parseInt(@"yto"))
+        db.select(pixelQuery, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", xfrom, xto, yfrom, yto)
       var queriedPixels: seq[PixelQuery]
       for pixel in pixelQuery:
         queriedPixels.add PixelQuery(x: pixel.x, y: pixel.y, c: pixel.colour)
@@ -30,14 +35,22 @@ router canvas:
     resp Http200
 
   post "/placepixel":
-    var pixelQuery = newPixel()
-    pixelQuery.x = 0
-    pixelQuery.y = 0
-    pixelQuery.colour = 0
-    pixelQuery.userfk = newUser()
-    withDb:
-      db.insert(pixelQuery)
-    for ws in sockets:
-      discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
-    resp Http200
+    try:
+      let
+        parsedBody = parseJson(request.body)
+        pixelX = parsedBody["x"].getInt
+        pixelY = parsedBody["y"].getInt
+        pixelColour = int16(parsedBody["c"].getInt)
+      var pixelQuery = newPixel()
+      pixelQuery.x = pixelX
+      pixelQuery.y = pixelY
+      pixelQuery.colour = pixelColour
+      pixelQuery.userfk = newUser()
+      withDb:
+        db.insert(pixelQuery)
+      for ws in sockets:
+        discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
+      resp Http200
+    except:
+      resp Http400
 
