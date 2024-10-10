@@ -18,7 +18,7 @@ type
     y*: int
     colour*: int16 = 0
     userfk*: User
-
+    
 func newUser*(): User =
   User()
 
@@ -27,4 +27,3 @@ func newMessage*(): Message =
 
 func newPixel*(): Pixel = 
   Pixel(x: 0, y: 0, userfk: newUser())
-
