@@ -6,7 +6,7 @@ import checksums/bcrypt
 import std/[os, strutils, json, options, locks]
 import "models.nim"
 import "websockets.nim"
-import "api"/["auth.nim", "canvas.nim"]
+import "api"/["auth.nim", "canvas.nim", "chat.nim", "user.nim"]
 
 settings:
   numThreads = 1
@@ -42,3 +42,7 @@ routes:
   extend auth, "/auth"
 
   extend canvas, "/canvas"
+
+  extend chat, "/chat"
+
+  extend user, "/user"

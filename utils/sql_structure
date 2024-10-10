@@ -1,0 +1,24 @@
+CREATE TABLE users (
+    id int,
+    username varchar(16),
+    password varchar(60),
+    admin boolean DEFAULT false,
+    banned boolean DEFAULT false,
+    lastplaced int,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE pixels (
+    x int,
+    y int,
+    colour smallint,
+    userid integer references users(id),
+    PRIMARY KEY(x, y)
+);
+
+CREATE TABLE messages (
+    id int,
+    timestamp int,
+    message varchar(300),
+    username int references users(id)
+);
