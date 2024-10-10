@@ -1,32 +1,36 @@
 import jester
-import norm/[postgres]
+import norm/[postgres, types]
 import "../models.nim"
 import times
 import std/json
+import strutils
 
 router chat:
   post "/postmessage":
-    let curTime = getTime();  
-    let curTime = curTime.toUnixFloat() * 1000 // get Unix epoch time in miliseconds
+    var curTime = getTime();  
+    var unixTime = int(curTime.toUnixFloat() * 1000) # get Unix epoch time in miliseconds
     let messageText = request.formData["message"].body
     let userToken = request.formData["token"].body
-    let timestamp = request.formData["time"].body
+    let timestamp: int = parseInt(request.formData["time"].body)
     
-    if messageText.len > 300 || curTime < timestamp:
+    if (messageText.len > 300 or unixTime < timestamp):
       resp Http400
 
-    var userContainer = newUser()
-    dbConn.select(userContainer, "User.token = ?", userToken)
-    var message = newMessage(messageText, timestamp, userContainer)
-    message.message = newStringOfCap[300](messageText)
-    message.timestamp = timestamp
-    message.userfk = userContainer 
-    dbConn.insert(message)
+    withDb:
+      
+      var userContainer = newUser()
+      db.select(userContainer, "User.token = ?", userToken)
+      var message = newMessage()
+      message.message = newStringOfCap[300](messageText)
+      message.time = timestamp
+      message.userfk = userContainer 
+      db.insert(message)
 
-    resp Http200
+      resp Http200
 
-  post "/getmessages":
+#[ UNDER CONSTRUCTION
+    post "/getmessages":
     var messages = @[newMessage()]
-    dbConn.select(messages, "true ORDER BY timestamp desc LIMIT  25")
-    jsonMsg = %* messages
-    resp jsonMsg
+    withDb:
+      db.select(messages, "true ORDER BY timestamp desc LIMIT  25")
+]#    
