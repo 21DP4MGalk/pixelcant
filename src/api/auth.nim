@@ -9,15 +9,13 @@ router auth:
   post "/login":
     try:
       let username = request.params["username"]
-      resp username
-    #   let password = request.params["password"]
-    # except:
-    #   resp Http400
-
+      let password = request.params["password"]
     # withDb:
     #   let userQuery = newUser()
       
-    resp Http200
+      resp Http200
+    except:
+      resp Http400
 
   post "/register":
     try:
