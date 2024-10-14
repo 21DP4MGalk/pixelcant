@@ -6,7 +6,7 @@ import "../models.nim"
 import "../websockets.nim"
 
 type PixelQuery* = object
-  x*, y*, c*: int
+  x*, y*, c*: int16
 
 router canvas:
   
@@ -38,9 +38,9 @@ router canvas:
     try:
       let
         parsedBody = parseJson(request.body)
-        pixelX = parsedBody["x"].getInt
-        pixelY = parsedBody["y"].getInt
-        pixelColour = int16(parsedBody["c"].getInt)
+        pixelX = parsedBody["x"].getInt.int16
+        pixelY = parsedBody["y"].getInt.int16
+        pixelColour = parsedBody["c"].getInt.int16
       var pixelQuery = newPixel()
       pixelQuery.x = pixelX
       pixelQuery.y = pixelY

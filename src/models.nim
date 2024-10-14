@@ -14,8 +14,8 @@ type
     time*: int = 0
     userfk*: User
   Pixel* {.tableName: "Pixels".} = ref object of Model
-    x*: int
-    y*: int
+    x*: int16
+    y*: int16
     colour*: int16 = 0
     userfk*: User
     
