@@ -1,14 +1,14 @@
 import jester
 import norm/[postgres, types]
 import "../models.nim"
-import times
+import std/[times, os]
 import std/json
 import strutils
 
 router chat:
   post "/postmessage":
-    var curTime = getTime();  
-    var unixTime = int(curTime.toUnixFloat() * 1000) # get Unix epoch time in miliseconds
+    var curTime = epochTime();  
+    var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
     let messageText = request.formData["message"].body
     let userToken = request.formData["token"].body
     let timestamp: int = parseInt(request.formData["time"].body)
@@ -19,7 +19,7 @@ router chat:
     withDb:
       
       var userContainer = newUser()
-      db.select(userContainer, "User.token = ?", userToken)
+      db.select(userContainer, "User.token = $1", userToken)
       var message = newMessage()
       message.message = newStringOfCap[300](messageText)
       message.time = timestamp
