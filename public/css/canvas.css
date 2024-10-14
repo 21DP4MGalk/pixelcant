@@ -2,6 +2,7 @@ canvas{
 	border-style: dotted;
 	border-color: black;
 	border-width: 2px;
+	margin-top: 120px;
 }
 div#picker{
 	position: fixed;
@@ -54,7 +55,8 @@ input#textInput{
 div#messageBox{
 	border: inset gainsboro 3px;
 	height: 435px;
-	color: #FFFFFF
+	color: #FFFFFF;
+	overflow: auto;
 }
 input[type=button]#messageSend{
 	width: 25px;
