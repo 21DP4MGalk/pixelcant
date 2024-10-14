@@ -40,8 +40,9 @@ async function getMessages(){
 	}
 }
 
-async function sendMessage(){
+function sendMessage(){
 	var message = document.getElementById("textInput");
+	message = message.value;
 	if(message.length > 300){
 		alert("Message length above 300, be more concise");
 		return;
