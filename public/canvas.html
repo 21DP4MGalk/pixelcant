@@ -6,15 +6,23 @@
 		<link rel="stylesheet" href="css/canvas.css">
 	</head>
 	<body>
-		<canvas id="canvas" width="1000px" height="1000px" onclick="interpretClick()"></canvas>
-		<div id="picker">
-			<select id="color">
-				<option value="red">Red</option>
-				<option value="white">White</option>
-				<option value="black">Black</option>
-				<option value="yellow">Yelo</option>
-				<option value="green">Blue</option>
-			</select>
+		<canvas id="canvas" width="2000px" height="2000px" onclick="interpretClick()"></canvas>
+		<div id="picker" onclick="updateColour()">
+			<button class="colourchoice" style="background-color: #FF0000"></button>
+			<button class="colourchoice" style="background-color: #00FF00"></button>
+			<button class="colourchoice" style="background-color: #0000FF"></button>
+			<button class="colourchoice" style="background-color: #FFFF00"></button>
+			<button class="colourchoice" style="background-color: #FF00FF"></button>
+			<button class="colourchoice" style="background-color: #00FFFF"></button>
+			<button class="colourchoice" style="background-color: #FFFFFF"></button>
+			<button class="colourchoice" style="background-color: #000000"></button>
+			<button class="colourchoice" style="background-color: #4A412A"></button>
+			<button class="colourchoice" style="background-color: #013220"></button>
+		</div>
+		<div id="chat">
+			<div id="chatTitle"> CHAT </div>
+			<div id="messageBox"></div>
+			<input type="text" id="textInput" placeholder="Type your message here..." required> <input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
 		</div>
 	</body>
 </html>

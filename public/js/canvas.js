@@ -1,3 +1,5 @@
+var colour = "#000000";
+
 function interpretClick(){
 	const canvas = document.getElementById("canvas");
 	const canvasCtx = canvas.getContext("2d");
@@ -7,14 +9,15 @@ function interpretClick(){
 	posX = event.clientX - rect.left;
 	posY = posY - posY%20;
 	posX = posX - posX%20;
-	//posX = Math.floor(posX / 100);
-	//posY = Math.floor(posY / 100);
-		
-	canvasCtx.fillStyle = getColorSelection();
+	
+	//send request to websocket, if it works and returns true then continue
+
+	canvasCtx.fillStyle = colour;
 	canvasCtx.fillRect(posX, posY, 20, 20);
 }
-function getColorSelection(){
-	const selection = document.getElementById("color");
-	
-	return selection.value;
+
+function updateColour(){
+	var selection = document.querySelectorAll(":hover"); 
+	selection = selection[selection.length-1]; 
+	colour = window.getComputedStyle(selection).backgroundColor;
 }
