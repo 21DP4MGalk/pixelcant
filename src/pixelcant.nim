@@ -3,10 +3,10 @@ import norm/[postgres, types, model]
 import ws, ws/jester_extra
 import dotenv
 import checksums/bcrypt
-import std/[os, strutils, options, json]
+import std/[os, strutils, json, options, locks, times]
 import "models.nim"
 import "websockets.nim"
-import "api"/["auth.nim", "canvas.nim"]
+import "api"/["auth.nim", "canvas.nim", "chat.nim", "user.nim"]
 
 # import logging
 # var consoleLog = newConsoleLogger()
@@ -46,3 +46,7 @@ routes:
   extend auth, "/auth"
 
   extend canvas, "/canvas"
+
+  extend chat, "/chat"
+
+  extend user, "/user"
