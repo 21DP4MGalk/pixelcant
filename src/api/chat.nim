@@ -5,6 +5,11 @@ import std/[times, os]
 import std/json
 import strutils
 
+type mixedTableContainer* = ref object
+      username*: StringOfCap[16] = newStringOfCap[16]("")
+      message*: StringOfCap[300] = newStringOfCap[300]("")
+      timestamp*: int = 0
+
 router chat:
   post "/postmessage":
     var curTime = epochTime();  
@@ -27,10 +32,23 @@ router chat:
       db.insert(message)
 
       resp Http200
+#[         IT'S ALL FUCKED
+  post "/getmessages":
+    
+    
+    var outputNames: array[25, StringOfCap[16]]
+    var outputMessages: array[25, StringOfCap[300]]
+    var i = 0
+    var joinQuerry = "SELECT username, message, timestamp FROM messages INNER JOIN users ON messages.userid = users.id ORDER BY timestamp desc LIMIT 25"
+    
+    var messages = @[mixedTableContainer()]
 
-#[ UNDER CONSTRUCTION
-    post "/getmessages":
-    var messages = @[newMessage()]
     withDb:
-      db.select(messages, "true ORDER BY timestamp desc LIMIT  25")
-]#    
+      # db.select(messages, " User.name NOT NULL ORDER BY timestamp desc LIMIT  25")
+      db.rawSelect(joinQuerry, messages)
+      for message in messages:
+        outputNames[i] = message.username
+        outputMessages[i] = message.message
+        i+=1
+    resp Http200, $(%* outputNames), $(%* outputMessages)
+]#
