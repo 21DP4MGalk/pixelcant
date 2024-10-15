@@ -6,9 +6,9 @@ import std/json
 import strutils
 
 type mixedTableContainer* = ref object
-      username*: StringOfCap[16] = newStringOfCap[16]("")
-      message*: StringOfCap[300] = newStringOfCap[300]("")
-      timestamp*: int = 0
+  username*: StringOfCap[16] = newStringOfCap[16]("")
+  message*: StringOfCap[300] = newStringOfCap[300]("")
+  timestamp*: int = 0
 
 router chat:
   post "/postmessage":
