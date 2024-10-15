@@ -8,9 +8,9 @@ import jester
 
 
 type mixedTableContainer* = ref object
-      username*: StringOfCap[16] = newStringOfCap[16]("")
-      message*: StringOfCap[300] = newStringOfCap[300]("")
-      timestamp*: int = 0
+  username*: StringOfCap[16] = newStringOfCap[16]("")
+  message*: StringOfCap[300] = newStringOfCap[300]("")
+  timestamp*: int = 0
 
 router chat:
   post "/postmessage":
@@ -66,5 +66,3 @@ router chat:
         outputArr[i][1] = $ message.message
         i+=1
     resp Http200, $(%* outputArr)
-  
-

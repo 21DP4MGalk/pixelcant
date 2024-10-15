@@ -10,7 +10,7 @@ RUN nimble install -dy
 
 COPY src/ src/
 
-# COPY nim.cfg .
+COPY nim.cfg .
 
 RUN nimble build -d:release
 

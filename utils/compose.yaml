@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    volumes:
+      - ./public:/app/public:ro
     # Likely not optimal, but takes a bit too long otherwise
     stop_signal: SIGKILL
 
