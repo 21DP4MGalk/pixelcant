@@ -47,6 +47,7 @@ router auth:
         if db.exists(User, "name = $1", convertedName):
           resp Http400
 
+        let authToken = generateAuthToken()
         setCookie("token", authToken, daysForward(7), Strict, true, true)
         db.insert(userQuery)
       
