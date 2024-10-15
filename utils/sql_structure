@@ -20,5 +20,5 @@ CREATE TABLE messages (
     id int,
     timestamp int,
     message varchar(300),
-    username int references users(id)
+    userid int references users(id)
 );

@@ -32,20 +32,32 @@ function updateColour(){
 async function getMessages(){
 	var messageBox = document.getElementById("messageText");
 	var text = "";
-	//fetch /chat/getMessages/ and update the array
+	const response = await fetch("chat/getmessages");
+	messages = JSON.parse(await response.text());
 	for(let i = 0; i < messages.length; i++){
-		text = "";
+		if(messages[i][0] == ""){
+			break;
+		}
 		text = "<b>" + messages[i][0] + "<b> : " + messages[i][1];
 		messageBox.innerHTML += text + "<br><br>";
 	}
 }
 
-function sendMessage(){
+async function sendMessage(){
 	var message = document.getElementById("textInput");
 	message = message.value;
 	if(message.length > 300){
 		alert("Message length above 300, be more concise");
 		return;
 	}
+	var messageData = new FormData();
+	
+	messageData.append("message", message);
+
+
+	const response = await fetch("chat/postmessage", {
+		method: "POST",
+		body: messageData
+	});
 
 }
