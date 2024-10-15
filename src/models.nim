@@ -3,7 +3,7 @@ import options
 
 type 
   User* {.tableName: "Users".} = ref object of Model
-    name*: StringOfCap[16] = newStringOfCap[16]("")
+    username*: StringOfCap[16] = newStringOfCap[16]("")
     banned*: bool = false
     admin*: bool = false
     password*: PaddedStringOfCap[60] = newPaddedStringOfCap[60]("")

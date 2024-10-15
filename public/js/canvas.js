@@ -1,11 +1,5 @@
 var colour = "#000000";
-var messages = [
-	["Bob marley", "This game ***** I hate it"],
-	["John Lemon", "Agreed, **** ******* the woman is the ****** of the world"],
-	["Saddam Hussein", "Guys let's calm down and be more peaceful this game is not that bad."],
-	["Jose", "Ay Caramba di merda puta madre"],
-	["Donald", "We should draw a wall"] 
-];
+var messages = [];
 
 function interpretClick(){
 	const canvas = document.getElementById("canvas");
@@ -29,6 +23,10 @@ function updateColour(){
 	colour = window.getComputedStyle(selection).backgroundColor;
 }
 
+async function startMessageFetching(){
+	setInterval(await getMessages(), 5000);
+}
+
 async function getMessages(){
 	var messageBox = document.getElementById("messageText");
 	var text = "";
@@ -39,7 +37,7 @@ async function getMessages(){
 			break;
 		}
 		text = "<b>" + messages[i][0] + "<b> : " + messages[i][1];
-		messageBox.innerHTML += text + "<br><br>";
+		messageBox.innerHTML = text + "<br><br>";
 	}
 }
 

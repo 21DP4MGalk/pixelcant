@@ -6,3 +6,4 @@ type Sockets = object
   lock*: Lock
 
 var sockets* = Sockets(connections: newSeq[WebSocket]())
+var socketsChat* = newSeq[WebSocket]()

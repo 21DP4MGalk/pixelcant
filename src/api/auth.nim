@@ -30,7 +30,7 @@ router auth:
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(passwordInput, generateSalt(8)))
         let convertedName = newStringOfCap[16](nameInput)
         var userQuery = newUser()
-        userQuery.name = convertedName
+        userQuery.username = convertedName
         userQuery.password = hashedPass
 
         if db.exists(User, "name = $1", convertedName):
