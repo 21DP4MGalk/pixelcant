@@ -16,7 +16,9 @@ router chat:
   post "/postmessage":
 
     let messageText = request.formData["message"].body
+    echo request.cookies
     let userToken = request.cookies["token"]
+
     var curTime = epochTime() 
     var socketMsg = ""
 

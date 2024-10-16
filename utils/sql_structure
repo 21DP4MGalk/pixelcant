@@ -4,7 +4,7 @@ CREATE TABLE users (
     password varchar(60),
     admin boolean DEFAULT false,
     banned boolean DEFAULT false,
-    lastplaced int,
+    lastpixel int,
     PRIMARY KEY(id)
 );
 

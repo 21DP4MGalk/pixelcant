@@ -20,7 +20,7 @@ router user:
       if(not requestUser.admin or newName.len > 16):
         resp Http400
   
-      editUser.name = newStringOfCap[16](newName)    
+      editUser.username = newStringOfCap[16](newName)    
 
       db.update(editUser)
       resp Http200
@@ -41,6 +41,6 @@ router user:
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(newData, generateSalt(8))) 
         user.password = hashedPass
       else:
-        user.name = newStringOfCap[16](newData)
+        user.username = newStringOfCap[16](newData)
       db.update(user)
       resp Http200

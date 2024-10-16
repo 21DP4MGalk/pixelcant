@@ -32,7 +32,7 @@ router auth:
 
   post "/register":
     try:
-      let nameInput = request.formData["name"].body
+      let nameInput = request.formData["username"].body
       let passwordInput = request.formData["password"].body
       if nameInput.len > 16:
         resp Http400
@@ -43,16 +43,27 @@ router auth:
         var userQuery = newUser()
         userQuery.username = convertedName
         userQuery.password = hashedPass
-
-        if db.exists(User, "name = $1", convertedName):
+        userQuery.admin = false
+        userQuery.banned = false
+        userQuery.lastpixel = 0
+    
+        if db.exists(User, "username = $1", convertedName):
           resp Http400
 
         let authToken = generateAuthToken()
         setCookie("token", authToken, daysForward(7), Strict, true, true)
+        
+        userQuery.loginToken = some PaddedStringOfCap[128](authToken)
+        
         db.insert(userQuery)
+        var users = @[newUser()];
+        db.select(users, "true")
+        for user in users:
+          echo user[]
       
       resp Http200
 
     except:
-      resp Http400
+      echo getCurrentExceptionMsg() 
+      resp Http418
 
