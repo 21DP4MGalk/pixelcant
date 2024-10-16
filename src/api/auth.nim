@@ -16,15 +16,15 @@ router auth:
       let username = request.formData["username"].body
       let password = request.formData["password"].body
       withDb:
-        if not db.exists(User, "name = $1", username):
+        if not db.exists(User, "username = $1", username):
           resp Http400
         var userQuery = newUser()
-        db.select(userQuery, "name = $1", username)
+        db.select(userQuery, "username = $1", username)
         if not bcrypt.verify(password, $userQuery.password):
           resp Http400
         let authToken = generateAuthToken()
         userQuery.loginToken = some newPaddedStringOfCap[128](authToken)
-        setCookie("token", authToken, daysForward(7), Strict, true, true)
+        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
         db.update(userQuery)
       resp Http200
     except:
@@ -51,7 +51,7 @@ router auth:
           resp Http400
 
         let authToken = generateAuthToken()
-        setCookie("token", authToken, daysForward(7), Strict, true, true)
+        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
         
         userQuery.loginToken = some PaddedStringOfCap[128](authToken)
         

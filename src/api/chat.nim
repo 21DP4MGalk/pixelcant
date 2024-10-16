@@ -33,7 +33,7 @@ router chat:
 
     withDb:
       
-      db.select(userContainer, "User.token = $1", userToken)
+      db.select(userContainer, "loginToken = $1", userToken)
   
       message.message = newStringOfCap[300](messageText)
       message.time = unixTime
@@ -41,6 +41,7 @@ router chat:
       
       db.insert(message)
 
+    #TODO: Make this less XSSable
     socketMsg = ("<b>" & $userContainer.username & "<b> : " &  $message.message)
 
     for socket in socketsChat:
