@@ -1,5 +1,5 @@
 import jester
-import std/[json, strutils]
+import std/[json, strutils, times]
 import norm/[postgres, types, model]
 import ws, ws/jester_extra
 import "../models.nim"
@@ -35,21 +35,26 @@ router canvas:
     resp Http200
 
   post "/placepixel":
-    try:
-      let
-        parsedBody = parseJson(request.body)
-        pixelX = parsedBody["x"].getInt.int16
-        pixelY = parsedBody["y"].getInt.int16
-        pixelColour = parsedBody["c"].getInt.int16
-      var pixelQuery = newPixel()
+    let
+      token = request.cookies["token"]
+      parsedBody = parseJson(request.body)
+      pixelX = parsedBody["x"].getInt.int16
+      pixelY = parsedBody["y"].getInt.int16
+      pixelColour = parsedBody["c"].getInt.int16  
+    var pixelQuery = newPixel()
+    let currentTime = epochTime().int
+    withDb:
+      assertUserTokenExists(token)
+      selectUserWithToken(token)
+      if currentTime - 300 < userQuery.lastpixel:
+        resp Http429
       pixelQuery.x = pixelX
       pixelQuery.y = pixelY
       pixelQuery.colour = pixelColour
-      pixelQuery.userfk = newUser()
-      withDb:
-        db.insert(pixelQuery)
-      for ws in sockets:
-        discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
-      resp Http200
-    except:
-      resp Http400
+      pixelQuery.userfk = userQuery
+      userQuery.lastpixel = currentTime
+      db.insert(pixelQuery)
+      db.update(userQuery)
+    for ws in sockets:
+      discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
+    resp Http200

@@ -14,8 +14,9 @@ router user:
     var requestUser = newUser()
     var editUser = newUser()
     withDb:
+      assertUserTokenExists(requestToken)
       db.select(editUser, "username = $1", oldName)
-      db.select(requestUser, "token = $1", requestToken)
+      db.select(requestUser, "loginToken = $1", requestToken)
       
       if(not requestUser.admin or newName.len > 16):
         resp Http400
@@ -25,7 +26,7 @@ router user:
       db.update(editUser)
       resp Http200
 
-  post "modifyself":
+  post "/modifyself":
     let userToken = request.formData["token"].body
     let newData = request.formData["newData"].body
     let isPass = parseBool(request.formData["isPass"].body) #[Determines wether the data to be edited is the password or the username
@@ -34,8 +35,9 @@ router user:
     if(not isPass and newData.len > 16):
       resp Http400
     withDb:
+      assertUserTokenExists(userToken)
       var user = newUser();
-      db.select(user, "token = $1", userToken)
+      db.select(user, "loginToken = $1", userToken)
 
       if(isPass):
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(newData, generateSalt(8))) 

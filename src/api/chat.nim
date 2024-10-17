@@ -1,11 +1,9 @@
+import jester
 import std/[times, os, json, strutils]
 import norm/[postgres, types]
 import ws, ws/jester_extra
 import "../websockets.nim"
 import "../models.nim"
-import jester
-
-
 
 type mixedTableContainer* = ref object
   username*: StringOfCap[16] = newStringOfCap[16]("")
@@ -32,7 +30,7 @@ router chat:
       resp Http400
 
     withDb:
-      
+      assertUserTokenExists(userToken)     
       db.select(userContainer, "loginToken = $1", userToken)
   
       message.message = newStringOfCap[300](messageText)
