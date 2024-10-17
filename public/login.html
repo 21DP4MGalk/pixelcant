@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Pixelcan't</title>
-		<link rel="stylesheet" href="css/login.css">
-	</head>
-	<body>
-		<h1>WELCOME!</h1>
-		<form>
-			<label for="username">Login:</label>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pixelcan't</title>
+	<link rel="stylesheet" href="css/style_d.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+		<h1>Log in to your account</h1>
+		</div>
+	</header>
+
+	<main>
+		<canvas id="confettiCanvas"></canvas>
+		<div class="container">
+			<h1>WELCOME!</h1>
+			<form id="registrationForm" onsubmit="return validateForm()">
+			<label for="username">Username:</label>
 			<input type="text" id="username" name="username" required>
-			<br>
+			<span class="error" id="usernameError"></span>
+
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password" required>
-			<br>
-			<button type="submit">Sign in</button>
-		</form>
-	</body>
+			<span class="error" id="passwordError"></span>
+
+			<button type="submit" id="signInButton">Sign in</button>
+			</form>
+		</div>
+	</main>
+
+	<footer>
+		<p>© 2024 Pixelcan't. All rights reserved.</p>
+	</footer>
+
+	<script src="js/login.js"></script>
+</body>
 </html>

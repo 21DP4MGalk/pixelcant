@@ -1,0 +1,4 @@
+DB_HOST=localhost
+DB_PASS=testing123
+DB_USER=pixelcant
+DB_NAME=pixelcant

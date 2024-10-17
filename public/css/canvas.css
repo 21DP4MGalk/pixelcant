@@ -2,6 +2,7 @@ canvas{
 	border-style: dotted;
 	border-color: black;
 	border-width: 2px;
+	margin-top: 120px;
 }
 div#picker{
 	position: fixed;
@@ -13,4 +14,57 @@ div#picker{
 select{
 	width: 100px;
 	height: 20px;
+}
+div#picker{
+	position:fixed;
+	bottom: 0;
+	right: 0;
+	width: 145px;
+	height: 55px;
+	border: solid black;
+	padding: 2px;
+	background-color: black;
+}
+div#chat{
+	width: 250px;
+	height: 500px;
+	border: dotted black 2px;
+	position: fixed;
+	left: 15px;
+	bottom: 15px;
+	background-color: rgb(12, 12, 12, 0.7);
+}
+div#chatTitle{
+	color: #000000;
+	background-color: azure;
+	border: outset gainsboro 3px;
+	font-size: 20px;
+	text-align: center;
+	text-shadow: 1px 1px #000000;
+}
+input#textInput{
+	
+	overflow-wrap: break-word;
+	word-break: keep-all;
+	width: 200px;
+	height: 25px;
+	color: #FFFFFF;
+	background-color: rgb(0, 0, 0, 0.9);
+	font-weight: bold; 
+}
+div#messageBox{
+	border: inset gainsboro 3px;
+	height: 435px;
+	color: #FFFFFF;
+	overflow: auto;
+}
+input[type=button]#messageSend{
+	width: 25px;
+	height: 25px;
+	background-color: #00DD00;
+}
+button.colourchoice{
+	width: 25px;
+	height: 25px;
+	padding: 1px;
 }

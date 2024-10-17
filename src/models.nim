@@ -1,9 +1,9 @@
 import norm/[types, model, pragmas]
-import options
+import std/options
 
 type 
   User* {.tableName: "Users".} = ref object of Model
-    name*: StringOfCap[16] = newStringOfCap[16]("")
+    username*: StringOfCap[16] = newStringOfCap[16]("")
     banned*: bool = false
     admin*: bool = false
     password*: PaddedStringOfCap[60] = newPaddedStringOfCap[60]("")
@@ -14,8 +14,8 @@ type
     time*: int = 0
     userfk*: User
   Pixel* {.tableName: "Pixels".} = ref object of Model
-    x*: int
-    y*: int
+    x*: int16
+    y*: int16
     colour*: int16 = 0
     userfk*: User
     
