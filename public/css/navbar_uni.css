@@ -1,5 +1,6 @@
+/*Designed to be dropped into pretty much any page pretty easily, just include the HTML in the utils folder and move the content 120px down
+and you have essentially the old version of the main page navbar*/
 
-/*navbar shit*/
 #navbarUni{
 	background: #fff;
 	width: 100%;

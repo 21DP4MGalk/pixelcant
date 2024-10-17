@@ -4,7 +4,7 @@ CREATE TABLE Users (
     password char(60),
     admin boolean DEFAULT false,
     banned boolean DEFAULT false,
-    lastpixel int,
+    lastPixel int,
     loginToken char(128)
     PRIMARY KEY(id)
 );

@@ -11,9 +11,9 @@ Milzīgs molberts, uz kura var novietot pikseļus konkrētas krāsas, pastāv č
 Nākotnē jābūt:
 
 - [x] Pikseļu novietošana
-- [ ] Molberta sinhronizācija ar datubāzi
-- [ ] Molberta sinhronizācija ar citiem lietotājiem
-- [ ] Čats
-- [ ] Register/login sistēma
+- [x] Molberta sinhronizācija ar datubāzi
+- [x] Molberta sinhronizācija ar citiem lietotājiem
+- [x] Čats
+- [x] Register/login sistēma
 - [ ] Adminu iespēja dzēst čata īsziņas
 - [ ] Adminu iespēja banot lietotājus

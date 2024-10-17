@@ -4,18 +4,12 @@ canvas{
 	border-width: 2px;
 	margin-top: 120px;
 }
-div#picker{
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	width: 100px;
-	height: 20px;
-}
+
 select{
 	width: 100px;
 	height: 20px;
 }
-div#picker{
+div#picker{			/*Color picker containing the available tones*/
 	position:fixed;
 	bottom: 0;
 	right: 0;
@@ -25,7 +19,7 @@ div#picker{
 	padding: 2px;
 	background-color: black;
 }
-div#chat{
+div#chat{			/*The entirety of the chat box*/
 	width: 250px;
 	height: 500px;
 	border: dotted black 2px;
@@ -34,7 +28,7 @@ div#chat{
 	bottom: 15px;
 	background-color: rgb(12, 12, 12, 0.7);
 }
-div#chatTitle{
+div#chatTitle{			/*The big text that says CHAT*/
 	color: #000000;
 	background-color: azure;
 	border: outset gainsboro 3px;
@@ -42,8 +36,7 @@ div#chatTitle{
 	text-align: center;
 	text-shadow: 1px 1px #000000;
 }
-input#textInput{
-	
+input#textInput{		/*The user's input field*/
 	overflow-wrap: break-word;
 	word-break: keep-all;
 	width: 200px;
@@ -52,25 +45,24 @@ input#textInput{
 	background-color: rgb(0, 0, 0, 0.9);
 	font-weight: bold; 
 }
-div#messageBox{
+div#messageBox{			/*The box containing the message history*/
 	border: inset gainsboro 3px;
 	height: 435px;
 	color: #FFFFFF;
-	overflow: auto;
+	overflow: auto;	
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column-reverse;		/*Necessary for the scroll bar to be at the bottom by default*/
 }
-div#messageBox p {
+div#messageBox p {		/*The text within the message box*/
 	overflow-wrap: break-word;
 	display: flex;
-	/*flex-direction: column-reverse;*/
 }
-input[type=button]#messageSend{
+input[type=button]#messageSend{			/*The green sending button*/
 	width: 25px;
 	height: 25px;
 	background-color: #00DD00;
 }
-button.colourchoice{
+button.colourchoice{			/*The colour pallet buttons*/
 	width: 25px;
 	height: 25px;
 	padding: 1px;
