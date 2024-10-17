@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="css/canvas.css">
 		<link rel="stylesheet" href="css/navbar_uni.css">
 	</head>
-	<body onload="startMessageFetching()">
+	<body onload="init()">
 		<header>
 			<nav id="navbarUni">
 				<div id="titleText">
@@ -22,7 +22,7 @@
 			</nav>
 		</header>
 
-		<canvas id="canvas" width="2000px" height="2000px" onclick="interpretClick()"></canvas>
+		<canvas id="canvas" width="16380px" height="16380px" onclick="interpretClick()"></canvas>
 		<div id="picker" onclick="updateColour()">
 			<button class="colourchoice" style="background-color: #FF0000"></button>
 			<button class="colourchoice" style="background-color: #00FF00"></button>
@@ -38,7 +38,8 @@
 		<div id="chat">
 			<div id="chatTitle"> CHAT </div>
 			<div id="messageBox"><p id="messageText"></div>
-			<input type="text" id="textInput" placeholder="Type your message here..." required> <input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
+			<input type="text" id="textInput" placeholder="Type your message here..." onkeypress="keyPress(event)"> 
+			<input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
 		</div>
 	</body>
 </html>

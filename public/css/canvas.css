@@ -57,6 +57,13 @@ div#messageBox{
 	height: 435px;
 	color: #FFFFFF;
 	overflow: auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+div#messageBox p {
+	overflow-wrap: break-word;
+	display: flex;
+	/*flex-direction: column-reverse;*/
 }
 input[type=button]#messageSend{
 	width: 25px;

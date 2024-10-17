@@ -14,20 +14,15 @@ type mixedTableContainer* = ref object
 
 router chat:
   post "/postmessage":
-
     let messageText = request.formData["message"].body
-    echo request.cookies
-    let userToken = request.cookies["token"]
-
-    var curTime = epochTime() 
+    let userToken = request.cookies["token"] 
     var socketMsg = ""
+    var curTime = epochTime()
+    var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
 
     var userContainer = newUser()
     var message = newMessage()
-    
 
-    var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
-    
     if (messageText.len > 300):
       resp Http400
 
@@ -42,12 +37,12 @@ router chat:
       db.insert(message)
 
     #TODO: Make this less XSSable
-    socketMsg = ("<b>" & $userContainer.username & "<b> : " &  $message.message)
+    socketMsg = ( $(($userContainer.username).len) & ";" & $userContainer.username &  $message.message)
 
     for socket in socketsChat:
       discard socket.send(socketMsg) 
 
-    resp Http200
+    resp Http201
 
   get "/messagestream":
     let ws = await newWebSocket(request)
@@ -57,7 +52,7 @@ router chat:
   get "/getmessages":
     var outputArr: array[25, array[2, string]]
     var i = 0
-    var joinQuerry = "SELECT username, message, timestamp FROM messages INNER JOIN users ON messages.userid = users.id ORDER BY timestamp desc LIMIT 25"
+    var joinQuerry = "SELECT username, message, time FROM \"Messages\" INNER JOIN \"Users\"  ON \"Messages\".userfk = \"Users\".id ORDER BY time desc LIMIT 25;"
     
     var messages = @[mixedTableContainer()]
 

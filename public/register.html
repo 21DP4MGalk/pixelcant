@@ -14,20 +14,20 @@
 	<body>
 		<main>
 		    <canvas id="confettiCanvas"></canvas>
-		    <div class="container">
+		    <div id="container">	
 			<h1>Register</h1>
-			<form id="registrationForm" action="/register" method="POST">
+			<div id="registrationForm">
 				<label for="username">Username:</label>
 				<input type="text" id="username" name="username" required>
 				    
 				<label for="password">Password:</label>
 				<input type="password" id="password" name="password" required>
 			    
-				<label for="confirm-password">Confirm Password:</label>
-				<input type="password" id="confirm-password" name="confirm-password" required>
-
-				<button type="submit" id="RegisterButton">Register</button>
-			</form>
+				<label for="confirmPassword">Confirm Password:</label>
+				<input type="password" id="confirmPassword" name="confirmPassword" required>
+				<p id="errorMessage"></p>
+				<button id="RegisterButton" onclick="submitRegistrationForm()">Register</button>
+			</div>
 		    </div>
 		</main>
 

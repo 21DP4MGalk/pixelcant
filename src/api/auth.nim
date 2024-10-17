@@ -28,7 +28,11 @@ router auth:
         db.update(userQuery)
       resp Http200
     except:
-      resp Http400
+      resp Http500
+
+#  post "/logout":
+#    try:
+
 
   post "/register":
     try:
@@ -56,14 +60,9 @@ router auth:
         userQuery.loginToken = some PaddedStringOfCap[128](authToken)
         
         db.insert(userQuery)
-        var users = @[newUser()];
-        db.select(users, "true")
-        for user in users:
-          echo user[]
-      
-      resp Http200
+      resp Http201
 
     except:
       echo getCurrentExceptionMsg() 
-      resp Http418
+      resp Http500
 
