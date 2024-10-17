@@ -63,3 +63,25 @@ router chat:
       i+=1
 
     resp Http200, $(%* outputArr)
+
+  post "/getuserhistory":
+    try:
+      var token = request.cookies["token"]
+      var username = request.formData["username"].body
+      var messageHistory = @[mixedTableContainer()]
+      var sqlQuerry = "SELECT username, message, time FROM \"Messages\" INNER JOIN \"Users\"  ON \"Messages\".userfk = \"Users\".id WHERE username = $1 ORDER BY time asc"
+      var messages: seq[string]
+
+      withDb:
+        if(not db.exists(User, "loginToken = $1", token)):
+          resp Http400, "Token not in database"
+        db.rawSelect(sqlQuerry, messageHistory, username)
+      for message in messageHistory:
+        messages.add($message.timestamp & $message.message)
+      resp Http200, $(%* messages)
+    except:
+      echo getCurrentExceptionMsg() 
+      resp Http500 
+#[
+  post "/deletemessage":
+]#

@@ -51,16 +51,16 @@ router user:
 
   post "/banuser":      # lets the admin ban a user
     let requestToken = request.cookies["token"]      # belongs to the requesting user
-    let username = request.formData["username"]     # belongs to our political enemy
-    var requestUser = new User()      # the user making the request
-    var bannedUser = new User()     # the user being banned
+    let username = request.formData["username"].body     # belongs to our political enemy
+    var requestUser = newUser()      # the user making the request
+    var bannedUser = newUser()     # the user being banned
     withDb:
-      if(!db.exists(User, "token = $1", requestToken)):
+      if(not db.exists(User, "loginToken = $1", requestToken)):
         resp Http400, "Your token is invalid, consider logging back in"
       
-      db.select(requestUser, "token = $1", requestToken)
+      db.select(requestUser, "loginToken = $1", requestToken)
       
-      if(!requestUser.admin):
+      if(not requestUser.admin):
         resp Http400, "You are not an administrator"
       
       db.select(bannedUser, "username = $1", username)
@@ -69,3 +69,13 @@ router user:
       
       resp Http200
       
+  get "/admincheck":
+    var token = request.cookies["token"]
+    var userContainer = newUser()
+
+    withDb:
+      if(not db.exists(User, "loginToken = $1", token)):
+        resp Http400, "Token does not exist in database"
+      db.select(userContainer, "loginToken = $1", token)
+    resp Http200, $userContainer.admin
+

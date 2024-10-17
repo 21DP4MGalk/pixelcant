@@ -4,6 +4,8 @@ var messages = [[]];			/* A two dimensional array for storing messages. With [x]
 colours = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)", "rgb(00, 0, 0)", "rgb(153, 170, 187)", "rgb(1, 50, 32)"];
 // Stores all the colours available as a pallet. Could be updated, should be updated. 
 
+var adminMsg = [];
+
 async function interpretClick(){			/* Function for gathering and sending all necessary information for placing pixels.
 	Gets the colour in int form, saves the cursor coordinates at the time of the click. Sends a request to /canvas/placepixel and
 	draws the pixels once the response is recieved and confirmed to be okay. */
@@ -153,4 +155,46 @@ function init(){			// function for use in onload parameter, just starts everythi
 		window.scrollTo(8000, 8000);
 	},2);
 
+	if(!adminCheck()){
+		panel = document.getElementById("adminPanel");
+		panel.style.display = "none";
+	}
+}
+
+async function adminCheck(){
+	var response = await fetch("/user/admincheck");
+	var result = await response.text();
+	console.log(result);
+}
+
+async function banUser(){
+	var username = document.getElementById("username");
+	var requestData = new FormData();
+	requestData.append("username", username.value);
+	var response = await fetch("/user/banuser",{
+		method: "POST",
+		body: requestData
+	})
+	if(!response.ok){
+		alert("Something went wrong!");
+	}
+	else{
+		username.value = "";
+	}
+}
+
+async function modifyUser(){
+
+}
+
+async function deleteMessage(){
+	var username = document.getElementById("username");
+	var requestData = new FormData();
+	requestData.append("username", username.value);
+	var messageHistory = await fetch("/chat/getuserhistory", {
+		method: "POST",
+		body: requestData
+	});
+	var messageList = await messageHistory.text();
+	console.log(messageList);
 }

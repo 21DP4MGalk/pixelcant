@@ -45,5 +45,24 @@
 			<input type="text" id="textInput" placeholder="Type your message here..." onkeypress="keyPress(event)"> 
 			<input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
 		</div>
+
+		<div id="adminPanel">
+			<input id="username" placeholder="Offending username" required>
+			<input id="newdata" placeholder="New name (optional)">
+			<button id="banButton" title="Ban a user" onclick="banUser()">&#x1F5E1;</button>
+			<button id="modifyButton" title="Modify a user" onclick="modifyUser()">&#9998;</button>
+			<button id="dialogButton" title="Delete a user's messages" onclick="deleteMessage()">&#x1f5d1;</button>
+		</div>
+
+		<div id="adminDialogContainer">
+			<div id="adminDialogBox">
+				<div id="adminMsgList"></div>
+				<div id="msgTools">
+					<input id="msgTimestamp" placeholder="Offending message timestamp" required>
+					<button id="deleteButton" onclick="deleteByTimestamp">Nuke</button>
+					<button id="cancelButton" onclick="closeDialog">Cancel</button>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
