@@ -10,6 +10,7 @@ bin           = @["pixelcant"]
 
 # Dependencies
 
+requires "httpbeast >= 0.4.2"
 requires "nim >= 1.0.0"
 requires "jester"
 requires "norm"

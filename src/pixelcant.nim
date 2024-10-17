@@ -3,10 +3,14 @@ import norm/[postgres, types, model]
 import ws, ws/jester_extra
 import dotenv
 import checksums/bcrypt
-import std/[os, strutils, json, options, locks]
+import std/[os, strutils, json, options, times, sysrand]
 import "models.nim"
 import "websockets.nim"
-import "api"/["auth.nim", "canvas.nim"]
+import "api"/["auth.nim", "canvas.nim", "chat.nim", "user.nim"]
+
+# import logging
+# var consoleLog = newConsoleLogger()
+# addHandler(consoleLog)
 
 settings:
   numThreads = 1
@@ -18,7 +22,7 @@ let dbpass = getEnv("DB_PASS")
 let dbname = getEnv("DB_NAME")
 let dbtimeout = parseInt(getEnv("DB_STARTUP_TIMEOUT", "5"))
 
-proc dbAwaitRunning(): DbConn =
+proc dbAwaitRunning*(): DbConn =
   echo "Connecting to database:"
   for i in 1..dbtimeout:
     echo "Attempt: " & $i
@@ -32,9 +36,9 @@ proc dbAwaitRunning(): DbConn =
 let dbConn = dbAwaitRunning()
 echo "Connected to database"
 
-# dbConn.createTables(newUser())
-# dbConn.createTables(newMessage())
-# dbConn.createTables(newPixel())
+dbConn.createTables(newUser())
+dbConn.createTables(newMessage())
+dbConn.createTables(newPixel())
 dbConn.close()
 
 routes:
@@ -42,3 +46,7 @@ routes:
   extend auth, "/auth"
 
   extend canvas, "/canvas"
+
+  extend chat, "/chat"
+
+  extend user, "/user"

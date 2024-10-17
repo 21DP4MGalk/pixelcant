@@ -1,0 +1,40 @@
+
+/*navbar shit*/
+#navbarUni{
+	background: #fff;
+	width: 100%;
+	height: 120px;
+	display: block;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+	box-shadow: 0 0 10px rgba(0,0,0,.1);
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+#titleText{
+	position: absolute;
+	top: 23px;
+	left: 6.5%;
+	color: #00ADB5;
+	text-decoration: none;
+	font-size: 25px;
+	/*padding: 58px 0;*/
+	float: left;
+	width: 100px;
+}
+a.navlink{
+	color: #333;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+	padding-left: 12px;
+}
+div#navlinks{
+	float: right;
+	position: absolute;
+	right: 10%;
+	top: 50px;
+}
