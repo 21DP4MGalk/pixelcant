@@ -15,5 +15,5 @@ Nākotnē jābūt:
 - [x] Molberta sinhronizācija ar citiem lietotājiem
 - [x] Čats
 - [x] Register/login sistēma
-- [ ] Adminu iespēja dzēst čata īsziņas
-- [ ] Adminu iespēja banot lietotājus
+- [x] Adminu iespēja dzēst čata īsziņas
+- [x] Adminu iespēja banot lietotājus
