@@ -21,6 +21,7 @@ async function submitLoginForm(event) {
 
         if(response.ok){
             startConfetti();
+            document.getElementById("container").style.display = "none";
         }
         // For now, just showing an alert
         alert('Login successful!');
