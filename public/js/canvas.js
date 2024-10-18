@@ -15,10 +15,8 @@ async function interpretClick(){			/* Function for gathering and sending all nec
 
 	posY = event.clientY - rect.top;
 	posX = event.clientX - rect.left;
-	posX = Math.floor(posX/20) -1;
-	posY = Math.floor(posY/20) -1;
-	//posY = posY - posY%20;			// one database pixel corresponds to 20 screen pixels, we wouldn't want to place 1x1 pixels manually.
-	//posX = posX - posX%20;
+	posX = Math.floor(posX/20);
+	posY = Math.floor(posY/20);
 	console.log(posX, posY)
 	
 	for(var i = 0; i < 8; i++){			// for determining the int associated with the colour
@@ -251,4 +249,14 @@ async function deleteByTimestamp(){
 	if(!response.ok){
 		alert("Something went wrong");
 	}
+}
+
+function updateCoords(event){
+	rect = 	document.getElementById("canvas").getBoundingClientRect();
+	
+	posY = event.clientY - rect.top;
+	posX = event.clientX - rect.left;
+	posX = Math.floor(posX/20);
+	posY = Math.floor(posY/20);
+	document.getElementById("coords").innerText = "X: " + posX + "; Y: " + posY + ";"
 }

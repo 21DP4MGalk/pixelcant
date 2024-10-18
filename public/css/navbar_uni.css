@@ -13,6 +13,7 @@ and you have essentially the old version of the main page navbar*/
 	left: 0;
 	right: 0;
 	top: 0;
+	z-index: 89;
 }
 
 #titleText{

@@ -17,3 +17,10 @@ Nākotnē jābūt:
 - [x] Register/login sistēma
 - [x] Adminu iespēja dzēst čata īsziņas
 - [x] Adminu iespēja banot lietotājus
+
+TODO:
+- [ ] Admin panel responsiveness
+- [ ] Fixes for other pages
+- [ ] Update navbar style to match index.html
+- [ ] An overlaid reapeating png of a grid for easier pixel placement
+- [ ] Position indicator

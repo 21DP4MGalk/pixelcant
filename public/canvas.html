@@ -25,12 +25,9 @@
 			</nav>
 		</header>
 
-		<canvas id="canvas" width="1000px" height="1000px" onclick="interpretClick()"></canvas>			<!-- The reason for the esoteric resolution
-																					is the fact that chrome has a <canvas> tag limit size just 4 pixels
-																					above this. Firefox can do a bit more, above 20000k i believe. Might
-																					be worth considering a way to get more out of it. Currently at about
-																					819x819 database pixels-->
-
+		<div id="canvasContainer">
+			<canvas id="canvas" width="1000px" height="1000px" onclick="interpretClick()" onmousemove="updateCoords(event)"></canvas>			
+		</div>
 		<div id="picker" onclick="updateColour()">			<!--Honestly could use a redoing altogether considering we're using
 															integers to represent colours, but it works and is visually okay.-->
 			<button class="colourchoice" style="background-color: #FF0000"></button>
@@ -49,6 +46,10 @@
 			<div id="messageBox"><p id="messageText"></div>
 			<input type="text" id="textInput" placeholder="Type your message here..." onkeypress="keyPress(event)"> 
 			<input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
+		</div>
+		
+		<div id="positionMarker">
+			<p id="coords"></p>
 		</div>
 
 		<div id="adminPanel">		<!--Pisspoor design is a major flaw of mine, if someone is not lazy, they should probably work on it-->
@@ -79,7 +80,6 @@
 				<a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
 			</center>
 		</div>
-		<div id="fadeoutElement">
-		</div>
+		<div id="fadeoutElement"></div>
 	</body>
 </html>
