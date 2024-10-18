@@ -86,8 +86,9 @@ router chat:
   post "/deletemessage":
     var token = request.cookies["token"]
     var username = request.formData["username"].body
-    var time = request.formData["time"].body
-    
+    var timestamp = parseInt(request.formData["timestamp"].body)
+    echo timestamp
+
     var requestUser = newUser()
     var offendingMessage = newMessage()
 
@@ -97,6 +98,8 @@ router chat:
       db.select(requestUser, "username = $1", username)
       if(not requestUser.admin):
         resp Http400, "You're not admin"
-      db.select(offendingMessage, "time = $1", time)
+      if(not db.exists(Message, "time = $1", timestamp)):
+        resp Http400, "Message does not exist"
+      db.select(offendingMessage, "time = $1", timestamp)
       db.delete(offendingMessage)
     resp Http200
