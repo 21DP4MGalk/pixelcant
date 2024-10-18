@@ -49,12 +49,12 @@ div#messageBox{			/*The box containing the message history*/
 	border: inset gainsboro 3px;
 	height: 435px;
 	color: #FFFFFF;
-	overflow: auto;	
+	overflow-y: auto;
+	overflow-wrap: anywhere;	
 	display: flex;
 	flex-direction: column-reverse;		/*Necessary for the scroll bar to be at the bottom by default*/
 }
 div#messageBox p {		/*The text within the message box*/
-	overflow-wrap: break-word;
 	display: flex;
 }
 input[type=button]#messageSend{			/*The green sending button*/
@@ -77,11 +77,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	background-color: azure;
 	border: outset;
 }
-#username{
-	font-size: 16px;
-	width: 245px;
-}
-#newdata{
+#adminPanel input{
 	font-size: 16px;
 	width: 245px;
 }
@@ -128,6 +124,8 @@ button.colourchoice{			/*The colour pallet buttons*/
 	top: 18%;
 	height: 55%;
 	border: inset;
+	overflow-y: auto;
+	overflow-wrap: anywhere;
 }
 #msgTools{
 	position: fixed;

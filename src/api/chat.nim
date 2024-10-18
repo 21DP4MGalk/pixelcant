@@ -10,7 +10,7 @@ import jester
 type mixedTableContainer* = ref object      # for containing the select querry result with both usernames and messages
   username*: StringOfCap[16] = newStringOfCap[16]("")
   message*: StringOfCap[300] = newStringOfCap[300]("")
-  timestamp*: int = 0
+  time*: int = 0
 
 router chat:
   post "/postmessage":      # takes in the message as formData, requires a token cookie to work
@@ -77,11 +77,26 @@ router chat:
           resp Http400, "Token not in database"
         db.rawSelect(sqlQuerry, messageHistory, username)
       for message in messageHistory:
-        messages.add($message.timestamp & $message.message)
+        messages.add($message.time & $message.message)
       resp Http200, $(%* messages)
     except:
       echo getCurrentExceptionMsg() 
       resp Http500 
-#[
+
   post "/deletemessage":
-]#
+    var token = request.cookies["token"]
+    var username = request.formData["username"].body
+    var time = request.formData["time"].body
+    
+    var requestUser = newUser()
+    var offendingMessage = newMessage()
+
+    withDb:
+      if(not db.exists(User, "loginToken = $1", token)):
+        resp Http400, "Token invalid"
+      db.select(requestUser, "username = $1", username)
+      if(not requestUser.admin):
+        resp Http400, "You're not admin"
+      db.select(offendingMessage, "time = $1", time)
+      db.delete(offendingMessage)
+    resp Http200

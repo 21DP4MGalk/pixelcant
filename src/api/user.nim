@@ -16,10 +16,10 @@ router user:
 
     withDb:
       db.select(editUser, "username = $1", oldName)
-      db.select(requestUser, "token = $1", requestToken)
+      db.select(requestUser, "loginToken = $1", requestToken)
       
       if(not requestUser.admin or newName.len > 16):
-        resp Http400, "Name above 16 characters, please shorten it"
+        resp Http400
   
       editUser.username = newStringOfCap[16](newName)    
 
@@ -65,6 +65,7 @@ router user:
       
       db.select(bannedUser, "username = $1", username)
       bannedUser.banned = true
+      bannedUser.admin = false
       db.update(bannedUser)
       
       resp Http200
@@ -78,4 +79,3 @@ router user:
         resp Http400, "Token does not exist in database"
       db.select(userContainer, "loginToken = $1", token)
     resp Http200, $userContainer.admin
-

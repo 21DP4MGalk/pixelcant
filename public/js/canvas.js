@@ -4,7 +4,6 @@ var messages = [[]];			/* A two dimensional array for storing messages. With [x]
 colours = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)", "rgb(00, 0, 0)", "rgb(153, 170, 187)", "rgb(1, 50, 32)"];
 // Stores all the colours available as a pallet. Could be updated, should be updated. 
 
-var adminMsg = [];
 
 async function interpretClick(){			/* Function for gathering and sending all necessary information for placing pixels.
 	Gets the colour in int form, saves the cursor coordinates at the time of the click. Sends a request to /canvas/placepixel and
@@ -147,24 +146,25 @@ function drawPixel(x,y,c){			// name is self explanatory, draws the required pix
 	canvasCtx.fillRect(x*20, y*20, 20, 20);
 }
 
-function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
-	
+async function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
+	var msgDialog = document.getElementById("adminDialogContainer");
+	msgDialog.style.display = "none";
 	establishChatConn();
 	establishPixelConn();
+
 	setTimeout(function () {
 		window.scrollTo(8000, 8000);
 	},2);
 
-	if(!adminCheck()){
-		panel = document.getElementById("adminPanel");
-		panel.style.display = "none";
+	if(await adminCheck() == "false"){
+		document.getElementById("adminPanel").style.display = "none";
 	}
 }
 
 async function adminCheck(){
 	var response = await fetch("/user/admincheck");
 	var result = await response.text();
-	console.log(result);
+	return result;
 }
 
 async function banUser(){
@@ -184,17 +184,59 @@ async function banUser(){
 }
 
 async function modifyUser(){
-
+	var newName = document.getElementById("newName");
+	var oldName = document.getElementById("username");
+	var requestData = new FormData();
+	requestData.append("oldName", oldName.value);
+	requestData.append("newName", newName.value);
+	var response = await fetch("/user/modifyuser",{
+		method: "POST",
+		body: requestData
+	});
 }
 
-async function deleteMessage(){
+async function openMsgDialog(){
 	var username = document.getElementById("username");
+	var msgDialog = document.getElementById("adminDialogContainer");
+	var msgListElement = document.getElementById("adminMsgList");
 	var requestData = new FormData();
+	var textNode;
+	var messageList;
+
 	requestData.append("username", username.value);
+	
 	var messageHistory = await fetch("/chat/getuserhistory", {
 		method: "POST",
 		body: requestData
 	});
-	var messageList = await messageHistory.text();
-	console.log(messageList);
+	
+	messageList = JSON.parse(await messageHistory.text());
+	
+	msgDialog.style.display = "block";
+
+	for(var i = 0; i < messageList.length; i++){
+		textNode = document.createTextNode(messageList[i].slice(0,13) + ": " + messageList[i].slice(13))
+		msgListElement.appendChild(textNode);
+		msgListElement.appendChild(document.createElement("br"), messageBox.firstChild);
+	}
+}
+
+function closeMsgDialog(){
+	var msgDialog = document.getElementById("adminDialogContainer");
+	msgDialog.style.display = "none";
+}
+
+async function deleteByTimestamp(){
+	var username = document.getElementById("username");
+	var msgTimestamp = document.getElementById("msgTimestamp");
+	var requestData = new FormData();
+	requestData.append("username", username.value);
+	requestData.append("timestamp", msgTimestamp.value);
+	var response = await fetch("/chat/deletemessage",{
+		method: "POST",
+		body: requestData
+	});
+	if(!response.ok){
+		alert("Something went wrong");
+	}
 }
