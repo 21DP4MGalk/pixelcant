@@ -35,14 +35,17 @@ router canvas:
     resp Http200
 
   post "/placepixel":
-    let
-      token = request.cookies["token"]
-      parsedBody = parseJson(request.body)
-      pixelX = parsedBody["x"].getInt.int16
-      pixelY = parsedBody["y"].getInt.int16
-      pixelColour = parsedBody["c"].getInt.int16  
+    try:
+      let
+        token = request.cookies["token"]
+        parsedBody = parseJson(request.body)
+        pixelX = parsedBody["x"].getInt.int16
+        pixelY = parsedBody["y"].getInt.int16
+        pixelColour = parsedBody["c"].getInt.int16  
+        currentTime = epochTime().int
+    except:
+      resp Http400
     var pixelQuery = newPixel()
-    let currentTime = epochTime().int
     withDb:
       assertUserTokenExists(token)
       selectUserWithToken(token)
