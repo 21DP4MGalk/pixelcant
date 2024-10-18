@@ -15,18 +15,17 @@
 
 	<main>
 		<canvas id="confettiCanvas"></canvas>
-		<div class="container">
+		<div id="container">
 			<h1>WELCOME!</h1>
-			<div id="registrationForm" onsubmit="return validateForm()">
+			<div id="authForm" onsubmit="return validateForm()">
 			<label for="username">Username:</label>
 			<input type="text" id="username" name="username" required>
-			<span class="error" id="usernameError"></span>
 
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password" required>
 			<span class="error" id="passwordError"></span>
 
-			<button type="submit" id="signInButton">Sign in</button>
+			<button type="submit" id="signInButton" onclick="submitLoginForm()">Sign in</button>
 			</form>
 		</div>
 	</main>

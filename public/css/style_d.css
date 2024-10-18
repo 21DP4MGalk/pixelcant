@@ -31,7 +31,7 @@ body {
     }
     
     /* Form Styles */
-    div#registrationForm {
+    div#authForm {
     background: #fff;
     padding: 20px; /* Просторное пространство внутри формы */
     border-radius: 8px;
