@@ -41,13 +41,12 @@ router canvas:
         pixelX = parsedBody["x"].getInt.int16
         pixelY = parsedBody["y"].getInt.int16
         pixelColour = parsedBody["c"].getInt.int16
-      echo("test1") 
       var pixelQuery = newPixel()
       pixelQuery.x = pixelX
       pixelQuery.y = pixelY
       pixelQuery.colour = pixelColour
       pixelQuery.userfk = newUser()
-      echo("test2")
+
       withDb:
         db.insert(pixelQuery)
       for ws in sockets:

@@ -1,10 +1,13 @@
 canvas{
 	border-style: dotted;
 	border-color: black;
-	border-width: 2px;
+	border-width: 1px;
 	margin-top: 120px;
+	transform: scale(20);
+   	transform-origin: 0 0;
+	image-rendering: pixelated; 
+	image-rendering: crisp-edges;
 }
-
 select{
 	width: 100px;
 	height: 20px;

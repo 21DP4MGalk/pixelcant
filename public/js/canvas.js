@@ -1,7 +1,7 @@
 var colour = "#FF0000";			 // Globally accessible colour set by the user. Defaults to black for convenience.
 var messages = [[]];			/* A two dimensional array for storing messages. With [x][y], x signifies the order (most recent one at 0)
 							      and y signifies the data, 0 is username, 1 is message. Magic numbers! */
-colours = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)", "rgb(00, 0, 0)", "rgb(153, 170, 187)", "rgb(1, 50, 32)"];
+colours = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)", "rgb(0, 0, 0)", "rgb(153, 170, 187)", "rgb(1, 50, 32)"];
 // Stores all the colours available as a pallet. Could be updated, should be updated. 
 
 
@@ -15,25 +15,29 @@ async function interpretClick(){			/* Function for gathering and sending all nec
 
 	posY = event.clientY - rect.top;
 	posX = event.clientX - rect.left;
-	posY = posY - posY%20;			// one database pixel corresponds to 20 screen pixels, we wouldn't want to place 1x1 pixels manually.
-	posX = posX - posX%20;
+	posX = Math.floor(posX/20) -1;
+	posY = Math.floor(posY/20) -1;
+	//posY = posY - posY%20;			// one database pixel corresponds to 20 screen pixels, we wouldn't want to place 1x1 pixels manually.
+	//posX = posX - posX%20;
+	console.log(posX, posY)
 	
 	for(var i = 0; i < 8; i++){			// for determining the int associated with the colour
 		console.log(colours[i])
 		console.log(colour)
 		if(colours[i] == colour){
+			console.log("FOUNDIT")
 			c = i;
 		}
 	}
 
 	var response = await fetch("/canvas/placepixel", {
 		method: "POST",
-		body: JSON.stringify({ x: (posX/20), y: (posY/20), c: c })			// the endpoint recieves 3 variables - x, y and c. Not sure why it's not an object
+		body: JSON.stringify({ x: (posX), y: (posY), c: c })			// the endpoint recieves 3 variables - x, y and c. Not sure why it's not an object
 	});
 
 	if(response.ok){			// probably replace it with drawPixel once you're not too lazy
 		canvasCtx.fillStyle = colour;
-		canvasCtx.fillRect(posX, posY, 20, 20);
+		canvasCtx.fillRect(posX, posY, 1, 1);
 	}
 }
 
@@ -143,7 +147,7 @@ function drawPixel(x,y,c){			// name is self explanatory, draws the required pix
 	const canvas = document.getElementById("canvas");
 	const canvasCtx = canvas.getContext("2d");
 	canvasCtx.fillStyle = colours[c];
-	canvasCtx.fillRect(x*20, y*20, 20, 20);
+	canvasCtx.fillRect(x, y, 1, 1);
 }
 
 async function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
