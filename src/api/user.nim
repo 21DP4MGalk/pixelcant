@@ -50,32 +50,38 @@ router user:
 
 
   post "/banuser":      # lets the admin ban a user
-    let requestToken = request.cookies["token"]      # belongs to the requesting user
-    let username = request.formData["username"].body     # belongs to our political enemy
-    var requestUser = newUser()      # the user making the request
-    var bannedUser = newUser()     # the user being banned
-    withDb:
-      if(not db.exists(User, "loginToken = $1", requestToken)):
-        resp Http400, "Your token is invalid, consider logging back in"
-      
-      db.select(requestUser, "loginToken = $1", requestToken)
-      
-      if(not requestUser.admin):
-        resp Http400, "You are not an administrator"
-      
-      db.select(bannedUser, "username = $1", username)
-      bannedUser.banned = true
-      bannedUser.admin = false
-      db.update(bannedUser)
-      
-      resp Http200
-      
-  get "/admincheck":
-    var token = request.cookies["token"]
-    var userContainer = newUser()
+    try:
+      let requestToken = request.cookies["token"]      # belongs to the requesting user
+      let username = request.formData["username"].body     # belongs to our political enemy
+      var requestUser = newUser()      # the user making the request
+      var bannedUser = newUser()     # the user being banned
+      withDb:
+        if(not db.exists(User, "loginToken = $1", requestToken)):
+          resp Http400, "Your token is invalid, consider logging back in"
+        
+        db.select(requestUser, "loginToken = $1", requestToken)
+        
+        if(not requestUser.admin):
+          resp Http400, "You are not an administrator"
+        
+        db.select(bannedUser, "username = $1", username)
+        bannedUser.banned = true
+        bannedUser.admin = false
+        db.update(bannedUser)
+        
+        resp Http200
+    except:
+      resp Http500
 
-    withDb:
-      if(not db.exists(User, "loginToken = $1", token)):
-        resp Http400, "Token does not exist in database"
-      db.select(userContainer, "loginToken = $1", token)
-    resp Http200, $userContainer.admin
+  get "/admincheck":
+    try:
+      var token = request.cookies["token"]
+      var userContainer = newUser()
+
+      withDb:
+        if(not db.exists(User, "loginToken = $1", token)):
+          resp Http200, "false"
+        db.select(userContainer, "loginToken = $1", token)
+      resp Http200, $userContainer.admin
+    except:
+      resp Http200, "false"
