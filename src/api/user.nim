@@ -38,7 +38,7 @@ router user:
       resp Http400, "New name is above 16 characters, shorten it."
     withDb:
       var user = newUser();
-      db.select(user, "token = $1", userToken)
+      db.select(user, "loginToken = $1", userToken)
 
       if(isPass):
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(newData, generateSalt(8))) 

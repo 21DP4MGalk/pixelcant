@@ -1,4 +1,4 @@
-var colour = "#000000";			 // Globally accessible colour set by the user. Defaults to black for convenience.
+var colour = "#FF0000";			 // Globally accessible colour set by the user. Defaults to black for convenience.
 var messages = [[]];			/* A two dimensional array for storing messages. With [x][y], x signifies the order (most recent one at 0)
 							      and y signifies the data, 0 is username, 1 is message. Magic numbers! */
 colours = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)", "rgb(00, 0, 0)", "rgb(153, 170, 187)", "rgb(1, 50, 32)"];
