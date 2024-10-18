@@ -55,12 +55,12 @@ router auth:
           resp Http400
 
         let authToken = generateAuthToken()
-        var command = setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
+        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
         
         userQuery.loginToken = some PaddedStringOfCap[128](authToken)
         
         db.insert(userQuery)
-      resp Http201, command
+      resp Http201
 
     except:
       echo getCurrentExceptionMsg() 

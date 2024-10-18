@@ -1,9 +1,10 @@
+import jester
 import std/[times, os, json, strutils]
 import norm/[postgres, types]
 import ws, ws/jester_extra
 import "../websockets.nim"
 import "../models.nim"
-import jester
+
 
 
 
