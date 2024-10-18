@@ -147,8 +147,16 @@ function drawPixel(x,y,c){			// name is self explanatory, draws the required pix
 }
 
 async function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
+	
+	document.getElementById("jsBeggingScreen").style.display = "none";
+	
 	var msgDialog = document.getElementById("adminDialogContainer");
 	msgDialog.style.display = "none";
+	
+	if(await adminCheck() == "false"){
+		document.getElementById("adminPanel").style.display = "none";
+	}
+
 	establishChatConn();
 	establishPixelConn();
 
@@ -156,9 +164,7 @@ async function init(){			// function for use in onload parameter, just starts ev
 		window.scrollTo(8000, 8000);
 	},2);
 
-	if(await adminCheck() == "false"){
-		document.getElementById("adminPanel").style.display = "none";
-	}
+	
 }
 
 async function adminCheck(){

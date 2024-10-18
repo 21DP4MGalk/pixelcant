@@ -38,4 +38,5 @@ div#navlinks{
 	position: absolute;
 	right: 10%;
 	top: 50px;
+	cursor: pointer;
 }

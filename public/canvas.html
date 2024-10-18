@@ -3,10 +3,12 @@
 	<head>
 		<title>THE Canvas</title>
 		<script src="js/canvas.js"></script>
+		<script src="js/navbar_uni.js"></script>
 		<link rel="stylesheet" href="css/canvas.css">
 		<link rel="stylesheet" href="css/navbar_uni.css">		<!--Imports the portable navbar for convenience, not animated or pretty but it's useful-->
 	</head>
 	<body onload="init()">
+
 		<header>
 			<nav id="navbarUni">
 				<div id="titleText">
@@ -18,6 +20,7 @@
 					<a href="login.html" class="navlink">LOGIN</a>
 					<a href="register.html" class="navlink">SIGN UP</a>
 					<a href="about.html" class="navlink">ABOUT</a>
+					<a clickable onclick="logout()" class="navlink">LOGOUT</a>
 				</div>
 			</nav>
 		</header>
@@ -63,6 +66,14 @@
 					<button id="cancelButton" onclick="closeMsgDialog()">Cancel</button>
 				</div>
 			</div>
+		</div>
+		<div id="jsBeggingScreen">
+			<center>
+				<h1> THIS SITE USES JAVASCRIPT </h1>
+				<hr>
+				<p> Look, we don't like it either, but it is what it is. The entire site is open source if you don't trust us.</p>
+				<a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
+			</center>
 		</div>
 	</body>
 </html>
