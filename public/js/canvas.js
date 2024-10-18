@@ -149,7 +149,9 @@ function drawPixel(x,y,c){			// name is self explanatory, draws the required pix
 async function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
 	
 	document.getElementById("jsBeggingScreen").style.display = "none";
-	
+	var fadeoutElement = document.getElementById("fadeoutElement")
+	fadeoutElement.style.backgroundColor = "rgb(0,0,0,0)";
+
 	var msgDialog = document.getElementById("adminDialogContainer");
 	msgDialog.style.display = "none";
 	

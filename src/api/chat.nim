@@ -6,12 +6,11 @@ import "../websockets.nim"
 import "../models.nim"
 
 
-
-
 type mixedTableContainer* = ref object      # for containing the select querry result with both usernames and messages
   username*: StringOfCap[16] = newStringOfCap[16]("")
   message*: StringOfCap[300] = newStringOfCap[300]("")
   time*: int = 0
+
 
 router chat:
   post "/postmessage":      # takes in the message as formData, requires a token cookie to work
@@ -28,9 +27,14 @@ router chat:
       resp Http400, "Messages are limited to 300 characters, please limit your message length, and don't just request the API directly"
 
     withDb:
-      
+      if(not db.exists(User, "loginToken = $1", userToken)):
+        resp Http400, "Invalid token, not found in database"
+
       db.select(userContainer, "loginToken = $1", userToken)
   
+      if(userContainer.banned):
+        resp Http400, "Invalid request, you're banned"
+
       message.message = newStringOfCap[300](messageText)
       message.time = unixTime
       message.userfk = userContainer 
@@ -44,10 +48,12 @@ router chat:
 
     resp Http201      # 201 for succesfully created
 
+
   get "/messagestream":     # creates a websocket specifically for messages
     let ws = await newWebSocket(request)
     add(socketsChat, ws)
     resp Http201
+
 
   get "/getmessages":     # gets 25 most recent messages from the database, might be worth making it more Norm friendly, currently rawSelect is fine
     var outputArr: array[25, array[2, string]]      # gets filled with empty spots when not enough messages, which is fine 
@@ -65,7 +71,8 @@ router chat:
 
     resp Http200, $(%* outputArr)
 
-  post "/getuserhistory":
+
+  post "/getuserhistory":     # gets the entire user message history for admins to judge
     try:
       var token = request.cookies["token"]
       var username = request.formData["username"].body
@@ -76,15 +83,19 @@ router chat:
       withDb:
         if(not db.exists(User, "loginToken = $1", token)):
           resp Http400, "Token not in database"
+          
         db.rawSelect(sqlQuerry, messageHistory, username)
+
       for message in messageHistory:
         messages.add($message.time & $message.message)
+
       resp Http200, $(%* messages)
+    
     except:
-      echo getCurrentExceptionMsg() 
       resp Http500 
 
-  post "/deletemessage":
+
+  post "/deletemessage":      # deletes a message when given a timestamp in unix epoch milliseconds
     var token = request.cookies["token"]
     var username = request.formData["username"].body
     var timestamp = parseInt(request.formData["timestamp"].body)
@@ -96,11 +107,16 @@ router chat:
     withDb:
       if(not db.exists(User, "loginToken = $1", token)):
         resp Http400, "Token invalid"
+
       db.select(requestUser, "username = $1", username)
+
       if(not requestUser.admin):
         resp Http400, "You're not admin"
+
       if(not db.exists(Message, "time = $1", timestamp)):
         resp Http400, "Message does not exist"
+
       db.select(offendingMessage, "time = $1", timestamp)
       db.delete(offendingMessage)
+
     resp Http200

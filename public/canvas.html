@@ -3,7 +3,7 @@
 	<head>
 		<title>THE Canvas</title>
 		<script src="js/canvas.js"></script>
-		<script src="js/navbar_uni.js"></script>
+		<script src="js/navbar_uni.js"></script>				<!--Necessary for logout function and that's it-->
 		<link rel="stylesheet" href="css/canvas.css">
 		<link rel="stylesheet" href="css/navbar_uni.css">		<!--Imports the portable navbar for convenience, not animated or pretty but it's useful-->
 	</head>
@@ -30,7 +30,9 @@
 																					above this. Firefox can do a bit more, above 20000k i believe. Might
 																					be worth considering a way to get more out of it. Currently at about
 																					819x819 database pixels-->
-		<div id="picker" onclick="updateColour()">
+
+		<div id="picker" onclick="updateColour()">			<!--Honestly could use a redoing altogether considering we're using
+															integers to represent colours, but it works and is visually okay.-->
 			<button class="colourchoice" style="background-color: #FF0000"></button>
 			<button class="colourchoice" style="background-color: #00FF00"></button>
 			<button class="colourchoice" style="background-color: #0000FF"></button>
@@ -49,7 +51,7 @@
 			<input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
 		</div>
 
-		<div id="adminPanel">
+		<div id="adminPanel">		<!--Pisspoor design is a major flaw of mine, if someone is not lazy, they should probably work on it-->
 			<input id="username" placeholder="Offending username" required>
 			<input id="newName" placeholder="New name (optional)">
 			<button id="banButton" title="Ban a user" onclick="banUser()">&#x1F5E1;</button>
@@ -57,7 +59,8 @@
 			<button id="dialogButton" title="Delete a user's messages" onclick="openMsgDialog()">&#x1f5d1;</button>
 		</div>
 
-		<div id="adminDialogContainer">
+		<div id="adminDialogContainer">			<!--Another case of poor visual design, but you gotta admit nuking messages away is
+												 way cooler than just deleting them.-->
 			<div id="adminDialogBox">
 				<div id="adminMsgList"></div>
 				<div id="msgTools">
@@ -67,13 +70,16 @@
 				</div>
 			</div>
 		</div>
-		<div id="jsBeggingScreen">
+		<div id="jsBeggingScreen">			<!--For those cases of paranoid people such as me who like blocking javascript by default. 
+											Or people connecting through lynx for some reason. Gets hidden first thing in init()-->
 			<center>
 				<h1> THIS SITE USES JAVASCRIPT </h1>
 				<hr>
 				<p> Look, we don't like it either, but it is what it is. The entire site is open source if you don't trust us.</p>
 				<a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
 			</center>
+		</div>
+		<div id="fadeoutElement">
 		</div>
 	</body>
 </html>
