@@ -57,12 +57,12 @@ router user:
       var bannedUser = newUser()     # the user being banned
       withDb:
         if(not db.exists(User, "loginToken = $1", requestToken)):
-          resp Http400, "Your token is invalid, consider logging back in"
+          resp Http401, "Your token is invalid, consider logging back in"
         
         db.select(requestUser, "loginToken = $1", requestToken)
         
         if(not requestUser.admin):
-          resp Http400, "You are not an administrator"
+          resp Http403, "You are not an administrator"
         
         db.select(bannedUser, "username = $1", username)
         bannedUser.banned = true
@@ -76,12 +76,11 @@ router user:
   get "/admincheck":      # simply checks if the user is an admin or not, unfortunately sends a string instead of a boolean because that just makes sense
     try:
       var token = request.cookies["token"]
-      var userContainer = newUser()
 
       withDb:
-        if(not db.exists(User, "loginToken = $1", token)):
+        if(db.exists(User, "loginToken = $1 and admin = true", token)):
+          resp Http200, "true"
+        else:
           resp Http200, "false"
-        db.select(userContainer, "loginToken = $1", token)
-      resp Http200, $userContainer.admin
     except:
       resp Http200, "false"

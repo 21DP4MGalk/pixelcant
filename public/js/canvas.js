@@ -228,6 +228,8 @@ async function openMsgDialog(){			// Opens the message history dialog and gets t
 	
 	msgDialog.style.display = "block";
 
+  msgListElement.innerHTML = ""
+
 	for(var i = 0; i < messageList.length; i++){
 		textNode = document.createTextNode(messageList[i].slice(0,13) + ": " + messageList[i].slice(13))
 		msgListElement.appendChild(textNode);
