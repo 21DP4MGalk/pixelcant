@@ -20,7 +20,10 @@ Nākotnē jābūt:
 
 TODO:
 - [ ] Admin panel responsiveness
-- [ ] Fixes for other pages
-- [ ] Update navbar style to match index.html
+- [ ] Fixes for the about page
+- [ ] Integrate navbar on every page
+- [x] Update navbar style to match index.html
 - [ ] An overlaid reapeating png of a grid for easier pixel placement
-- [ ] Position indicator
+- [x] Position indicator
+- [ ] Make canvas tools draggable so they don't get in the way
+- [ ] Some kind of UI to display the user's name
