@@ -82,8 +82,8 @@ router chat:
       var messages: seq[string]
 
       withDb:
-        if(not db.exists(User, "loginToken = $1", token)):
-          resp Http400, "Token not in database"
+        if(not db.exists(User, "loginToken = $1 and admin = true", token)):
+          resp Http401, "You are not authenticated as an admin"
           
         db.rawSelect(sqlQuerry, messageHistory, username)
 
@@ -107,15 +107,15 @@ router chat:
 
     withDb:
       if(not db.exists(User, "loginToken = $1", token)):
-        resp Http400, "Token invalid"
+        resp Http401, "Token invalid"
 
       db.select(requestUser, "username = $1", username)
 
       if(not requestUser.admin):
-        resp Http400, "You're not admin"
+        resp Http403, "You're not an admin admin"
 
       if(not db.exists(Message, "time = $1", timestamp)):
-        resp Http400, "Message does not exist"
+        resp Http404, "Message does not exist"
 
       db.select(offendingMessage, "time = $1", timestamp)
       db.delete(offendingMessage)
