@@ -73,7 +73,7 @@ router user:
     except:
       resp Http500
 
-  get "/admincheck":
+  get "/admincheck":      # simply checks if the user is an admin or not, unfortunately sends a string instead of a boolean because that just makes sense
     try:
       var token = request.cookies["token"]
       var userContainer = newUser()

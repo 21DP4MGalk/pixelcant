@@ -18,7 +18,8 @@ Nākotnē jābūt:
 - [x] Adminu iespēja dzēst čata īsziņas
 - [x] Adminu iespēja banot lietotājus
 
-TODO:
+## TODO:
+- [ ] Deleted messages being deleted instantly
 - [ ] Admin panel responsiveness
 - [ ] Fixes for the about page
 - [ ] Integrate navbar on every page

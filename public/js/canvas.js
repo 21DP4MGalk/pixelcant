@@ -16,14 +16,11 @@ async function interpretClick(){			/* Function for gathering and sending all nec
 	posY = event.clientY - rect.top;
 	posX = event.clientX - rect.left;
 	posX = Math.floor(posX/20);
-	posY = Math.floor(posY/20);
-	console.log(posX, posY)
+	posY = Math.floor(posY/20);			// scale() only scales the canvas visually, pressing where 250,250 coords used to be still gives 250,250.
+										// Must obviously be the same as the scale coefficent
 	
 	for(var i = 0; i < 8; i++){			// for determining the int associated with the colour
-		console.log(colours[i])
-		console.log(colour)
 		if(colours[i] == colour){
-			console.log("FOUNDIT")
 			c = i;
 		}
 	}
@@ -150,34 +147,34 @@ function drawPixel(x,y,c){			// name is self explanatory, draws the required pix
 
 async function init(){			// function for use in onload parameter, just starts everything and moves the user to the middle of the canvas
 	
-	document.getElementById("jsBeggingScreen").style.display = "none";
-	var fadeoutElement = document.getElementById("fadeoutElement")
+	document.getElementById("jsBeggingScreen").style.display = "none";			// Gets rid of the screen asking you to turn on JS
+	var fadeoutElement = document.getElementById("fadeoutElement")			// Simple and it gets the job done, what a combo!
 	fadeoutElement.style.backgroundColor = "rgb(0,0,0,0)";
 
-	var msgDialog = document.getElementById("adminDialogContainer");
+	var msgDialog = document.getElementById("adminDialogContainer");			
 	msgDialog.style.display = "none";
 	
-	if(await adminCheck() == "false"){
-		document.getElementById("adminPanel").style.display = "none";
+	if(await adminCheck() == "true"){
+		document.getElementById("adminPanel").style.display = "block";
 	}
 
 	establishChatConn();
 	establishPixelConn();
 
-	setTimeout(function () {
+	setTimeout(function () {			// Timeout is necessary since it sometimes does not scroll if everything is not loaded, or for other reasons
 		window.scrollTo(8000, 8000);
 	},2);
 
 	
 }
 
-async function adminCheck(){
+async function adminCheck(){			// Returns wether the user is an admin or not, annoyingly in string form, will fix some day
 	var response = await fetch("/user/admincheck");
 	var result = await response.text();
 	return result;
 }
 
-async function banUser(){
+async function banUser(){			// Bans the user given username and admin status, obviously requires an admin account token
 	var username = document.getElementById("username");
 	var requestData = new FormData();
 	requestData.append("username", username.value);
@@ -193,7 +190,7 @@ async function banUser(){
 	}
 }
 
-async function modifyUser(){
+async function modifyUser(){			// Modifies another user if the requesting user is an administrator
 	var newName = document.getElementById("newName");
 	var oldName = document.getElementById("username");
 	var requestData = new FormData();
@@ -203,9 +200,16 @@ async function modifyUser(){
 		method: "POST",
 		body: requestData
 	});
+	if(!response.ok){
+		alert("Something went wrong!");
+	}
+	else{
+		username.value = "";
+		newName.value = "";
+	}
 }
 
-async function openMsgDialog(){
+async function openMsgDialog(){			// Opens the message history dialog and gets the messages
 	var username = document.getElementById("username");
 	var msgDialog = document.getElementById("adminDialogContainer");
 	var msgListElement = document.getElementById("adminMsgList");
@@ -231,12 +235,13 @@ async function openMsgDialog(){
 	}
 }
 
-function closeMsgDialog(){
+function closeMsgDialog(){			// Closes the dialog, very simple
 	var msgDialog = document.getElementById("adminDialogContainer");
 	msgDialog.style.display = "none";
 }
 
-async function deleteByTimestamp(){
+async function deleteByTimestamp(){				// Given a timestamp, deletes the message. I doubt we'll be handling two messages by the same user
+											   // on the same milisecond so it's probably fine
 	var username = document.getElementById("username");
 	var msgTimestamp = document.getElementById("msgTimestamp");
 	var requestData = new FormData();
@@ -251,7 +256,7 @@ async function deleteByTimestamp(){
 	}
 }
 
-function updateCoords(event){
+function updateCoords(event){			// Updates the coordinates every time the user moves the mouse, might be overboard but it updates well
 	rect = 	document.getElementById("canvas").getBoundingClientRect();
 	
 	posY = event.clientY - rect.top;

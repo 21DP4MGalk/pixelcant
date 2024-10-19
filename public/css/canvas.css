@@ -1,4 +1,4 @@
-#canvasContainer{
+#canvasContainer{			/*Only needed for the border around the canvas*/
 	margin-top: 130px;
 	border-style: dotted;
 	border-color: black;
@@ -6,15 +6,11 @@
 	width: 20000px;
 	height: 20000px;
 }
-canvas{	
-	transform: scale(20);
+canvas{			/*The actual canvas where all pixels are drawn*/
+	transform: scale(20);			/*Makes the canvas bigger without needing zoom*/
    	transform-origin: 0 0;
 	image-rendering: pixelated; 
 	image-rendering: crisp-edges;
-}
-select{
-	width: 100px;
-	height: 20px;
 }
 div#picker{			/*Color picker containing the available tones*/
 	position:fixed;
@@ -80,11 +76,11 @@ button.colourchoice{			/*The colour pallet buttons*/
 	height: 85px;
 	right: 0;
 	top: 135px;
-	display: box;
+	display: none;
 	background-color: azure;
 	border: outset;
 }
-#adminPanel input{
+#adminPanel input{			/*For styling the admin panel input fields*/
 	font-size: 16px;
 	width: 245px;
 }
@@ -103,7 +99,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	height: 35px;
 	font-size: 16px;
 }
-#adminDialogContainer{
+#adminDialogContainer{			/*The background around the nuke panel*/
 	width: 100%;
 	height: 100%;
 	background-color:rgb(0, 0, 0, 0.7);
@@ -112,7 +108,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	left: 0;
 	top: 0;
 }
-#adminDialogBox{
+#adminDialogBox{			/*The actual nuke panel, cotains two other compartments*/
 	width: 50%;
 	height: 75%;
 	background-color: #000000;
@@ -123,7 +119,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	top: 10%;
 	border: inset;
 }
-#adminMsgList{
+#adminMsgList{			/*The part of the message history dialog that displays messages with timestamps*/
 	background-color: #004700;
 	width: 25%;
 	position: fixed;
@@ -134,18 +130,18 @@ button.colourchoice{			/*The colour pallet buttons*/
 	overflow-y: auto;
 	overflow-wrap: anywhere;
 }
-#msgTools{
+#msgTools{			/*Contains the two big red buttons and the input field*/
 	position: fixed;
 	right: 28%;
 	top: 18%;
 	width: 15%;
 	height: 55%;
 }
-#msgTimestamp{
+#msgTimestamp{			/*The timestamp input field for deleting messages*/
 	width: 97%;
 	height: 30px;
 }
-#msgTools button{
+#msgTools button{			/*Applies to both buttons because lazy*/
 	border-radius: 50%;
 	width: 220px;
 	height: 220px;
@@ -155,10 +151,10 @@ button.colourchoice{			/*The colour pallet buttons*/
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
-#msgTools button:active{
+#msgTools button:active{			/*Just used to make the button appear clicked when you press it*/
 	border: inset #FF0000 10px;
 }
-#jsBeggingScreen{
+#jsBeggingScreen{			/*Just covers the entire screen if JS is disabled*/
 	width: 100%;
 	height: 100%;
 	background-color: #000000;
@@ -169,7 +165,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	left: 0;
 	top: 0;
 }
-#fadeoutElement{
+#fadeoutElement{			/*Helps cover up some funky shit sometimes, mostly added because it's cool*/
 	position:fixed;
 	z-index: 99;
 	top: 0;
@@ -181,7 +177,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	pointer-events: none;
 }
 
-#positionMarker{
+#positionMarker{			/*The tiny black thing that shows coordinates*/
 	border: inset;
 	display: block;
 	width: 110px;
@@ -193,7 +189,7 @@ button.colourchoice{			/*The colour pallet buttons*/
 	color: #fff;
 	font-size: 16px;
 }
-#positionMarker p{
+#positionMarker p{			/*Text within the position marker*/
 	padding-top: 0px;
 	margin-top: 5px;
 	padding-left: 2px;
