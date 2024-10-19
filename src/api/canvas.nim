@@ -46,11 +46,11 @@ router canvas:
       pixelQuery.y = pixelY
       pixelQuery.colour = pixelColour
       pixelQuery.userfk = newUser()
+
       withDb:
         db.insert(pixelQuery)
       for ws in sockets:
         discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
       resp Http200
     except:
-      resp Http400
-
+      resp Http500

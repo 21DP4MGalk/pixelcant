@@ -22,7 +22,7 @@ let dbpass = getEnv("DB_PASS")
 let dbname = getEnv("DB_NAME")
 let dbtimeout = parseInt(getEnv("DB_STARTUP_TIMEOUT", "5"))
 
-proc dbAwaitRunning(): DbConn =
+proc dbAwaitRunning*(): DbConn =
   echo "Connecting to database:"
   for i in 1..dbtimeout:
     echo "Attempt: " & $i

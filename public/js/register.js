@@ -1,28 +1,48 @@
-document.getElementById('registrationForm').addEventListener('submit', submitRegistrationForm);
-function submitRegistrationForm(event) {
-    event.preventDefault(); // Останавливаем стандартное поведение формы
+//document.getElementById('registrationForm').addEventListener('submit', submitRegistrationForm);
+
+async function submitRegistrationForm() {
+    //event.preventDefault(); // Останавливаем стандартное поведение формы
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const errorMessage = document.getElementById('error-message');
-
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const errorMessage = document.getElementById('errorMessage');
+    const container = document.getElementById('container');
     // Проверка на совпадение паролей
     if (password !== confirmPassword) {
         errorMessage.textContent = 'Passwords do not match. Please check!';
         errorMessage.style.color = 'red';
     } else {
         // Логика отправки данных на сервер (можно добавить серверную обработку)
-        console.log('Registration data:', { username, password });
-
-        alert('Registration successful!');
+        
         errorMessage.textContent = '';
+
+        var registrationInfo = new FormData();
+        registrationInfo.append("username", username);
+        registrationInfo.append("password", password);
+
+        const response = await fetch("/auth/register", {
+            method: "POST",
+            body: registrationInfo
+        });
+
+        if(!response.ok){
+            errorMessage.textContent = 'Something went wrong.';
+            return
+        }
+        startConfetti();
+        document.getElementById('container').style.display = "none";
+        var timeout = setTimeout( function(){
+            window.location.replace("/canvas.html")
+        }, 5000)
     }
 }
+
+/*
 document.getElementById("RegisterButton").addEventListener("click", function(event) {
     event.preventDefault();
     startConfetti();
-});
+});*/
 
 function startConfetti() {
     const canvas = document.getElementById("confettiCanvas");

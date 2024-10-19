@@ -16,23 +16,38 @@ router auth:
       let username = request.formData["username"].body
       let password = request.formData["password"].body
       withDb:
-        if not db.exists(User, "name = $1", username):
+        if not db.exists(User, "username = $1", username):
           resp Http400
         var userQuery = newUser()
-        db.select(userQuery, "name = $1", username)
+        db.select(userQuery, "username = $1", username)
         if not bcrypt.verify(password, $userQuery.password):
           resp Http400
         let authToken = generateAuthToken()
         userQuery.loginToken = some newPaddedStringOfCap[128](authToken)
-        setCookie("token", authToken, daysForward(7), Strict, true, true)
+        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
         db.update(userQuery)
       resp Http200
     except:
-      resp Http400
+      resp Http500
+
+  get "/logout":
+    try:
+      var token = request.cookies["token"]
+      var userContainer = newUser();
+      withDb:
+        if(not db.exists(User, "loginToken = $1", token)):
+          resp Http400, "Invalid token, not in the database"
+        db.select(userContainer, "loginToken = $1", token)
+        userContainer.loginToken = some PaddedStringOfCap[128]("")
+        db.update(userContainer)
+      resp Http200
+    except:
+      resp Http500
+
 
   post "/register":
     try:
-      let nameInput = request.formData["name"].body
+      let nameInput = request.formData["username"].body
       let passwordInput = request.formData["password"].body
       if nameInput.len > 16:
         resp Http400
@@ -41,18 +56,24 @@ router auth:
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(passwordInput, generateSalt(8)))
         let convertedName = newStringOfCap[16](nameInput)
         var userQuery = newUser()
-        userQuery.name = convertedName
+        userQuery.username = convertedName
         userQuery.password = hashedPass
-
-        if db.exists(User, "name = $1", convertedName):
+        userQuery.admin = false
+        userQuery.banned = false
+        userQuery.lastpixel = 0
+    
+        if db.exists(User, "username = $1", convertedName):
           resp Http400
 
         let authToken = generateAuthToken()
-        setCookie("token", authToken, daysForward(7), Strict, true, true)
+        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
+        
+        userQuery.loginToken = some PaddedStringOfCap[128](authToken)
+        
         db.insert(userQuery)
-      
-      resp Http200
+      resp Http201
 
     except:
-      resp Http400
+      echo getCurrentExceptionMsg() 
+      resp Http500
 
