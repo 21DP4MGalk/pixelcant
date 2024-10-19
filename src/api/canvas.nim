@@ -47,6 +47,8 @@ router canvas:
       withDb:
         assertUserTokenExists(token)
         selectUserWithToken(token)
+        if userQuery.banned:
+          resp Http403
         if currentTime - 300 < userQuery.lastpixel:
           resp Http429
         pixelQuery.x = pixelX

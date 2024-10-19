@@ -32,7 +32,7 @@ router chat:
         db.select(userContainer, "loginToken = $1", userToken)
     
         if(userContainer.banned):
-          resp Http400, "Invalid request, you're banned"
+          resp Http403, "Invalid request, you're banned"
 
         message.message = newStringOfCap[300](messageText)
         message.time = unixTime
