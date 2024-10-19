@@ -19,6 +19,7 @@ Nākotnē jābūt:
 - [x] Adminu iespēja banot lietotājus
 
 ## TODO:
+- [ ] **MESSAGE REPORTING**
 - [ ] Deleted messages being deleted instantly
 - [ ] Admin panel responsiveness
 - [ ] Fixes for the about page
