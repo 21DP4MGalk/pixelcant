@@ -43,21 +43,21 @@ router canvas:
         pixelY = parsedBody["y"].getInt.int16
         pixelColour = parsedBody["c"].getInt.int16  
         currentTime = epochTime().int
+      var pixelQuery = newPixel()
+      withDb:
+        assertUserTokenExists(token)
+        selectUserWithToken(token)
+        if currentTime - 300 < userQuery.lastpixel:
+          resp Http429
+        pixelQuery.x = pixelX
+        pixelQuery.y = pixelY
+        pixelQuery.colour = pixelColour
+        pixelQuery.userfk = userQuery
+        userQuery.lastpixel = currentTime
+        db.insert(pixelQuery)
+        db.update(userQuery)
+      for ws in sockets:
+        discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
+      resp Http200
     except:
-      resp Http400
-    var pixelQuery = newPixel()
-    withDb:
-      assertUserTokenExists(token)
-      selectUserWithToken(token)
-      if currentTime - 300 < userQuery.lastpixel:
-        resp Http429
-      pixelQuery.x = pixelX
-      pixelQuery.y = pixelY
-      pixelQuery.colour = pixelColour
-      pixelQuery.userfk = userQuery
-      userQuery.lastpixel = currentTime
-      db.insert(pixelQuery)
-      db.update(userQuery)
-    for ws in sockets:
-      discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
-    resp Http200
+      resp Http401

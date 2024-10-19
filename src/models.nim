@@ -33,5 +33,5 @@ template assertUserTokenExists*(token) =
     resp Http400
 
 template selectUserWithToken*(token) =
-  var userQuery = newUser()
+  var userQuery {.inject.} = newUser()
   db.select(userQuery, "loginToken = $1", token)

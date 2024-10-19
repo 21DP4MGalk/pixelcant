@@ -31,6 +31,7 @@ router auth:
       resp Http500
 
   get "/logout":
+    setCookie("token", "", daysForward(-1), Strict, true, true, path="/")
     try:
       var token = request.cookies["token"]
       var userContainer = newUser();
@@ -38,7 +39,7 @@ router auth:
         if(not db.exists(User, "loginToken = $1", token)):
           resp Http400, "Invalid token, not in the database"
         db.select(userContainer, "loginToken = $1", token)
-        userContainer.loginToken = some PaddedStringOfCap[128]("")
+        userContainer.loginToken = none PaddedStringOfCap[128]
         db.update(userContainer)
       resp Http200
     except:
