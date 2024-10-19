@@ -1,8 +1,8 @@
 // Handling the login form
-document.querySelector('form').addEventListener('submit', submitLoginForm);
+//document.querySelector('form').addEventListener('submit', submitLoginForm);
 
-function submitLoginForm(event) {
-    event.preventDefault(); // Prevents default form submission
+async function submitLoginForm(event) {
+    //event.preventDefault(); // Prevents default form submission
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -11,16 +11,27 @@ function submitLoginForm(event) {
         alert('Please fill in all fields!');
     } else {
         // Here we handle login logic, such as sending a request to the server
-        console.log('Login data:', { username, password });
+        var requestData = new FormData();
+        requestData.append("username", username);
+        requestData.append("password", password);
+        var response = await fetch("/auth/login",{
+            method: "POST",
+            body: requestData
+        });
+
+        if(response.ok){
+            startConfetti();
+            document.getElementById("container").style.display = "none";
+        }
         // For now, just showing an alert
         alert('Login successful!');
     }
 }
-document.getElementById("signInButton").addEventListener("click", function(event) {
+/*document.getElementById("signInButton").addEventListener("click", function(event) {
     event.preventDefault();
     startConfetti();
 });
-
+*/
 function startConfetti() {
     const canvas = document.getElementById("confettiCanvas");
     const ctx = canvas.getContext("2d");

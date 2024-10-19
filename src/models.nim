@@ -7,7 +7,7 @@ type
     banned*: bool = false
     admin*: bool = false
     password*: PaddedStringOfCap[60] = newPaddedStringOfCap[60]("")
-    lastpixel*: int = 0
+    lastPixel*: int = 0
     loginToken*: Option[PaddedStringOfCap[128]] = none PaddedStringOfCap[128]
   Message* {.tableName: "Messages".} = ref object of Model
     message*: StringOfCap[300] = newStringOfCap[300]("")

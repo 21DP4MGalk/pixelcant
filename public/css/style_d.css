@@ -23,7 +23,7 @@ body {
     }
     
     /* Container Styles */
-    .container {
+    #container {
     width: 100%;
     max-width: 400px; /* Меньшая максимальная ширина для формы логина */
     margin: 20px auto;
@@ -31,7 +31,7 @@ body {
     }
     
     /* Form Styles */
-    form {
+    div#authForm {
     background: #fff;
     padding: 20px; /* Просторное пространство внутри формы */
     border-radius: 8px;
@@ -49,14 +49,14 @@ body {
         text-align: center;
     }
     
-    form label {
+    label {
     font-size: 1.2em;
     color: #333;
     display: block; /* Отображение метки как блочного элемента */
     margin-bottom: 10px;
     }
     
-    form input {
+    input {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
@@ -65,7 +65,7 @@ body {
     font-size: 1em;
     }
     
-    form button {
+    button {
     background: linear-gradient(to right, #4e54c8, #8f94fb);
     color: #fff;
     padding: 10px 20px;
@@ -76,17 +76,17 @@ body {
     transition: background 0.3s ease;
     }
     
-    form button:hover {
+    button:hover {
     background: linear-gradient(to right, #8f94fb, #4e54c8); /* Изменение цвета на ховер */
     }
     
     /* Responsive Styles */
     @media (max-width: 768px) {
-    form h1 {
+    h1 {
     font-size: 2em;
     }
     
-    form label, form input, form button {
+    label, input, button {
     font-size: 1em;
     }
     }

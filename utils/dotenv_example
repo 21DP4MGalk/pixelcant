@@ -1,4 +1,6 @@
-DB_HOST=localhost
-DB_PASS=testing123
-DB_USER=pixelcant
+DB_HOST=postgres
+DB_USER=postgres
+DB_PASS=password123
 DB_NAME=pixelcant
+DB_STARTUP_TIMEOUT=5
+

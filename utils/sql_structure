@@ -1,22 +1,24 @@
-CREATE TABLE users (
+CREATE TABLE Users (
     id int,
     username varchar(16),
-    password varchar(60),
+    password char(60),
     admin boolean DEFAULT false,
     banned boolean DEFAULT false,
-    lastpixel int,
+    lastPixel int,
+    loginToken char(128)
     PRIMARY KEY(id)
 );
 
-CREATE TABLE pixels (
-    x int,
-    y int,
+CREATE TABLE Pixels (
+    id int,
+    x smallint,
+    y smallint,
     colour smallint,
     userid integer references users(id),
-    PRIMARY KEY(x, y)
+    PRIMARY KEY(id)
 );
 
-CREATE TABLE messages (
+CREATE TABLE Messages (
     id int,
     timestamp int,
     message varchar(300),

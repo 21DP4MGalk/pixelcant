@@ -28,7 +28,22 @@ router auth:
         db.update(userQuery)
       resp Http200
     except:
-      resp Http400
+      resp Http500
+
+  get "/logout":
+    try:
+      var token = request.cookies["token"]
+      var userContainer = newUser();
+      withDb:
+        if(not db.exists(User, "loginToken = $1", token)):
+          resp Http400, "Invalid token, not in the database"
+        db.select(userContainer, "loginToken = $1", token)
+        userContainer.loginToken = some PaddedStringOfCap[128]("")
+        db.update(userContainer)
+      resp Http200
+    except:
+      resp Http500
+
 
   post "/register":
     try:
@@ -56,14 +71,9 @@ router auth:
         userQuery.loginToken = some PaddedStringOfCap[128](authToken)
         
         db.insert(userQuery)
-        var users = @[newUser()];
-        db.select(users, "true")
-        for user in users:
-          echo user[]
-      
-      resp Http200
+      resp Http201
 
     except:
       echo getCurrentExceptionMsg() 
-      resp Http418
+      resp Http500
 
