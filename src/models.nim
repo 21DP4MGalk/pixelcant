@@ -27,3 +27,11 @@ func newMessage*(): Message =
 
 func newPixel*(): Pixel = 
   Pixel(x: 0, y: 0, userfk: newUser())
+
+template assertUserTokenExists*(token) =
+  if not db.exists(User, "loginToken = $1", token):
+    resp Http400
+
+template selectUserWithToken*(token) =
+  var userQuery {.inject.} = newUser()
+  db.select(userQuery, "loginToken = $1", token)
