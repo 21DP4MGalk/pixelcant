@@ -5,7 +5,6 @@ import ws, ws/jester_extra
 import "../websockets.nim"
 import "../models.nim"
 
-
 type mixedTableContainer* = ref object      # for containing the select querry result with both usernames and messages
   username*: StringOfCap[16] = newStringOfCap[16]("")
   message*: StringOfCap[300] = newStringOfCap[300]("")
@@ -14,39 +13,41 @@ type mixedTableContainer* = ref object      # for containing the select querry r
 
 router chat:
   post "/postmessage":      # takes in the message as formData, requires a token cookie to work
-    let messageText = request.formData["message"].body
-    let userToken = request.cookies["token"]
-    var socketMsg = ""
-    var curTime = epochTime()
-    var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
+    try:
+      let messageText = request.formData["message"].body
+      let userToken = request.cookies["token"]
+      var socketMsg = ""
+      var curTime = epochTime()
+      var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
 
-    var userContainer = newUser()
-    var message = newMessage()
+      var userContainer = newUser()
+      var message = newMessage()
 
-    if (messageText.len > 300):
-      resp Http400, "Messages are limited to 300 characters, please limit your message length, and don't just request the API directly"
+      if (messageText.len > 300):
+        resp Http400, "Messages are limited to 300 characters, please limit your message length, and don't just request the API directly"
 
-    withDb:
-      if(not db.exists(User, "loginToken = $1", userToken)):
-        resp Http400, "Invalid token, not found in database"
+      withDb:
+        if(not db.exists(User, "loginToken = $1", userToken)):
+          resp Http400, "Invalid token, not found in database"
+        db.select(userContainer, "loginToken = $1", userToken)
+    
+        if(userContainer.banned):
+          resp Http403, "Invalid request, you're banned"
 
-      db.select(userContainer, "loginToken = $1", userToken)
-  
-      if(userContainer.banned):
-        resp Http400, "Invalid request, you're banned"
+        message.message = newStringOfCap[300](messageText)
+        message.time = unixTime
+        message.userfk = userContainer 
+        
+        db.insert(message)
 
-      message.message = newStringOfCap[300](messageText)
-      message.time = unixTime
-      message.userfk = userContainer 
-      
-      db.insert(message)
+      socketMsg = ( $(($userContainer.username).len) & ";" & $userContainer.username &  $message.message)   #first two or three characters are reserved for the length of the username, seperated by a semicolon
 
-    socketMsg = ( $(($userContainer.username).len) & ";" & $userContainer.username &  $message.message)   #first two or three characters are reserved for the length of the username, seperated by a semicolon
+      for socket in socketsChat:
+        discard socket.send(socketMsg)      # inform everyone of the new message
 
-    for socket in socketsChat:
-      discard socket.send(socketMsg)      # inform everyone of the new message
-
-    resp Http201      # 201 for succesfully created
+      resp Http201      # 201 for succesfully created
+    except:
+      resp Http401
 
 
   get "/messagestream":     # creates a websocket specifically for messages
@@ -81,8 +82,8 @@ router chat:
       var messages: seq[string]
 
       withDb:
-        if(not db.exists(User, "loginToken = $1", token)):
-          resp Http400, "Token not in database"
+        if(not db.exists(User, "loginToken = $1 and admin = true", token)):
+          resp Http401, "You are not authenticated as an admin"
           
         db.rawSelect(sqlQuerry, messageHistory, username)
 
@@ -106,15 +107,15 @@ router chat:
 
     withDb:
       if(not db.exists(User, "loginToken = $1", token)):
-        resp Http400, "Token invalid"
+        resp Http401, "Token invalid"
 
       db.select(requestUser, "username = $1", username)
 
       if(not requestUser.admin):
-        resp Http400, "You're not admin"
+        resp Http403, "You're not an admin admin"
 
       if(not db.exists(Message, "time = $1", timestamp)):
-        resp Http400, "Message does not exist"
+        resp Http404, "Message does not exist"
 
       db.select(offendingMessage, "time = $1", timestamp)
       db.delete(offendingMessage)

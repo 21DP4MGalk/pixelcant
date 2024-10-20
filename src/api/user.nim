@@ -15,6 +15,7 @@ router user:
     var editUser = newUser()
 
     withDb:
+      assertUserTokenExists(requestToken)
       db.select(editUser, "username = $1", oldName)
       db.select(requestUser, "loginToken = $1", requestToken)
       
@@ -26,7 +27,6 @@ router user:
       db.update(editUser)
       resp Http200
 
-
   post "/modifyself":      # lets the user modify their own data, takes in the new data and a boolean specifying wether the username is to be changed or the password 
     let userToken = request.cookies["token"]
     let password = request.formData["password"].body      # password for validating the original user is making this request and not someone else at the computer
@@ -37,6 +37,7 @@ router user:
     if(not isPass and newData.len > 16):
       resp Http400, "New name is above 16 characters, shorten it."
     withDb:
+      assertUserTokenExists(userToken)
       var user = newUser();
       db.select(user, "loginToken = $1", userToken)
 
@@ -48,7 +49,6 @@ router user:
       db.update(user)
       resp Http200
 
-
   post "/banuser":      # lets the admin ban a user
     try:
       let requestToken = request.cookies["token"]      # belongs to the requesting user
@@ -57,12 +57,12 @@ router user:
       var bannedUser = newUser()     # the user being banned
       withDb:
         if(not db.exists(User, "loginToken = $1", requestToken)):
-          resp Http400, "Your token is invalid, consider logging back in"
+          resp Http401, "Your token is invalid, consider logging back in"
         
         db.select(requestUser, "loginToken = $1", requestToken)
         
         if(not requestUser.admin):
-          resp Http400, "You are not an administrator"
+          resp Http403, "You are not an administrator"
         
         db.select(bannedUser, "username = $1", username)
         bannedUser.banned = true
@@ -76,12 +76,11 @@ router user:
   get "/admincheck":      # simply checks if the user is an admin or not, unfortunately sends a string instead of a boolean because that just makes sense
     try:
       var token = request.cookies["token"]
-      var userContainer = newUser()
 
       withDb:
-        if(not db.exists(User, "loginToken = $1", token)):
+        if(db.exists(User, "loginToken = $1 and admin = true", token)):
+          resp Http200, "true"
+        else:
           resp Http200, "false"
-        db.select(userContainer, "loginToken = $1", token)
-      resp Http200, $userContainer.admin
     except:
       resp Http200, "false"
