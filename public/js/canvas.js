@@ -12,7 +12,7 @@ colours = [
   "rgb(0, 255, 255)",
   "rgb(255, 255, 255)",
   "rgb(0, 0, 0)",
-  "rgb(153, 170, 187)",
+  "rgb(74, 65, 42)",
   "rgb(1, 50, 32)",
 ];
 // Stores all the colours available as a pallet. Could be updated, should be updated.
@@ -32,7 +32,7 @@ async function interpretClick() {
   posY = Math.floor(posY / 20); // scale() only scales the canvas visually, pressing where 250,250 coords used to be still gives 250,250.
   // Must obviously be the same as the scale coefficent
 
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 10; i++) {
     // for determining the int associated with the colour
     if (colours[i] == colour) {
       c = i;
@@ -43,12 +43,6 @@ async function interpretClick() {
     method: "POST",
     body: JSON.stringify({ x: posX, y: posY, c: c }), // the endpoint recieves 3 variables - x, y and c. Not sure why it's not an object
   });
-
-  if (response.ok) {
-    // probably replace it with drawPixel once you're not too lazy
-    canvasCtx.fillStyle = colour;
-    canvasCtx.fillRect(posX, posY, 1, 1);
-  }
 }
 
 function updateColour() {
