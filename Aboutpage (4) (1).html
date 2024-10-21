@@ -29,6 +29,33 @@
       position: relative; /* Add position relative */
     }
 
+    header nav ul {
+    list-style: none; /* Remove bullets */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Flexbox for horizontal navigation */
+    justify-content: center;
+}
+
+header nav ul li {
+    margin-right: 20px; /* Spacing between navigation items */
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+/* Navigation link spacing */
+nav ul li a {
+    margin-top: 20px; /* Adjust the space between links */
+    display: inline-block;
+}
+
     /* Add fade effect using before/after pseudo-elements */
     .container::before, .container::after {
       content: "";
@@ -176,6 +203,14 @@
     <div class="container">
       <h1>PixelCan't - What About It?</h1>
       <p>Let us explain what "PixelCan't" is all about!</p>
+      <nav class="navbar">
+				<ul>
+					<li><a href="index.html">Beginning</a></li>
+					<li><a href="instruction.html">How to Use</a></li>
+					<li><a href="login.html">Login</a></li>
+					<li><a href="register.html">Sign Up</a></li>
+				</ul>
+			</nav>
     </div>
   </header>
 
