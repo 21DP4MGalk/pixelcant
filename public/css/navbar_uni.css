@@ -63,8 +63,8 @@ div#navlinks{
 	cursor: pointer;
 }
 #navlinks a:hover{
-	color:#fff;
-	background-color: #2ecc71;
+	color:#3498db;
+	background-color: #26a85d;
 	top: 0px;
 }
 

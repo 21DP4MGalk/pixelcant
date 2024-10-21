@@ -160,14 +160,14 @@ button.colourchoice{			/*The colour pallet buttons*/
 	background-color: #000000;
 	color: #fff;
 	display: box;
-	z-index: 98;
+	z-index: 99;
 	position:fixed;
 	left: 0;
 	top: 0;
 }
 #fadeoutElement{			/*Helps cover up some funky shit sometimes, mostly added because it's cool*/
 	position:fixed;
-	z-index: 99;
+	z-index: 98;
 	top: 0;
 	left: 0;
 	width: 100%;
