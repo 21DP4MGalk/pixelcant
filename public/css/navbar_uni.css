@@ -71,3 +71,8 @@ div#navlinks{
 a:hover::after {
 	width: 100%;
 }
+
+#contentStart{
+	margin-top: 130px;
+}
+
