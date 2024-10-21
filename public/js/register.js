@@ -34,7 +34,7 @@ async function submitRegistrationForm() {
     document.getElementById("container").style.display = "none";
     var timeout = setTimeout(function () {
       window.location.replace("/canvas.html");
-    }, 5000);
+    }, 2000);
   }
 }
 

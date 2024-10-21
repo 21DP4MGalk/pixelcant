@@ -19,15 +19,15 @@ async function submitLoginForm(event) {
       body: requestData,
     });
 
-    if (response.ok) {
-      startConfetti();
-      document.getElementById("container").style.display = "none";
+    if (!response.ok) {
+      alert("Login unsuccessful");
+      return;
     }
-    // For now, just showing an alert
-    alert("Login successful!");
+    startConfetti();
+    document.getElementById("container").style.display = "none";
     setTimeout(function () {
       window.location.replace("/canvas.html");
-    }, 5000);
+    }, 2000);
   }
 }
 /*document.getElementById("signInButton").addEventListener("click", function(event) {
