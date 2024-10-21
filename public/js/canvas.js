@@ -74,6 +74,7 @@ async function establishChatConn() {
     }
 
     messages.splice(0, 0, [username, message]); 
+    //messages.push([username, message]);
     refreshMessages(); 
   });
 }
@@ -81,6 +82,7 @@ async function establishChatConn() {
 async function getMessages() {
   const response = await fetch("/chat/getmessages");
   messages = JSON.parse(await response.text());
+  console.log(messages)
   refreshMessages();
 }
 
@@ -89,7 +91,7 @@ function refreshMessages() {
   messageBox.innerHTML = "";
   for (let i = 0; i < messages.length; i++) {
     if (messages[i][0] == "") {
-      break;
+      continue;
     }
     textNode = document.createTextNode(messages[i][0] + " : " + messages[i][1]);
     messageBox.insertBefore(
