@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <style>
+    body {
+      font-family: Arial, sans-serif; /* Use a clean sans-serif font */
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+      background-color: #f4f4f4; /* Light gray background */
+      color: #333; /* Dark gray text color */
+    }
+
+    header {
+      background: linear-gradient(to right, #c84e4e, #fb8f8f); /* Gradient background */
+      color: #fff; /* White text color */
+      padding: 9px 0; /* Vertical padding */
+      text-align: center; /* Center the text */
+    }
+
+    .container {
+      width: 90%; /* Use 90% of the width */
+      max-width: 1200px; /* Maximum width of 1200px */
+      margin: 0 auto; /* Center the container */
+      padding: 20px; /* Add padding */
+    }
+
+    header h1 {
+      font-size: 1.5em; /* Large font size for the heading */
+      margin: 0; /* Remove default margin */
+    }
+
+    header p {
+      font-size: 1em; /* Slightly smaller font size for the paragraph */
+      margin-top: 10px; /* Space above the paragraph */
+    }
+
+    h2 {
+      color:#c84e4e;
+      font-size: 2em;
+      border-bottom: 2px solid #fb8f8f;
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      color:#c84e4e;
+      font-size:2em;
+    }
+
+    h4 {
+      color:#c84e4e;
+      font-size:2em;
+      text-align: center;
+    }
+
+    .step {
+      margin: 20px 0; /* Space between steps */
+    }
+
+    p {
+      font-size: 1em; /* Slightly smaller font size for the paragraph */
+      margin-top: 10px; /* Space above the paragraph */
+    }
+
+    .p2 {
+      font-size:2em;
+      text-align: center;
+    }
+
+    .button-container {
+      margin-top: 30px; /* Add some space above the button */
+      text-align: center; /* Center the button */
+    }
+
+    .button-container button {
+      padding: 15px 30px; /* Add some padding to the button */
+      font-size: 1.5em; /* Increase font size */
+      background-color: #c84e4e; /* Button background color */
+      color: #fff; /* Button text color */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    .button-container button:hover {
+      background-color: #fb8f8f; /* Change color on hover */
+    }
+
+    /* Quiz Styles */
+    #quiz {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center; /* Center elements horizontally */
+      justify-content: center; /* Center elements vertically */
+      text-align: center; /* Center the text */
+    }
+
+    #quiz p {
+      font-size: 1.8em; /* Adjust the font size for questions */
+      margin-bottom: 10px; /* Add some spacing between questions */
+    }
+
+    #quiz button {
+      padding: 10px 70px; /* Increase button size */
+      font-size: 1.5em; /* Increase button text size */
+      margin: 10px; /* Add spacing between buttons */
+      background-color: #c84e4e; /* Button background color */
+      color: #fff; /* Button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #quiz button:hover {
+      background-color: #fb8f8f; /* Change color on hover */
+    }
+
+    #quizResult {
+      font-size: 1.8em; /* Adjust result text size */
+      color: #c84e4e; /* Result text color */
+      margin-top: 20px; /* Add spacing above the result */
+    }
+
+    .hidden {
+      transition: opacity 1s ease;
+      opacity: 0; /* Hide the element */
+    }
+    .hiddenFull{
+      display: none; /*Fully invinsible*/
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Pixelcan`t-What about it?</h1>
+      <p>Doesn`t know what is "Pixelcan`t"? Let me explain</p>
+    </div>
+  </header>
+
+  <div class="background">
+    <div class="container">
+      <div class="step">
+        <h3>1.What is Pixelcan`t?</h3>
+        <p>Pixelcan`t is a giant canvas that shared across all users. But the main thing is that you can only change color of 1 pixel every 5 minutes.</p>
+      </div>
+      <div class="step">
+        <h3>2.What the main Idea behind PixelCan`t?</h3>
+        <p>Because you can place only 1 pixel every 5 minutes, that means you have to cooperate with other users.</p>
+      </div>
+      <div class="step">
+        <h3>3.I can create anything in Pixelcan`t?</h3>
+        <p>You cannot create inappropriate or offensive images. Because we don't want to offend anyone(that statement is a lie), you should think before you draw anything.</p>
+      </div>
+      <div class="step">
+        <h3>4.Can I somehow place another pixel before 5 minutes lasts?</h3>
+        <p>No. You cannot. If you hack Pixelcan`t, we are going to ban you.</p>
+      </div>
+
+      <div class="step">
+        <h4>Let's Test how you understood the material</h4>
+        <div class="p2">
+          Complete this short quiz.
+        </div> 
+      </div>
+
+      <!-- Quiz Section -->
+      <div id="quiz">
+        <div class="quiz-question">
+          <p><strong>Question 1:</strong> Can you place more than one pixel every 5 minutes?</p>
+          <button onclick="checkAnswer(false, this)">Yes</button>
+          <button onclick="checkAnswer(true, this)">No</button>
+        </div>
+      
+        <div class="quiz-question">
+          <p><strong>Question 2:</strong> Is cooperation necessary in PixelCan't?</p>
+          <button onclick="checkAnswer(true, this)">Yes</button>
+          <button onclick="checkAnswer(false, this)">No</button>
+        </div>
+      
+        <div class="quiz-question">
+          <p><strong>Question 3:</strong> Can you create offensive images in PixelCan't?</p>
+          <button onclick="checkAnswer(false, this)">Yes</button>
+          <button onclick="checkAnswer(true, this)">No</button>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>Question 4:</strong> Can you type something offensive in the chat of PixelCan't?</p>
+          <button onclick="checkAnswer(false, this)">Yes</button>
+          <button onclick="checkAnswer(true, this)">No</button>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>Question 5:</strong> Just press no. I dont have any ideas</p>
+          <button onclick="checkAnswer(false, this)">Yes</button>
+          <button onclick="checkAnswer(true, this)">No</button>
+        </div>
+      
+        <div id="quizResult"></div>
+      </div>
+
+      <div class="button-container">
+        <button onclick="window.location.href='anotherpage.html'">Go to Another Page</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let score = 0;
+    let numbersOfQuestion = 0;
+  
+    function checkAnswer(correct, button) {
+  const resultDiv = document.getElementById('quizResult');
+  numbersOfQuestion++;
+
+  const questionDiv = button.parentElement; // Get the parent div of the button
+
+  // Hide the buttons immediately
+  const buttons = questionDiv.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.style.display = 'none'; // Instantly hide the buttons
+  });
+
+  // Keep the fade effect on the question div
+  questionDiv.classList.add('hidden'); // Fade the entire question div
+  setTimeout(() => { questionDiv.classList.add('hiddenFull'); }, 900); // Fully hide after fade
+
+  if (correct) {
+    score++;
+  }
+
+  if (numbersOfQuestion === 5) {
+    resultDiv.innerHTML = `Quiz completed! You got ${score}/5 correct!`;
+    score = 0; 
+    numbersOfQuestion = 0;
+    const p2Div = document.querySelector('.p2');
+    setTimeout(() => { p2Div.classList.add('hidden'); }, 1000);
+    setTimeout(() => { p2Div.classList.add('hiddenFull'); }, 1000);
+  } else {
+    resultDiv.innerHTML = ``;
+  }
+}
+  </script>
+</body>
+</html>
+
