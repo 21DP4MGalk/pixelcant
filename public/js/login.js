@@ -25,6 +25,9 @@ async function submitLoginForm(event) {
     }
     // For now, just showing an alert
     alert("Login successful!");
+    setTimeout(function () {
+      window.location.replace("/canvas.html");
+    }, 5000);
   }
 }
 /*document.getElementById("signInButton").addEventListener("click", function(event) {

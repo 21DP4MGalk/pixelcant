@@ -109,7 +109,7 @@ router chat:
       if(not db.exists(User, "loginToken = $1", token)):
         resp Http401, "Token invalid"
 
-      db.select(requestUser, "username = $1", username)
+      db.select(requestUser, "loginToken = $1", token)
 
       if(not requestUser.admin):
         resp Http403, "You're not an admin admin"

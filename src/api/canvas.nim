@@ -49,7 +49,7 @@ router canvas:
         selectUserWithToken(token)
         if userQuery.banned:
           resp Http403
-        if currentTime - 300 < userQuery.lastpixel:
+        if currentTime - 5 < userQuery.lastpixel:
           resp Http429
         pixelQuery.x = pixelX
         pixelQuery.y = pixelY
@@ -60,6 +60,6 @@ router canvas:
         db.update(userQuery)
       for ws in sockets:
         discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
-      resp Http200
+      resp Http200, $ currentTime
     except:
       resp Http401
