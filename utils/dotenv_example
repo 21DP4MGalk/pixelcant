@@ -3,4 +3,4 @@ DB_USER=postgres
 DB_PASS=password123
 DB_NAME=pixelcant
 DB_STARTUP_TIMEOUT=5
-
+PIXEL_INTERVAL=5
