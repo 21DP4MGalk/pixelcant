@@ -226,6 +226,15 @@ p {
   bottom:0;
   background-color:#fff; /* change if the mask should have another color then white */
   z-index:99999; /* makes sure it stays on top */
+  animation-name: fadeout;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  pointer-events:none;
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
 }
 
 #status {
@@ -234,7 +243,7 @@ p {
   position:absolute;
   left:50%; /* centers the loading animation horizontally one the screen */
   top:50%; /* centers the loading animation vertically one the screen */
-  background-image:url(../upload/preloader.gif); /* path to your loading animation */
+  /* background-image:url(../upload/preloader.gif); /1* path to your loading animation *1/ */
   background-repeat:no-repeat;
   background-position:center;
   margin:-100px 0 0 -100px; /* is width and height divided by two */
