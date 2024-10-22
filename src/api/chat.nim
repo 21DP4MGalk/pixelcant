@@ -1,5 +1,5 @@
 import jester
-import std/[times, os, json, strutils]
+import std/[times, json, strutils]
 import norm/[postgres, types]
 import ws, ws/jester_extra
 import "../websockets.nim"

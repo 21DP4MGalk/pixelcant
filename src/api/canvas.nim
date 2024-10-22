@@ -1,6 +1,6 @@
 import jester
 import std/[json, strutils, times]
-import norm/[postgres, types, model]
+import norm/[postgres, model]
 import ws, ws/jester_extra
 import "../models.nim"
 import "../websockets.nim"
@@ -31,7 +31,7 @@ router canvas:
 
   get "/updatestream":
     let ws = await newWebSocket(request)
-    sockets.add ws
+    socketsPixels.add ws
     resp Http200
 
   post "/placepixel":
@@ -58,7 +58,7 @@ router canvas:
         userQuery.lastpixel = currentTime
         db.insert(pixelQuery)
         db.update(userQuery)
-      for ws in sockets:
+      for ws in socketsPixels:
         discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
       resp Http200, $ currentTime
     except:
