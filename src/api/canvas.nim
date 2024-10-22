@@ -1,9 +1,13 @@
 import jester
-import std/[json, strutils, times]
+import std/[os, json, strutils, times]
+import dotenv
 import norm/[postgres, model]
 import ws, ws/jester_extra
 import "../models.nim"
 import "../websockets.nim"
+
+overload()
+let pixelInterval* = parseInt(getEnv("PIXEL_INTERVAL", "5"))
 
 type PixelQuery* = object
   x*, y*, c*: int16
@@ -49,7 +53,7 @@ router canvas:
         selectUserWithToken(token)
         if userQuery.banned:
           resp Http403
-        if currentTime - 5 < userQuery.lastpixel:
+        if currentTime - pixelInterval < userQuery.lastpixel:
           resp Http429
         pixelQuery.x = pixelX
         pixelQuery.y = pixelY
