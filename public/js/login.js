@@ -1,37 +1,53 @@
-/*
-async function sendLoginForm(){
-    
-    var loginForm = new FormData();
-
-
-
-    const response = await fetch("auth/login", {
-        method: "POST",
-        body: loginForm
-    });
-}*/
-// Handling the login form
+// Listen for form submission
 document.querySelector('form').addEventListener('submit', submitLoginForm);
 
-function submitLoginForm(event) {
-    event.preventDefault(); // Prevents default form submission
+// Function to handle form submission
+async function submitLoginForm(event) {
+    event.preventDefault(); // Prevent default form submission
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+    // Check if fields are empty
     if (username === '' || password === '') {
         alert('Please fill in all fields!');
-    } else {
-        // Here we handle login logic, such as sending a request to the server
-        console.log('Login data:', { username, password });
-        // For now, just showing an alert
-        alert('Login successful!');
+        return; // Exit the function if fields are empty
+    }
+
+    // Create FormData object
+    const loginInfo = new FormData();
+    loginInfo.append("username", username);
+    loginInfo.append("password", password);
+
+    try {
+        // Send a POST request to the server
+        const response = await fetch("auth/login", {
+            method: "POST",
+            body: loginInfo
+        });
+
+        if (!response.ok) {
+            // Handle error response
+            alert('Login failed. Please check your credentials.');
+            return;
+        }
+
+        // Successful login, start confetti animation
+        startConfetti();
+
+        // Stop confetti after 3 seconds and redirect
+        setTimeout(function() {
+            stopConfetti(); // Stop confetti animation
+            window.location.href = "index.html"; // Redirect to the main page
+        }, 3000); // Перенаправление происходит через 3 секунды после успешного входа
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
     }
 }
-document.getElementById("signInButton").addEventListener("click", function(event) {
-    event.preventDefault();
-    startConfetti();
-});
+
+// Confetti animation functions
+let animationFrameId; // Variable to store animation ID
 
 function startConfetti() {
     const canvas = document.getElementById("confettiCanvas");
@@ -42,12 +58,11 @@ function startConfetti() {
     const confettiCount = 300;
     const confettis = [];
 
-    
     for (let i = 0; i < confettiCount; i++) {
         confettis.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height - canvas.height,
-            r: Math.random() * 6 + 2, 
+            r: Math.random() * 6 + 2,
             d: Math.random() * confettiCount,
             color: randomColor(),
             tilt: Math.random() * 10 - 10,
@@ -87,8 +102,15 @@ function startConfetti() {
             ctx.stroke();
         });
 
-        requestAnimationFrame(drawConfetti);
+        animationFrameId = requestAnimationFrame(drawConfetti);
     }
 
     drawConfetti();
+}
+
+function stopConfetti() {
+    cancelAnimationFrame(animationFrameId);
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
 }

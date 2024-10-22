@@ -1,10 +1,11 @@
-
 /* Header Styles */
 header {
     background: linear-gradient(to right, #4e54c8, #8f94fb); /* Gradient background */
     color: #fff; /* White text color */
     padding: 40px 0; /* Vertical padding */
-    text-align: center; /* Center the text */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Space between header elements */
+    align-items: center; /* Center vertically */
 }
 
 header h1 {
@@ -12,23 +13,63 @@ header h1 {
     margin: 0; /* Remove default margin */
 }
 
-
-
-body {
-    font-family: Arial, sans-serif;
+header nav ul {
+    list-style: none; /* Remove bullets */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    }
-    
-    /* Container Styles */
-    .container {
+    display: flex; /* Flexbox for horizontal navigation */
+    justify-content: center;
+}
+
+header nav ul li {
+    margin-right: 20px; /* Spacing between navigation items */
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+/* Navigation link spacing */
+nav ul li a {
+    margin-top: 20px; /* Adjust the space between links */
+    display: inline-block;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styles */
+.container {
     width: 100%;
-    max-width: 400px; /* Меньшая максимальная ширина для формы логина */
-    margin: 20px auto;
+    max-width: 400px;
+    margin: 0 auto 20px auto; /* Keep auto margins */
     padding: 20px;
-    }
+}
+
+main {
+    flex: 1; /* Allow the main content to grow and take available space */
+    margin-top: -20px; /* Move the main content upwards */
+}
+
+/* Set the height of the entire page to at least 100% */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+
+
     
     /* Form Styles */
     form {
@@ -80,26 +121,29 @@ body {
     background: linear-gradient(to right, #8f94fb, #4e54c8); /* Изменение цвета на ховер */
     }
     
-    /* Responsive Styles */
-    @media (max-width: 768px) {
+    /* Footer Styles */
+footer {
+    background: #4e54c8; /* Blue background */
+    color: #fff; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 20px 0; /* Vertical padding */
+    width: 100%; /* Full width */
+    position: absolute;
+    bottom: 0; /* Stick to the bottom */
+    left: 0;
+}
+
+footer p {
+    margin: 0; /* Remove default margin */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
     form h1 {
-    font-size: 2em;
+        font-size: 2em;
     }
-    
+
     form label, form input, form button {
-    font-size: 1em;
+        font-size: 1em;
     }
-    }
-    footer {
-        background: #4e54c8; /* Blue background */
-        color: #fff; /* White text color */
-        text-align: center; /* Center the text */
-        padding: 20px 0; /* Vertical padding */
-        position: relative; /* Position relative for layout */
-        bottom: 0; /* Stick to the bottom */
-        width: 100%; /* Full width */
-    }
-    
-    footer p {
-        margin: 0; /* Remove default margin */
-    }
+}

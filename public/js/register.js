@@ -1,40 +1,44 @@
 document.getElementById('registrationForm').addEventListener('submit', submitRegistrationForm);
 
 async function submitRegistrationForm() {
-    //event.preventDefault(); // Останавливаем стандартное поведение формы
-
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-    //const errorMessage = document.getElementById('error-message');
 
     // Проверка на совпадение паролей
     if (password !== confirmPassword) {
         //errorMessage.textContent = 'Passwords do not match. Please check!';
         //errorMessage.style.color = 'red';
     } else {
-        // Логика отправки данных на сервер (можно добавить серверную обработку)
-        
         var registrationInfo = new FormData();
         registrationInfo.append("username", username);
         registrationInfo.append("password", password);
-        console.log(username)
-        console.log(registrationInfo.get("username"))
+        console.log(username);
+        console.log(registrationInfo.get("username"));
 
         const response = await fetch("auth/register", {
             method: "POST",
             body: registrationInfo
         });
-        if(!response.ok){
+
+        if (!response.ok) {
             //errorMessage.textContent = 'Something went wrong.';
         }
-        //errorMessage.textContent = '';
     }
 }
+
 document.getElementById("RegisterButton").addEventListener("click", function(event) {
     event.preventDefault();
     startConfetti();
+    
+    // Остановка конфетти через 3 секунды и перенаправление
+    setTimeout(function() {
+        stopConfetti(); // Остановка анимации конфетти
+        window.location.href = "index.html"; // Перенаправление на главную страницу
+    }, 2000);
 });
+
+let animationFrameId; // Переменная для хранения ID анимации
 
 function startConfetti() {
     const canvas = document.getElementById("confettiCanvas");
@@ -45,7 +49,6 @@ function startConfetti() {
     const confettiCount = 300;
     const confettis = [];
 
-    
     for (let i = 0; i < confettiCount; i++) {
         confettis.push({
             x: Math.random() * canvas.width,
@@ -90,8 +93,15 @@ function startConfetti() {
             ctx.stroke();
         });
 
-        requestAnimationFrame(drawConfetti);
+        animationFrameId = requestAnimationFrame(drawConfetti);
     }
 
     drawConfetti();
+}
+
+function stopConfetti() {
+    cancelAnimationFrame(animationFrameId);
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Очищаем холст
 }
