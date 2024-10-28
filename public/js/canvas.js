@@ -2,7 +2,7 @@ var colour = "#FF0000";
 var messages = [
   [],
 ]; 
-colours = [
+var colours = [
   "rgb(255, 0, 0)",
   "rgb(0, 255, 0)",
   "rgb(0, 0, 255)",
@@ -15,6 +15,7 @@ colours = [
   "rgb(1, 50, 32)",
 ];
 
+var lastPlaced = 0;
 
 async function interpretClick() {
   const canvas = document.getElementById("canvas");
@@ -37,6 +38,9 @@ async function interpretClick() {
     method: "POST",
     body: JSON.stringify({ x: posX, y: posY, c: c }), 
   });
+  if(response.ok){
+  	startTimeout(await response.text());
+  }
 }
 
 function updateColour() {
@@ -179,8 +183,8 @@ async function init() {
   var fadeoutElement = document.getElementById("fadeoutElement"); 
   fadeoutElement.style.backgroundColor = "rgb(0,0,0,0)";
 
-  var msgDialog = document.getElementById("adminDialogContainer");
-  msgDialog.style.display = "none";
+  //var msgDialog = document.getElementById("adminDialogContainer");
+  //msgDialog.style.display = "none";
 
   if ((await adminCheck()) == "true") {
     document.getElementById("adminPanel").style.display = "block";
@@ -296,3 +300,20 @@ function updateCoords(event) {
   document.getElementById("coords").innerText =
     "X: " + posX + "; Y: " + posY + ";";
 }
+
+function startTimeout(newTime){
+	x = 5; // amount of seconds of timeout
+	var timeoutText = document.getElementById("timeout_p");
+	timeoutText.innerText = x;
+	for(var i = 0; i < x; i++){
+		setTimeout(function(){
+			timeoutText.innerText = x;
+			x -= 1;
+		},1000 *i)
+	}
+	setTimeout(function(){
+		timeoutText.innerText = "READY";
+	}, 1000* x+1)
+}
+
+function countdown(){}
