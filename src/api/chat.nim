@@ -107,6 +107,7 @@ router chat:
     var timestamp = parseInt(request.formData["timestamp"].body)
     echo timestamp
 
+    var adminUser = newUser()
     var requestUser = newUser()
     var offendingMessage = newMessage()
 
@@ -114,9 +115,9 @@ router chat:
       if(not db.exists(User, "loginToken = $1", token)):
         resp Http401, "Token invalid"
 
-      db.select(requestUser, "username = $1", username)
-
-      if(not requestUser.admin):
+      db.select(adminUser, "loginToken = $1", token)
+      
+      if(not adminUser.admin):
         resp Http403, "You're not an admin admin"
 
       if(not db.exists(Message, "time = $1", timestamp)):
