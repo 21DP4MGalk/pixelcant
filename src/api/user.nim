@@ -2,7 +2,7 @@ import jester
 import norm/[postgres, types]
 import "../models.nim"
 import checksums/bcrypt
-import strutils
+import std/[strutils, json]
 
 router user:
   post "/modifyuser":     # takes in the user's old name and lets the admin change it, used to curb innapropriate names
@@ -84,3 +84,18 @@ router user:
           resp Http200, "false"
     except:
       resp Http200, "false"
+  
+  get "/status":
+    if not request.cookies.hasKey("token"):
+      resp Http401
+    let token = request.cookies["token"]
+    var userQuery = newUser();
+    withDb:
+      if not db.exists(User, "loginToken = $1", token):
+        resp Http404
+      db.select(userQuery, "loginToken = $1", token)
+    resp Http200, $ %* {
+        "username": userQuery.username,
+        "admin": userQuery.admin,
+        "banned": userQuery.banned,
+    }
