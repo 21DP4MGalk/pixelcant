@@ -57,9 +57,9 @@ async function establishPixelConn() {
 
 async function establishChatConn() {
   getMessages(); 
-  var c_sock = new WebSocket("/chat/messagestream");
-  c_sock.addEventListener("message", (event) => {
-    var fullMsg = event.data;
+  var cSock = new WebSocket("/chat/messagestream");
+  cSock.addEventListener("message", (event) => {
+    /*var fullMsg = event.data;
     var usernameLen = parseInt(fullMsg.slice(0, 1));
 
     if (fullMsg.slice(1, 2) != ";") {
@@ -75,6 +75,32 @@ async function establishChatConn() {
 
     messages.splice(0, 0, [username, message]); 
     //messages.push([username, message]);
+    */
+   
+    var msg = JSON.parse(event.data);
+    var username = msg.username;
+    var data = msg.data;
+    if(msg.msgType == "post"){
+      messages.splice(0, 0, [username, data]); 
+    }
+    else if(msg.msgType == "delete"){
+      for(var i = 0; i < messages.length; i++){
+        if(messages[i][0] == username && messages[i][1] == data){
+          messages.splice(i, 1)
+        }
+      }
+    }
+    else if(msg.msgType == "namechange"){
+      if(sessionStorage.getItem("username") == username){
+        alert("Your name was changed! Your new name is " + data);
+        sessionStorage.setItem("username", data)
+      }
+      for(var i = 0; i < messages.length; i++){
+        if(messages[i][0] == username){
+          messages[i][0] = data;
+        }
+      }
+    }
     refreshMessages(); 
   });
 }

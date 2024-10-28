@@ -2,7 +2,11 @@ import jester
 import norm/[postgres, types]
 import "../models.nim"
 import checksums/bcrypt
-import strutils
+import "../websockets.nim"
+import ws, ws/jester_extra
+import std/[json, strutils]
+import "chat.nim"
+
 
 router user:
   post "/modifyuser":     # takes in the user's old name and lets the admin change it, used to curb innapropriate names
@@ -24,7 +28,11 @@ router user:
   
       editUser.username = newStringOfCap[16](newName)    
 
+      var socketMsg = webSocketMessage(msgType: "namechange", username: oldname, data: newName)
       db.update(editUser)
+      
+      for socket in socketsChat:
+        discard socket.send($(%* socketMsg))
       resp Http200
 
   post "/modifyself":      # lets the user modify their own data, takes in the new data and a boolean specifying wether the username is to be changed or the password 

@@ -5,6 +5,9 @@ header {
     color: #fff; /* White text color */
     padding: 40px 0; /* Vertical padding */
     text-align: center; /* Center the text */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Space between header elements */
+    align-items: center; /* Center vertically */
 }
 
 header h1 {
@@ -12,15 +15,36 @@ header h1 {
     margin: 0; /* Remove default margin */
 }
 
-
-
-body {
-    font-family: Arial, sans-serif;
+header nav ul {
+    list-style: none; /* Remove bullets */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    }
+    display: flex; /* Flexbox for horizontal navigation */
+    justify-content: center;
+}
+
+header nav ul li {
+    margin-right: 20px; /* Spacing between navigation items */
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+/* Navigation link spacing */
+nav ul li a {
+    margin-top: 20px; /* Adjust the space between links */
+    display: inline-block;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
     
     /* Container Styles */
     #container {
