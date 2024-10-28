@@ -1,5 +1,5 @@
 import jester
-import std/[times, os, json, strutils]
+import std/[times, json, strutils]
 import norm/[postgres, types]
 import ws, ws/jester_extra
 import "../websockets.nim"
@@ -112,13 +112,8 @@ router chat:
     var offendingMessage = newMessage()
 
     withDb:
-      if(not db.exists(User, "loginToken = $1", token)):
-        resp Http401, "Token invalid"
-
-      db.select(requestUser, "loginToken = $1", token)
-
-      if(not requestUser.admin):
-        resp Http403, "You're not an admin admin"
+      if(not db.exists(User, "loginToken = $1 and admin = true", token)):
+        resp Http401, "Token invalid or not admin"
 
       if(not db.exists(Message, "time = $1", timestamp)):
         resp Http404, "Message does not exist"

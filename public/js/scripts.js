@@ -21,13 +21,13 @@ $(document).ready(function () {
     $("#preloader").delay(350).fadeOut("slow");
 
     // Isotope Filter
-    var $container = $("#portfolio-container");
-    $container.imagesLoaded(function () {
-      $container.isotope({
-        isOriginLeft: true,
-      });
-      $container.isotope();
-    });
+    // var $container = $("#portfolio-container");
+    // $container.imagesLoaded(function () {
+    //   $container.isotope({
+    //     isOriginLeft: true,
+    //   });
+    //   $container.isotope();
+    // });
 
     // filter items on button click
     $(".portfolio-filter").on("click", "a", function (e) {
@@ -68,27 +68,27 @@ $(document).ready(function () {
     $(".navbar-toggle:visible").click();
   });
 
-  // Browser Detect
-  $.browserSelector();
-  // Adds window smooth scroll on chrome.
-  if ($("html").hasClass("chrome")) {
-    $.smoothScroll();
-  }
+  // // Browser Detect
+  // $.browserSelector();
+  // // Adds window smooth scroll on chrome.
+  // if ($("html").hasClass("chrome")) {
+  //   $.smoothScroll();
+  // }
 
-  // Wow Animations
-  new WOW().init();
+  // // Wow Animations
+  // new WOW().init();
 
   // Counters
 
-  $(".statistic").appear(function () {
-    $(".timer").countTo({
-      speed: 4000,
-      refreshInterval: 60,
-      formatter: function (value, options) {
-        return value.toFixed(options.decimals);
-      },
-    });
-  });
+  // $(".statistic").appear(function () {
+  //   $(".timer").countTo({
+  //     speed: 4000,
+  //     refreshInterval: 60,
+  //     formatter: function (value, options) {
+  //       return value.toFixed(options.decimals);
+  //     },
+  //   });
+  // });
 
   /* ---------------------------------------------------------------------- */
   /*	Contact Form

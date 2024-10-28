@@ -18,5 +18,5 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_DB=${DB_NAME}
     healthcheck:
-      test: ["CMD", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      test: ["CMD", "sh", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 5m

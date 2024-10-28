@@ -1,4 +1,4 @@
-FROM nimlang/nim:2.0.4-regular
+FROM nimlang/nim:2.0.8-regular
 
 RUN apt-get update && apt-get install libpq5 -y
 

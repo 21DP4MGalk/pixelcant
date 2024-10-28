@@ -1,4 +1,4 @@
 import ws
 
-var sockets* = newSeq[WebSocket]()
+var socketsPixels* = newSeq[WebSocket]()
 var socketsChat* = newSeq[WebSocket]()
