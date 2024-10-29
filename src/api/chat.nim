@@ -1,5 +1,5 @@
 import jester
-import std/[times, os, json, strutils]
+import std/[times, json, strutils]
 import norm/[postgres, types]
 import ws, ws/jester_extra
 import "../websockets.nim"
@@ -10,13 +10,17 @@ type mixedTableContainer* = ref object      # for containing the select querry r
   message*: StringOfCap[300] = newStringOfCap[300]("")
   time*: int = 0
 
+type webSocketMessage* = object
+  msgType*: string
+  data*: string
+  username*: string
+
 
 router chat:
   post "/postmessage":      # takes in the message as formData, requires a token cookie to work
     try:
       let messageText = request.formData["message"].body
       let userToken = request.cookies["token"]
-      var socketMsg = ""
       var curTime = epochTime()
       var unixTime = int(curTime * 1000) # get Unix epoch time in miliseconds
 
@@ -40,10 +44,11 @@ router chat:
         
         db.insert(message)
 
-      socketMsg = ( $(($userContainer.username).len) & ";" & $userContainer.username &  $message.message)   #first two or three characters are reserved for the length of the username, seperated by a semicolon
+      #socketMsg = ( $(($userContainer.username).len) & ";" & $userContainer.username &  $message.message)   #first two or three characters are reserved for the length of the username, seperated by a semicolon
+      var socketMsg = webSocketMessage(msgType: "post", username: $userContainer.username, data: $message.message);
 
       for socket in socketsChat:
-        discard socket.send(socketMsg)      # inform everyone of the new message
+        discard socket.send($(%* socketMsg))      # inform everyone of the new message
 
       resp Http201      # 201 for succesfully created
     except:
@@ -102,22 +107,21 @@ router chat:
     var timestamp = parseInt(request.formData["timestamp"].body)
     echo timestamp
 
+    var adminUser = newUser()
     var requestUser = newUser()
     var offendingMessage = newMessage()
 
     withDb:
-      if(not db.exists(User, "loginToken = $1", token)):
-        resp Http401, "Token invalid"
-
-      db.select(requestUser, "loginToken = $1", token)
-
-      if(not requestUser.admin):
-        resp Http403, "You're not an admin admin"
+      if(not db.exists(User, "loginToken = $1 and admin = true", token)):
+        resp Http401, "Token invalid or not admin"
 
       if(not db.exists(Message, "time = $1", timestamp)):
         resp Http404, "Message does not exist"
 
       db.select(offendingMessage, "time = $1", timestamp)
+      var socketMsg = webSocketMessage(msgType: "delete", username: $username, data: $offendingMessage.message)
       db.delete(offendingMessage)
+      for socket in socketsChat:
+        discard socket.send($(%* socketMsg))
 
     resp Http200

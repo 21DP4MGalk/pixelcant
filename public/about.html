@@ -67,10 +67,10 @@ nav ul li a {
       pointer-events: none; /* Prevent interaction with the fade */
     }
 
-    .container::before {
+    /*.container::before {
       top: 0;
       background: linear-gradient(to bottom, rgba(247, 249, 252, 1), rgba(247, 249, 252, 0));
-    }
+    }*/
 
     .container::after {
       bottom: 0;
@@ -261,7 +261,7 @@ nav ul li a {
     </div>
 
     <div class="button-container" id="nextPageButton">
-      <button onclick="window.location.href='anotherpage.html'">Go to Another Page</button>
+      <button onclick="window.location.href='index.html'">Go back</button>
     </div>
   </div>
 
@@ -307,8 +307,8 @@ nav ul li a {
       }
     }
 
-    // Adjust visibility of the fade effect based on scroll position
-    window.addEventListener('scroll', function () {
+    // Adjust visibility of the fade effect based on scroll position (Not functional)
+    /*window.addEventListener('scroll', function () {
       const container = document.getElementById('mainContainer');
       const fadeTop = container.querySelector('::before');
       const fadeBottom = container.querySelector('::after');
@@ -324,7 +324,7 @@ nav ul li a {
       } else {
         fadeBottom.style.opacity = '1';
       }
-    });
+    });*/
   </script>
 </body>
 </html>

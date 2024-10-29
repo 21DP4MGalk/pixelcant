@@ -75,4 +75,8 @@ a:hover::after {
 #contentStart{
 	margin-top: 130px;
 }
-
+#usernameMsg{
+	font-size: 18px;
+	margin-left: 17%;
+	margin-top: 4%;
+}

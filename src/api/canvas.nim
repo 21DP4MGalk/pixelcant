@@ -1,9 +1,13 @@
 import jester
-import std/[json, strutils, times]
-import norm/[postgres, types, model]
+import std/[os, json, strutils, times]
+import dotenv
+import norm/[postgres, model]
 import ws, ws/jester_extra
 import "../models.nim"
 import "../websockets.nim"
+
+overload()
+let pixelInterval* = parseInt(getEnv("PIXEL_INTERVAL", "5"))
 
 type PixelQuery* = object
   x*, y*, c*: int16
@@ -20,7 +24,7 @@ router canvas:
       var pixelQuery = @[newPixel()]
       withDb:
         if not db.exists(Pixel, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", xfrom, xto, yfrom, yto):
-          resp Http204
+          resp Http200, "[]"
         db.select(pixelQuery, "(x BETWEEN $1 AND $2) AND (y BETWEEN $3 AND $4)", xfrom, xto, yfrom, yto)
       var queriedPixels: seq[PixelQuery]
       for pixel in pixelQuery:
@@ -31,11 +35,11 @@ router canvas:
 
   get "/updatestream":
     let ws = await newWebSocket(request)
-    sockets.add ws
+    socketsPixels.add ws
     resp Http200
 
   post "/placepixel":
-    try:
+    # try:
       let
         token = request.cookies["token"]
         parsedBody = parseJson(request.body)
@@ -49,17 +53,23 @@ router canvas:
         selectUserWithToken(token)
         if userQuery.banned:
           resp Http403
-        if currentTime - 5 < userQuery.lastpixel:
+        if currentTime - pixelInterval < userQuery.lastpixel:
           resp Http429
-        pixelQuery.x = pixelX
-        pixelQuery.y = pixelY
-        pixelQuery.colour = pixelColour
-        pixelQuery.userfk = userQuery
+        if db.exists(Pixel, "x = $1 and y = $2", pixelX, pixelY):
+          db.select(pixelQuery, "x = $1 and y = $2", pixelX, pixelY)
+          pixelQuery.colour = pixelColour
+          pixelQuery.userfk = userQuery
+          db.update(pixelQuery)
+        else:
+          pixelQuery.colour = pixelColour
+          pixelQuery.userfk = userQuery
+          pixelQuery.x = pixelX
+          pixelQuery.y = pixelY
+          db.insert(pixelQuery)
         userQuery.lastpixel = currentTime
-        db.insert(pixelQuery)
         db.update(userQuery)
-      for ws in sockets:
+      for ws in socketsPixels:
         discard ws.send( $(%PixelQuery(x: pixelQuery.x, y: pixelQuery.y, c: pixelQuery.colour)))
       resp Http200, $ currentTime
-    except:
-      resp Http401
+    # except:
+    #   resp Http401

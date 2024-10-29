@@ -3,7 +3,7 @@ import norm/[postgres, types, model]
 import ws, ws/jester_extra
 import dotenv
 import checksums/bcrypt
-import std/[os, strutils, json, options, times, sysrand]
+import std/[os, strutils, json, options, times]
 import "models.nim"
 import "websockets.nim"
 import "api"/["auth.nim", "canvas.nim", "chat.nim", "user.nim"]
