@@ -84,3 +84,16 @@ router user:
           resp Http200, "false"
     except:
       resp Http200, "false"
+
+  get "/getusername"
+    try:
+      var token = request.cookies["token"]
+      var requestUser = newUser()
+
+      withDb:
+        if(not db.exists(User, "token = $1", token)):
+	  resp Http204
+       	db.select(requestUser, "token = $1", token)
+      resp Http200, $(requestUser.username)
+    except:
+      resp Http500
