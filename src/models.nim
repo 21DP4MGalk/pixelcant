@@ -1,5 +1,5 @@
 import norm/[types, model, pragmas]
-import std/options
+import std/[options, json]
 
 type 
   User* {.tableName: "Users".} = ref object of Model
@@ -35,3 +35,9 @@ template assertUserTokenExists*(token) =
 template selectUserWithToken*(token) =
   var userQuery {.inject.} = newUser()
   db.select(userQuery, "loginToken = $1", token)
+
+proc `%`*(psoc: PaddedStringOfCap): JsonNode =
+  result = %($psoc)
+
+proc `%`*(soc: StringOfCap): JsonNode =
+  result = %($soc)
