@@ -46,6 +46,7 @@ document.getElementById("RegisterButton").addEventListener("click", function(eve
 
 function startConfetti() {
   const canvas = document.getElementById("confettiCanvas");
+  canvas.style.display = "initial";
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
