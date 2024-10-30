@@ -19,7 +19,6 @@ header nav ul {
     list-style: none; /* Remove bullets */
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     display: flex; /* Flexbox for horizontal navigation */
     justify-content: center;
 }
@@ -45,10 +44,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-=======
     background-color: #f4f4f4;
     color: #333;
->>>>>>> 2e066bf857cb90423e9bdd009cb0e31b59cae230
 }
     
     /* Container Styles */
@@ -125,7 +122,7 @@ button {
         color: #fff; /* White text color */
         text-align: center; /* Center the text */
         padding: 20px 0; /* Vertical padding */
-        position: relative; /* Position relative for layout */
+        position: absolute;
         bottom: 0; /* Stick to the bottom */
         width: 100%; /* Full width */
     }
