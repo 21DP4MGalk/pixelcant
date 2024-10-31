@@ -60,6 +60,7 @@
 			<button id="banButton" title="Ban a user" onclick="banUser()">&#x1F5E1;</button>
 			<button id="modifyButton" title="Modify a user" onclick="modifyUser()">&#9998;</button>
 			<button id="dialogButton" title="Delete a user's messages" onclick="openMsgDialog()">&#x1f5d1;</button>
+			<button id="userCanvasOpen" title="See the user's pixels" onclick="openUserCanvas()">PIXELCUNT</button>
 		</div>
 
 		<div id="adminDialogContainer">			<!--Another case of poor visual design, but you gotta admit nuking messages away is
@@ -90,5 +91,9 @@
 			</center>
 		</div>
 		<div id="fadeoutElement"></div>
+		<div id="userCanvasScreen">
+			<canvas id="userCanvas" width="1000px" height="1000px"></canvas>
+			<button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
+		</div>
 	</body>
 </html>
