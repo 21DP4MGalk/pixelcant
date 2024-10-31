@@ -29,18 +29,21 @@
 		<div id="container">
 			<h1 id="pageTitle">ACCOUNT INFO</h1>
 			<div id="userData">
+				<h2> Your current info </h2>
 				<p id="currentName">Username: </p> 
 				<p id="currentAdmin">Admin: </p> 
 				<p id="currentBanned">Banned: </p> 
+				<p id="userMessage"></p>
 			</div>
+			<hr>
 			<div id="infoEdit">
+				<h2>Info editing</h2>
 				<div id="changeName">
 					<h4>Change name</h4>
 					<input type="text" id="nameField" placeholder="Enter your name here"><br>
 					<input type="password" id="nameChangePass" placeholder="Password"><br>
 					<button onclick="submitNameChange()">Change name</button>
 				</div>
-
 				<div id="changePass">
 					<h4>Change password</h4>
 					<input type="password" id="oldPass" placeholder="Old password"><br>
@@ -52,7 +55,7 @@
 		</div>
 		<div id="disclaimer">
 			<p>!!! Please note when choosing your username: anything considered offensive or innapropriate, your name may be changed by administrators</p>
-			<button onclick="hideDisclaimer()" id="hideDisclaimer">X</button>
+			<button onclick="hideDisclaimer()" id="hideDisclaimer">x</button>
 		</div>
 	</body>
 </html>

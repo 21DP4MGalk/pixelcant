@@ -1,7 +1,3 @@
-username = ""
-admin = false;
-banned = false;
-
 function hideDisclaimer(){
 	var disclaimer = document.getElementById("disclaimer");
 	var hideDisclaimer = document.getElementById("hideDisclaimer");
@@ -26,12 +22,23 @@ async function getInfo(){
 	adminElement.innerText += user.admin
 	bannedElement.innerText += user.banned
 	nameField.value = user.username
+
+	updateUserMessage(user.username, user.admin, user.banned);
 }
 
 async function submitNameChange(){
 	var newName = document.getElementById("nameField");
 	var password = document.getElementById("nameChangePass");
 	
+	if(nameField.value == ""){
+		alert("Please enter some name!");
+		return;
+	}
+	if(password.value == ""){
+		alert("Please enter a password first!");
+		return;
+	}
+
 	await submitChanges(newName.value, password.value);
 
 }
@@ -40,6 +47,11 @@ async function submitPassChange(){
 	var oldPass = document.getElementById("oldPass");
 	var newPass = document.getElementById("newPass");
 	var confirmPass = document.getElementById("confirmPass");
+
+	if(oldPass.value == "" || newPass.value == "" || confirmPass.value == ""){
+		alert("Please fill out all the fields!");
+		return;
+	}
 
 	await submitChanges(newPass.value, oldPass.value, true, confirmPass.value);
 
@@ -68,4 +80,21 @@ async function submitChanges(newData, password, isPass = false, confirmPass = pa
 		return
 	}
 	alert("IT WORKED YAYE");
+}
+
+function updateUserMessage(username, admin, banned){
+	console.log(username, admin, banned)
+	var userMessage = document.getElementById("userMessage");
+	if(!admin && !banned){
+		userMessage.innerText = "Not banned yet, an impressive achievement! \nKeep it up, or else.";
+	}
+	else if(banned && !admin){
+		userMessage.innerText = "Wether you drew swastikas or \nadvocated for raisin enjoyer genocide, \nthe ban was probably earned. \nUnless we did \nit for fun.\nFun fact: there's no way to get unbanned";
+	}
+	else if(banned && admin){
+		userMessage.innerText = "You cheeky debugging bastard, enjoy this clipping text, I'm not placing newlines, you're not my dad";
+	}
+	else if(!banned && admin){
+		userMessage.innerText = "One of our famously GOODtm \nadministrators, the backbone of the \nsystem and the fabric of this \nlocalized reality. \nStill bald though";
+	}
 }
