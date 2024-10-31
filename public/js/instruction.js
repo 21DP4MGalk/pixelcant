@@ -18,7 +18,7 @@ function completeStep(stepIndex) {
 
     // Check if all steps are completed
     if (stepsCompleted === totalSteps) {
-      alert("Congratulations! You have completed all the steps.");
+      // alert("Congratulations! You have completed all the steps.");
       celebrate(); // Trigger confetti celebration
       disableSteps();
     }

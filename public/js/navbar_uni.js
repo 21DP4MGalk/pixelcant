@@ -28,13 +28,13 @@ async function checkStatus() {
   registerElement.style.display = "none";
   
   let status = JSON.parse(await resp.text());
-  let greeting = ""
+  let greeting = "";
   if (status.banned) {
-    greeting = "ew, "
-  } else if(status.admin) {
-    greeting = "HELLO, you're bald, "
+    greeting = "ew, ";
+  } else if (status.admin) {
+    greeting = "HELLO, you're bald, ";
   } else {
-    greeting = "WELCOME, HIGHLY REGARDED "
+    greeting = "WELCOME, HIGHLY REGARDED ";
   }
 
   usernameMsg.innerText = greeting + status.username + "!";
