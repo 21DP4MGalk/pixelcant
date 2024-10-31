@@ -110,4 +110,12 @@ router user:
   post "/reportuser":
     var username = request.formData["username"].body
     var description = request.formData["description"].body
-    resp Http200, "Implement later"
+    var report = newReport();
+    
+    report.username = StringOfCap[16](username)
+    report.description = StringOfCap[500](description)
+
+    withDb:
+      db.insert(report) 
+
+    resp Http200, "Nice report bro"
