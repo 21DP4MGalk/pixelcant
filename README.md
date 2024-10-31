@@ -19,7 +19,8 @@ Nākotnē jābūt:
 - [x] Adminu iespēja banot lietotājus
 
 ## TODO:
-- [ ] **MESSAGE REPORTING**
+- [x] **MESSAGE REPORTING** (front end)
+- [ ] Message reporting back end
 - [x] Deleted messages being deleted instantly
 - [x] Admin panel responsiveness
 - [x] Fixes for the about page
@@ -29,4 +30,4 @@ Nākotnē jābūt:
 - [x] Position indicator
 - [ ] Make canvas tools draggable so they don't get in the way
 - [x] Some kind of UI to display the user's name
-- [ ] User self editing page
+- [x] User self editing page
