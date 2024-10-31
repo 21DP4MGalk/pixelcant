@@ -123,7 +123,7 @@ function refreshMessages() {
     if (messages[i][0] == "") {
       continue;
     }
-    textNode = document.createTextNode(messages[i][0] + " : " + messages[i][1]);
+    textNode = document.createTextNode(messages[i][0] + ": " + messages[i][1]);
     messageBox.insertBefore(
       document.createElement("br"),
       messageBox.firstChild,
