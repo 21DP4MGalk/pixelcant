@@ -39,6 +39,7 @@ echo "Connected to database"
 dbConn.createTables(newUser())
 dbConn.createTables(newMessage())
 dbConn.createTables(newPixel())
+dbConn.createTables(newReport())
 dbConn.close()
 
 routes:

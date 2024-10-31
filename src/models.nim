@@ -18,6 +18,9 @@ type
     y*: int16
     colour*: int16 = 0
     userfk*: User
+  Report* {.tableName: "Reports".} = ref object of Model
+    username*: StringOfCap[16] = newStringOfCap[16]("")
+    description*: StringOfCap[500] = newStringOfCap[500]("")
     
 func newUser*(): User =
   User()
@@ -27,6 +30,9 @@ func newMessage*(): Message =
 
 func newPixel*(): Pixel = 
   Pixel(x: 0, y: 0, userfk: newUser())
+
+func newReport*(): Report =
+  Report()
 
 template assertUserTokenExists*(token) =
   if not db.exists(User, "loginToken = $1", token):

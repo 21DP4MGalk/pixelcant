@@ -14,7 +14,14 @@ async function sendReport(){
 		alert("Come on, surely you can at least tell us what they did.");
 		return;
 	}
-
+	if(description.value.length > 500){
+		alert("Not this verbosely");
+		return;
+	}
+	if(username.value.length > 16){
+		alert("Such a username cannot exist");
+		return;
+	}
 	var response = await fetch("/user/reportuser", {
 		method: "POST",
 		body: requestData
@@ -24,5 +31,5 @@ async function sendReport(){
 		alert("Error!" + await response.text());
 		return;
 	}
-	alert("Your report was succesfully ignoed");
+	alert("Your report was succesful, now scram");
 }
