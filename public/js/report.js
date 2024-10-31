@@ -3,7 +3,7 @@ async function sendReport(){
 	var description = document.getElementById("description");
 	
 	var requestData = new FormData();
-	requestData.append("useruname", username.value);
+	requestData.append("username", username.value);
 	requestData.append("description", description.value);
 
 	if(username.value == ""){
@@ -15,7 +15,7 @@ async function sendReport(){
 		return;
 	}
 
-	var response = await fetch("/user/resportuser", {
+	var response = await fetch("/user/reportuser", {
 		method: "POST",
 		body: requestData
 	});
