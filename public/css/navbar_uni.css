@@ -27,6 +27,9 @@ and you have essentially the old version of the main page navbar*/
 	float: left;
 	width: 100px;
 }
+#titleText:after{
+	display: none;
+}
 a.navlink{
 	color: #333;
 	font-family: 'Lato', sans-serif;
@@ -63,7 +66,8 @@ div#navlinks{
 	cursor: pointer;
 }
 #navlinks a:hover{
-	color:#3498db;
+	#color:#3498db;
+	color: #FFF;
 	background-color: #26a85d;
 	top: 0px;
 }

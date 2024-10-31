@@ -123,7 +123,7 @@ function refreshMessages() {
     if (messages[i][0] == "") {
       continue;
     }
-    textNode = document.createTextNode(messages[i][0] + " : " + messages[i][1]);
+    textNode = document.createTextNode(messages[i][0] + ": " + messages[i][1]);
     messageBox.insertBefore(
       document.createElement("br"),
       messageBox.firstChild,
@@ -160,10 +160,10 @@ function keyPress(event) {
 }
 
 async function getCanvas() {
-  pixelsY = window.screen.width / 20; 
-  pixelsX = window.screen.height / 20;
+  //pixelsY = window.screen.width / 20; 
+  //pixelsX = window.screen.height / 20;
 
-  var response = await fetch("canvas/fullcanvas/0/0/819/819");
+  var response = await fetch("canvas/fullcanvas/0/0/1000/1000");
   var screenPixels = await response.json();
   for (var i = 0; i < screenPixels.length; i++) {
     drawPixel(screenPixels[i].x, screenPixels[i].y, screenPixels[i].c);
@@ -316,4 +316,34 @@ function startTimeout(newTime){
 	}, 1000* x+1)
 }
 
-function countdown(){}
+async function openUserCanvas(){
+	var username = document.getElementById("username");
+	var userCanvasScreen = document.getElementById("userCanvasScreen");
+	var userCanvas = document.getElementById("userCanvas");
+	
+	var userCanvasCtx = userCanvas.getContext("2d");
+  	userCanvasCtx.fillStyle = "#fff";
+  	userCanvasCtx.fillRect(0, 0, 1000, 1000);
+
+	var requestData = new FormData();
+	requestData.append("username", username.value);
+
+	var response = await fetch("canvas/getusercanvas", {
+		method: "POST",
+		body: requestData
+	});
+	
+	var userPixels = await response.json();
+
+	for (var i = 0; i < userPixels.length; i++) {
+  		userCanvasCtx.fillStyle = colours[userPixels[i].c];
+  		userCanvasCtx.fillRect(userPixels[i].x, userPixels[i].y, 1, 1);
+	}
+
+	userCanvasScreen.style.display = "block";
+}
+
+function closeUserCanvas(){
+	var userCanvasScreen = document.getElementById("userCanvasScreen");
+	userCanvasScreen.style.display = "none";
+}

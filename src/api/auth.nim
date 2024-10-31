@@ -24,7 +24,7 @@ router auth:
           resp Http400
         let authToken = generateAuthToken()
         userQuery.loginToken = some newPaddedStringOfCap[128](authToken)
-        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
+        setCookie("token", authToken, daysForward(7), Strict, false, true, path="/")
         db.update(userQuery)
       resp Http200
     except:
@@ -67,7 +67,7 @@ router auth:
           resp Http400
 
         let authToken = generateAuthToken()
-        setCookie("token", authToken, daysForward(7), Strict, true, true, path="/")
+        setCookie("token", authToken, daysForward(7), Strict, false, true, path="/")
         
         userQuery.loginToken = some PaddedStringOfCap[128](authToken)
         

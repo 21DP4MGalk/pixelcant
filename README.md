@@ -19,13 +19,15 @@ Nākotnē jābūt:
 - [x] Adminu iespēja banot lietotājus
 
 ## TODO:
-- [ ] **MESSAGE REPORTING**
-- [ ] Deleted messages being deleted instantly
-- [ ] Admin panel responsiveness
-- [ ] Fixes for the about page
-- [ ] Integrate navbar on every page
+- [x] **MESSAGE REPORTING** (front end)
+- [ ] Message reporting back end
+- [x] Deleted messages being deleted instantly
+- [x] Admin panel responsiveness
+- [x] Fixes for the about page
+- [x] Integrate navbar on every page
 - [x] Update navbar style to match index.html
 - [ ] An overlaid reapeating png of a grid for easier pixel placement
 - [x] Position indicator
 - [ ] Make canvas tools draggable so they don't get in the way
-- [ ] Some kind of UI to display the user's name
+- [x] Some kind of UI to display the user's name
+- [x] User self editing page

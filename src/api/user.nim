@@ -106,3 +106,8 @@ router user:
         "admin": userQuery.admin,
         "banned": userQuery.banned,
     }
+
+  post "/reportuser":
+    var username = request.formData["username"].body
+    var description = request.formData["description"].body
+    resp Http200, "Implement later"

@@ -17,12 +17,15 @@
 				</div>
 				<p id="usernameMsg"></p>
 				<div id="navlinks">
-          <a href="index.html" class="navlink">BEGINNING</a>
-          <a href="instruction.html" class="navlink">HOW TO USE</a>
-          <a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-          <a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
-          <a href="about.html" class="navlink">ABOUT</a>
-          <a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+					<a href="index.html" class="navlink">BEGINNING</a>
+					<a href="instruction.html" class="navlink">HOW TO USE</a>
+					<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+					<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+					<a href="about.html" class="navlink">ABOUT</a>
+					<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+					<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+	        			<a href="report.html" class="navlink">REPORT</a>
+
 				</div>
 			</nav>
 		</header>
@@ -60,6 +63,7 @@
 			<button id="banButton" title="Ban a user" onclick="banUser()">&#x1F5E1;</button>
 			<button id="modifyButton" title="Modify a user" onclick="modifyUser()">&#9998;</button>
 			<button id="dialogButton" title="Delete a user's messages" onclick="openMsgDialog()">&#x1f5d1;</button>
+			<button id="userCanvasOpen" title="See the user's pixels" onclick="openUserCanvas()">PIXELCUNT</button>
 		</div>
 
 		<div id="adminDialogContainer">			<!--Another case of poor visual design, but you gotta admit nuking messages away is
@@ -90,5 +94,9 @@
 			</center>
 		</div>
 		<div id="fadeoutElement"></div>
+		<div id="userCanvasScreen">
+			<canvas id="userCanvas" width="1000px" height="1000px"></canvas>
+			<button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
+		</div>
 	</body>
 </html>

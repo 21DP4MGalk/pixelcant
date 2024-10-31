@@ -73,3 +73,39 @@ router canvas:
       resp Http200, $ currentTime
     # except:
     #   resp Http401
+  
+  post "/getusercanvas":
+    
+    var token = request.cookies["token"]
+    var username = request.formData["username"].body
+    var pixelArr = @[newPixel()]
+    var requestUser = newUser()
+    var offendingUser = newUser()
+
+    withDb:
+      
+      if(not db.exists(User, "loginToken = $1", token)):
+        resp Http403, "Token not found in database"
+     
+      db.select(requestUser, "loginToken = $1", token)
+     
+      if(not requestUser.admin):
+        resp Http403, "You're not admin"
+
+      if(not db.exists(User, "username = $1", username)):
+        resp Http400, "Username does not exist"
+
+      db.select(offendingUser, "username = $1", username)
+
+
+      if(not db.exists(Pixel, "(x BETWEEN 0 AND 1000) AND (y BETWEEN 0 AND 1000) AND userfk = $1", offendingUser.id)):
+        resp Http200, "[]"
+
+      db.select(pixelArr, "(x BETWEEN 0 AND 1000) AND (y BETWEEN 0 AND 1000) AND userfk = $1", offendingUser.id)
+      
+      var outputArr: seq[PixelQuery]
+      
+      for pixel in pixelArr:
+        outputArr.add PixelQuery(x: pixel.x, y: pixel.y, c: pixel.colour)
+      
+      resp Http200, $(%* outputArr)
