@@ -5,10 +5,11 @@
 	border-width: 1px;
 	width: 20000px;
 	height: 20000px;
+  background-image: url("/img/grid.png");
 }
 canvas{			/*The actual canvas where all pixels are drawn*/
 	transform: scale(20);			/*Makes the canvas bigger without needing zoom*/
-   	transform-origin: 0 0;
+  transform-origin: 0 0;
 	image-rendering: pixelated; 
 	image-rendering: crisp-edges;
 }
