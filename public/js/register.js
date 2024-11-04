@@ -27,7 +27,7 @@ async function submitRegistrationForm() {
     });
 
     if (!response.ok) {
-      errorMessage.textContent = "Something went wrong.";
+      errorMessage.textContent = await response.text();
       return;
     }
     startConfetti();

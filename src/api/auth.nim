@@ -51,7 +51,7 @@ router auth:
       let nameInput = request.formData["username"].body
       let passwordInput = request.formData["password"].body
       if nameInput.len > 16:
-        resp Http400
+        resp Http400, "Name too long, must be less than 16 characters."
 
       withDb:
         let hashedPass = newPaddedStringOfCap[60]($bcrypt(passwordInput, generateSalt(8)))
@@ -64,7 +64,7 @@ router auth:
         userQuery.lastpixel = 0
     
         if db.exists(User, "username = $1", convertedName):
-          resp Http400
+          resp Http400, "Name already taken."
 
         let authToken = generateAuthToken()
         setCookie("token", authToken, daysForward(7), Strict, false, true, path="/")
@@ -76,5 +76,5 @@ router auth:
 
     except:
       echo getCurrentExceptionMsg() 
-      resp Http500
+      resp Http500, "A server error has occured."
 
