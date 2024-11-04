@@ -179,13 +179,6 @@ function drawPixel(x, y, c) {
 
 async function init() {
   
-  document.getElementById("jsBeggingScreen").style.display = "none"; 
-  var fadeoutElement = document.getElementById("fadeoutElement"); 
-  fadeoutElement.style.backgroundColor = "rgb(0,0,0,0)";
-
-  //var msgDialog = document.getElementById("adminDialogContainer");
-  //msgDialog.style.display = "none";
-
   if ((await adminCheck()) == "true") {
     document.getElementById("adminPanel").style.display = "block";
   }
