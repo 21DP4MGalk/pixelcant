@@ -83,19 +83,21 @@
 			</center>
 		</div>
 
-		<div id="jsBeggingScreen">			<!--For those cases of paranoid people such as me who like blocking javascript by default. 
-											Or people connecting through lynx for some reason. Gets hidden first thing in init()-->
-			<center>
-				<h1> THIS SITE USES JAVASCRIPT </h1>
-				<hr>
-				<p> Look, we don't like it either, but it is what it is. The entire site is open source if you don't trust us.</p>
-				<a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
-			</center>
-		</div>
-		<div id="fadeoutElement"></div>
-		<div id="userCanvasScreen">
-			<canvas id="userCanvas" width="1000px" height="1000px"></canvas>
-			<button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
-		</div>
+    <noscript>
+      <div id="jsBeggingScreen">			<!--For those cases of paranoid people such as me who like blocking javascript by default. 
+                        Or people connecting through lynx for some reason. Gets hidden first thing in init()-->
+        <center>
+          <h1> THIS SITE USES JAVASCRIPT </h1>
+          <hr>
+          <p> Look, we don't like it either, but it is what it is. The entire site is open source if you don't trust us.</p>
+          <a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
+        </center>
+      </div>
+      <div id="fadeoutElement"></div>
+      <div id="userCanvasScreen">
+        <canvas id="userCanvas" width="1000px" height="1000px"></canvas>
+        <button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
+      </div>
+    </noscript>
 	</body>
 </html>

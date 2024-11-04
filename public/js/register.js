@@ -11,31 +11,30 @@ async function submitRegistrationForm() {
   // Проверка на совпадение паролей
   if (password !== confirmPassword) {
     errorMessage.textContent = "Passwords do not match. Please check!";
-    errorMessage.style.color = "red";
-  } else {
-    // Логика отправки данных на сервер (можно добавить серверную обработку)
-
-    errorMessage.textContent = "";
-
-    var registrationInfo = new FormData();
-    registrationInfo.append("username", username);
-    registrationInfo.append("password", password);
-
-    const response = await fetch("/auth/register", {
-      method: "POST",
-      body: registrationInfo,
-    });
-
-    if (!response.ok) {
-      errorMessage.textContent = "Something went wrong.";
-      return;
-    }
-    startConfetti();
-    document.getElementById("container").style.display = "none";
-    var timeout = setTimeout(function () {
-      window.location.replace("/canvas.html");
-    }, 2000);
+    return;
   }
+  // Логика отправки данных на сервер (можно добавить серверную обработку)
+
+  errorMessage.textContent = "";
+
+  var registrationInfo = new FormData();
+  registrationInfo.append("username", username);
+  registrationInfo.append("password", password);
+
+  const response = await fetch("/auth/register", {
+    method: "POST",
+    body: registrationInfo,
+  });
+
+  if (!response.ok) {
+    errorMessage.textContent = await response.text();
+    return;
+  }
+  startConfetti();
+  document.getElementById("container").style.display = "none";
+  var timeout = setTimeout(function () {
+    window.location.replace("/canvas.html");
+  }, 2000);
 }
 
 /*
