@@ -130,5 +130,4 @@ router chat:
       db.delete(offendingMessage)
       for socket in socketsChat:
         discard socket.send($(%* socketMsg))
-
     resp Http200
