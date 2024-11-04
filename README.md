@@ -26,7 +26,7 @@ Nākotnē jābūt:
 - [x] Fixes for the about page
 - [x] Integrate navbar on every page
 - [x] Update navbar style to match index.html
-- [ ] An overlaid reapeating png of a grid for easier pixel placement
+- [x] An overlaid reapeating png of a grid for easier pixel placement
 - [x] Position indicator
 - [ ] Make canvas tools draggable so they don't get in the way
 - [x] Some kind of UI to display the user's name

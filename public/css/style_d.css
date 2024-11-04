@@ -1,133 +1,146 @@
-
 /* Header Styles */
 header {
-    background: linear-gradient(to right, #4e54c8, #8f94fb); /* Gradient background */
-    color: #fff; /* White text color */
-    padding: 40px 0; /* Vertical padding */
-    text-align: center; /* Center the text */
-    display: flex; /* Flexbox for horizontal layout */
-    justify-content: space-between; /* Space between header elements */
-    align-items: center; /* Center vertically */
+  background: linear-gradient(
+    to right,
+    #4e54c8,
+    #8f94fb
+  ); /* Gradient background */
+  color: #fff; /* White text color */
+  padding: 40px 0; /* Vertical padding */
+  text-align: center; /* Center the text */
+  display: flex; /* Flexbox for horizontal layout */
+  justify-content: space-between; /* Space between header elements */
+  align-items: center; /* Center vertically */
 }
 
 header h1 {
-    font-size: 2.5em; /* Large font size for the heading */
-    margin: 0; /* Remove default margin */
+  font-size: 2.5em; /* Large font size for the heading */
+  margin: 0; /* Remove default margin */
 }
 
 header nav ul {
-    list-style: none; /* Remove bullets */
-    margin: 0;
-    padding: 0;
-    display: flex; /* Flexbox for horizontal navigation */
-    justify-content: center;
+  list-style: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Flexbox for horizontal navigation */
+  justify-content: center;
 }
 
 header nav ul li {
-    margin-right: 20px; /* Spacing between navigation items */
+  margin-right: 20px; /* Spacing between navigation items */
 }
 
 header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 header nav ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 /* Navigation link spacing */
 nav ul li a {
-    margin-top: 20px; /* Adjust the space between links */
-    display: inline-block;
+  margin-top: 20px; /* Adjust the space between links */
+  display: inline-block;
 }
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
-    
-    /* Container Styles */
+
+/* Container Styles */
 #container {
-    width: 100%;
-    max-width: 400px; /* Меньшая максимальная ширина для формы логина */
-    margin: 20px auto;
-    padding: 20px;
+  width: 100%;
+  max-width: 400px; /* Меньшая максимальная ширина для формы логина */
+  margin: 20px auto;
+  padding: 20px;
 }
-    
-    /* Form Styles */
+
+/* Form Styles */
 div#authForm {
-    background: #fff;
-    padding: 20px; /* Просторное пространство внутри формы */
-    border-radius: 8px;
-    border: 1px solid #4e54c8;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Центрирование содержимого формы */
+  background: #fff;
+  padding: 20px; /* Просторное пространство внутри формы */
+  border-radius: 8px;
+  border: 1px solid #4e54c8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Центрирование содержимого формы */
 }
-    
+
 form h1 {
-    font-size: 2em;
-    color: #4e54c8;
-    margin-bottom: 10px; /* Пространство под заголовком */
+  font-size: 2em;
+  color: #4e54c8;
+  margin-bottom: 10px; /* Пространство под заголовком */
 }
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
-    
+
 label {
-    font-size: 1.2em;
-    color: #333;
-    display: block; /* Отображение метки как блочного элемента */
-    margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+  display: block; /* Отображение метки как блочного элемента */
+  margin-bottom: 10px;
 }
-    
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-}
-    
-button {
-    background: linear-gradient(to right, #4e54c8, #8f94fb);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-    
-    button:hover {
-    background: linear-gradient(to right, #8f94fb, #4e54c8); /* Изменение цвета на ховер */
-    }
-    
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-    h1 {
-    font-size: 2em;
-    }
-    
-    label, input, button {
-    font-size: 1em;
-    }
-    }
-    footer {
-        background: #4e54c8; /* Blue background */
-        color: #fff; /* White text color */
-        text-align: center; /* Center the text */
-        padding: 20px 0; /* Vertical padding */
-        position: absolute;
-        bottom: 0; /* Stick to the bottom */
-        width: 100%; /* Full width */
-    }
-    
-    footer p {
-        margin: 0; /* Remove default margin */
-    }
 
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+button {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(
+    to right,
+    #8f94fb,
+    #4e54c8
+  ); /* Изменение цвета на ховер */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  label,
+  input,
+  button {
+    font-size: 1em;
+  }
+}
+footer {
+  background: #4e54c8; /* Blue background */
+  color: #fff; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 20px 0; /* Vertical padding */
+  position: absolute;
+  bottom: 0; /* Stick to the bottom */
+  width: 100%; /* Full width */
+}
+
+footer p {
+  margin: 0; /* Remove default margin */
+}
+
+#errorMessage {
+  color: red;
+}
