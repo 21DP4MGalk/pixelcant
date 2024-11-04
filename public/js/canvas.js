@@ -194,7 +194,7 @@ async function init() {
   establishPixelConn();
 
   setTimeout(function () {
-    window.scrollTo(8000, 8000);
+    window.scrollTo(10000, 10000);
   }, 2);
 }
 
@@ -303,7 +303,7 @@ function updateCoords(event) {
 
 function startTimeout(newTime){
 	x = 5; // amount of seconds of timeout
-	var timeoutText = document.getElementById("timeout_p");
+	var timeoutText = document.getElementById("timeout_p");  // ( ͡° ͜ʖ ͡°)
 	timeoutText.innerText = x;
 	for(var i = 0; i < x; i++){
 		setTimeout(function(){

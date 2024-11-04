@@ -90,6 +90,9 @@ router chat:
         if(not db.exists(User, "loginToken = $1 and admin = true", token)):
           resp Http401, "You are not authenticated as an admin"
           
+        if(not db.exists(User, "username = $1", username)):
+          resp Http404, "No user! Check username."
+
         db.rawSelect(sqlQuerry, messageHistory, username)
 
       for message in messageHistory:
@@ -107,8 +110,7 @@ router chat:
     var timestamp = parseInt(request.formData["timestamp"].body)
     echo timestamp
 
-    var adminUser = newUser()
-    var requestUser = newUser()
+    var offendingUser = newUser()
     var offendingMessage = newMessage()
 
     withDb:
@@ -118,7 +120,12 @@ router chat:
       if(not db.exists(Message, "time = $1", timestamp)):
         resp Http404, "Message does not exist"
 
-      db.select(offendingMessage, "time = $1", timestamp)
+      if(not db.exists(User, "username = $1", username)):
+        resp Http404, "User does not exist"
+      
+      db.select(offendingUser, "username = $1", username)
+
+      db.select(offendingMessage, "time = $1 AND userfk = $2", timestamp, offendingUser.id)
       var socketMsg = webSocketMessage(msgType: "delete", username: $username, data: $offendingMessage.message)
       db.delete(offendingMessage)
       for socket in socketsChat:

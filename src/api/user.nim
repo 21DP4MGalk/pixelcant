@@ -3,7 +3,7 @@ import norm/[postgres, types]
 import "../models.nim"
 import checksums/bcrypt
 import "../websockets.nim"
-import ws, ws/jester_extra
+import ws
 import std/[json, strutils]
 import "chat.nim"
 
@@ -119,3 +119,15 @@ router user:
       db.insert(report) 
 
     resp Http200, "Nice report bro"
+
+  get "/seereports":
+    var token = request.cookies["token"]
+  
+    withDb:
+      if(not db.exists(User, "loginToken = $1 AND admin = true", token)):
+        resp Http401, "Either not admin or invalid token"
+
+      var reports = @[newReport()]
+      db.select(reports, "true ORDER BY id asc")
+      
+      resp Http200, $(%* reports)
