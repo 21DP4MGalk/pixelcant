@@ -59,6 +59,7 @@ div#messageBox{			/*The box containing the message history*/
 	overflow-y: auto;
 	overflow-wrap: anywhere;	
 	display: flex;
+	white-space: pre-wrap;
 	flex-direction: column-reverse;		/*Necessary for the scroll bar to be at the bottom by default*/
 }
 div#messageBox p {		/*The text within the message box*/
