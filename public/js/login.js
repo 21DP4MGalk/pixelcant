@@ -6,10 +6,12 @@ async function submitLoginForm(event) {
 
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const errorMessage = document.getElementById("errorMessage");
 
   if (username === "" || password === "") {
-    alert("Please fill in all fields!");
-  } else {
+    errorMessage.textContent = "Please fill in all fields.";
+    return;
+  }
     // Here we handle login logic, such as sending a request to the server
     var requestData = new FormData();
     requestData.append("username", username);
@@ -20,7 +22,7 @@ async function submitLoginForm(event) {
     });
 
     if (!response.ok) {
-      alert("Login unsuccessful");
+      errorMessage.textContent = await response.text();
       return;
     }
     startConfetti();
@@ -28,7 +30,6 @@ async function submitLoginForm(event) {
     setTimeout(function () {
       window.location.replace("/canvas.html");
     }, 2000);
-  }
 }
 /*document.getElementById("signInButton").addEventListener("click", function(event) {
     event.preventDefault();

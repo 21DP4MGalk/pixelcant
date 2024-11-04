@@ -17,11 +17,11 @@ router auth:
       let password = request.formData["password"].body
       withDb:
         if not db.exists(User, "username = $1", username):
-          resp Http400
+          resp Http404, "User does not exist."
         var userQuery = newUser()
         db.select(userQuery, "username = $1", username)
         if not bcrypt.verify(password, $userQuery.password):
-          resp Http400
+          resp Http400, "Invalid password."
         let authToken = generateAuthToken()
         userQuery.loginToken = some newPaddedStringOfCap[128](authToken)
         setCookie("token", authToken, daysForward(7), Strict, false, true, path="/")
