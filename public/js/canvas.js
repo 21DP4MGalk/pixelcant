@@ -50,13 +50,17 @@ function updateColour() {
 }
 
 async function establishPixelConn() {
-  var p_sock = new WebSocket("/canvas/updatestream");
+  var pSock = new WebSocket("/canvas/updatestream");
   getCanvas();
-  p_sock.addEventListener("message", (event) => {
+  pSock.addEventListener("message", (event) => {
     var newPixel = event.data;
     newPixel = JSON.parse(event.data);
     drawPixel(newPixel.x, newPixel.y, newPixel.c);
   });
+  var pingMessages = ["AAAAAAAAAAAA OH GOD HELP", "AAAAA IT BURNS IT BURNS AAA", "OH FUCK PLEASE HELP SAVE OUR SOULS PLEASE", "...---...   ...---.../", "MAYDAY MAYDAY WE ARE GOING DOWN", "HI MY NAME IS JERRY WHY IS EVERYONE SCREAMING"];
+  setInterval(() => {
+    pSock.send(pingMessages[ Math.floor(Math.random*(pingMessages.length-1)) ]);
+  }, 45000)
 }
 
 async function getCanvas() {

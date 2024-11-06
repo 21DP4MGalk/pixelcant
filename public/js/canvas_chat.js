@@ -2,24 +2,6 @@ async function establishChatConn() {
     getMessages(); 
     var cSock = new WebSocket("/chat/messagestream");
     cSock.addEventListener("message", (event) => {
-      /*var fullMsg = event.data;
-      var usernameLen = parseInt(fullMsg.slice(0, 1));
-  
-      if (fullMsg.slice(1, 2) != ";") {
-        usernameLen = usernameLen * 10;
-        usernameLen = usernameLen + parseInt(fullMsg.slice(1, 2));
-        console.log(usernameLen);
-        var username = fullMsg.slice(3, 3 + usernameLen);
-        var message = fullMsg.slice(3 + usernameLen);
-      } else {
-        var username = fullMsg.slice(2, 2 + usernameLen);
-        var message = fullMsg.slice(2 + usernameLen);
-      }
-  
-      messages.splice(0, 0, [username, message]); 
-      //messages.push([username, message]);
-      */
-     
       var msg = JSON.parse(event.data);
       var username = msg.username;
       var data = msg.data;
@@ -46,6 +28,10 @@ async function establishChatConn() {
       }
       refreshMessages(); 
     });
+    var pingMessages = ["AAAAAAAAAAAA OH GOD HELP", "AAAAA IT BURNS IT BURNS AAA", "OH FUCK PLEASE HELP SAVE OUR SOULS PLEASE", "...---...   ...---.../", "MAYDAY MAYDAY WE ARE GOING DOWN", "HI MY NAME IS JERRY WHY IS EVERYONE SCREAMING"];
+    setInterval(() => {
+      cSock.send(pingMessages[ Math.floor(Math.random*(pingMessages.length-1)) ]);
+    }, 45000)
   }
   
   async function getMessages() {
