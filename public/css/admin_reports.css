@@ -1,6 +1,7 @@
 #container{
     margin-top: 130px;
     font-family: Arial, sans-serif;
+    color: #4e54c8;
 }
 
 hr{
@@ -8,4 +9,12 @@ hr{
 }
 #reports{
     margin-left: 25%;
+}
+#container button{
+    border-radius: 69px;
+    width: 35px;
+    height: 35px;
+    margin-left: 25px;
+    background-color: #8f94fb;
+    color: #FFF;
 }
