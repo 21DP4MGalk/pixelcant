@@ -1,7 +1,7 @@
 async function establishChatConn() {
     getMessages(); 
     var cSock = new WebSocket("/chat/messagestream");
-    cSock.addEventListener("message", (event) => {
+    cSock.addEventListener("message", async (event) => {
       var msg = JSON.parse(event.data);
       var username = msg.username;
       var data = msg.data;
@@ -37,7 +37,6 @@ async function establishChatConn() {
   async function getMessages() {
     const response = await fetch("/chat/getmessages");
     messages = JSON.parse(await response.text());
-    console.log(messages)
     refreshMessages();
   }
   

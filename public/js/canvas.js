@@ -83,6 +83,13 @@ function drawPixel(x, y, c) {
 
 async function init() {
   
+  var status = await fetch("/user/status");
+  status = JSON.parse(await status.text())
+
+  if(status.username){
+    sessionStorage.setItem("username", status.username)
+  }
+
   if ((await adminCheck()) == "true") {
     document.getElementById("adminPanel").style.display = "block";
   }
