@@ -13,7 +13,7 @@ async function checkStatus() {
   const accountElement = document.getElementById("navAccount");
   const usernameMsg = document.getElementById("usernameMsg");
   
-  if (!resp.ok) {
+  if (!resp.ok || resp.status == 204) {
     logoutElement.style.display = "none";
     accountElement.style.display = "none";
     loginElement.style.display = "initial";
