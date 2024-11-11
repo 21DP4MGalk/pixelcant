@@ -84,8 +84,16 @@ function drawPixel(x, y, c) {
 async function init() {
   
   var status = await fetch("/user/status");
-  status = JSON.parse(await status.text())
-
+  if(status.status == 200){
+    status = JSON.parse(await status.text())
+  }
+  else{
+    status = {
+      username: "",
+      banned: false,
+      admin: false
+    }
+  }
   if(status.username){
     sessionStorage.setItem("username", status.username)
   }
