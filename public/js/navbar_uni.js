@@ -15,8 +15,9 @@ async function checkStatus() {
   const reportElement = document.getElementById("navReport");
   const adminReportElement = document.getElementById("navAdminReports");
   
+  adminReportElement.style.display = "none"; 
+  
   if (!resp.ok || resp.status == 204) {
-  adminReportElement.style.display = "none";
     logoutElement.style.display = "none";
     accountElement.style.display = "none";
     loginElement.style.display = "initial";
