@@ -12,24 +12,24 @@ async function submitLoginForm(event) {
     errorMessage.textContent = "Please fill in all fields.";
     return;
   }
-    // Here we handle login logic, such as sending a request to the server
-    var requestData = new FormData();
-    requestData.append("username", username);
-    requestData.append("password", password);
-    var response = await fetch("/auth/login", {
-      method: "POST",
-      body: requestData,
-    });
+  // Here we handle login logic, such as sending a request to the server
+  var requestData = new FormData();
+  requestData.append("username", username);
+  requestData.append("password", password);
+  var response = await fetch("/auth/login", {
+    method: "POST",
+    body: requestData,
+  });
 
-    if (!response.ok) {
-      errorMessage.textContent = await response.text();
-      return;
-    }
-    startConfetti();
-    document.getElementById("container").style.display = "none";
-    setTimeout(function () {
-      window.location.replace("/canvas.html");
-    }, 2000);
+  if (!response.ok) {
+    errorMessage.textContent = await response.text();
+    return;
+  }
+  startConfetti();
+  document.getElementById("container").style.display = "none";
+  setTimeout(function () {
+    window.location.replace("/canvas.html");
+  }, 2000);
 }
 /*document.getElementById("signInButton").addEventListener("click", function(event) {
     event.preventDefault();

@@ -1,250 +1,276 @@
-#canvasContainer{			/*Only needed for the border around the canvas*/
-	margin-top: 130px;
-	border-style: dotted;
-	border-color: black;
-	border-width: 1px;
-	width: 20000px;
-	height: 20000px;
+#canvasContainer {
+  /*Only needed for the border around the canvas*/
+  margin-top: 130px;
+  border-style: dotted;
+  border-color: black;
+  border-width: 1px;
+  width: 20000px;
+  height: 20000px;
   background-image: url("/img/grid.png");
+  image-rendering: pixelated;
 }
-canvas{			/*The actual canvas where all pixels are drawn*/
-	transform: scale(20);			/*Makes the canvas bigger without needing zoom*/
+canvas {
+  /*The actual canvas where all pixels are drawn*/
+  transform: scale(20); /*Makes the canvas bigger without needing zoom*/
   transform-origin: 0 0;
-	image-rendering: pixelated; 
-	image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
-#userCanvas{
-	transform: none;
-	image-rendering: crisp-edges;
+#userCanvas {
+  transform: none;
+  image-rendering: crisp-edges;
 }
-div#picker{			/*Color picker containing the available tones*/
-	position:fixed;
-	bottom: 1%;
-	right: 1%;
-	width: 145px;
-	height: 55px;
-	border: solid black;
-	padding: 2px;
-	background-color: black;
+div#picker {
+  /*Color picker containing the available tones*/
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  width: 145px;
+  height: 55px;
+  border: solid black;
+  padding: 2px;
+  background-color: black;
 }
-div#chat{			/*The entirety of the chat box*/
-	width: 250px;
-	height: 500px;
-	border: dotted black 2px;
-	position: fixed;
-	left: 1%;
-	top: 40%;
-	background-color: rgb(12, 12, 12, 0.7);
+div#chat {
+  /*The entirety of the chat box*/
+  width: 250px;
+  height: 500px;
+  border: dotted black 2px;
+  position: fixed;
+  left: 1%;
+  top: 40%;
+  background-color: rgb(12, 12, 12, 0.7);
 }
-div#chatDrag{			/*The big text that says CHAT*/
-	color: #000000;
-	background-color: azure;
-	border: outset gainsboro 3px;
-	font-size: 20px;
-	text-align: center;
-	text-shadow: 1px 1px #000000;
+div#chatDrag {
+  /*The big text that says CHAT*/
+  color: #000000;
+  background-color: azure;
+  border: outset gainsboro 3px;
+  font-size: 20px;
+  text-align: center;
+  text-shadow: 1px 1px #000000;
 }
-input#textInput{		/*The user's input field*/
-	overflow-wrap: break-word;
-	word-break: keep-all;
-	width: 200px;
-	height: 25px;
-	color: #FFFFFF;
-	background-color: rgb(0, 0, 0, 0.9);
-	font-weight: bold; 
+input#textInput {
+  /*The user's input field*/
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  width: 200px;
+  height: 25px;
+  color: #ffffff;
+  background-color: rgb(0, 0, 0, 0.9);
+  font-weight: bold;
 }
-div#messageBox{			/*The box containing the message history*/
-	border: inset gainsboro 3px;
-	height: 435px;
-	color: #FFFFFF;
-	overflow-y: auto;
-	overflow-wrap: anywhere;	
-	display: flex;
-	white-space: pre-wrap;
-	flex-direction: column-reverse;		/*Necessary for the scroll bar to be at the bottom by default*/
+div#messageBox {
+  /*The box containing the message history*/
+  border: inset gainsboro 3px;
+  height: 435px;
+  color: #ffffff;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  display: flex;
+  white-space: pre-wrap;
+  flex-direction: column-reverse; /*Necessary for the scroll bar to be at the bottom by default*/
 }
-div#messageBox p {		/*The text within the message box*/
-	display: flex;
+div#messageBox p {
+  /*The text within the message box*/
+  display: flex;
 }
-input[type=button]#messageSend{			/*The green sending button*/
-	width: 25px;
-	height: 25px;
-	background-color: #00DD00;
+input[type="button"]#messageSend {
+  /*The green sending button*/
+  width: 25px;
+  height: 25px;
+  background-color: #00dd00;
 }
-button.colourchoice{			/*The colour pallet buttons*/
-	width: 25px;
-	height: 25px;
-	padding: 1px;
+button.colourchoice {
+  /*The colour pallet buttons*/
+  width: 25px;
+  height: 25px;
+  padding: 1px;
 }
-#adminPanel{			/*The weird thing that flashes for non-admin users upon entering the page*/
-	position: fixed;
-	width: 250px;
-	height: 122px;
-	right: 0;
-	top: 135px;
-	display: none;
-	background-color: azure;
-	border: outset;
+#adminPanel {
+  /*The weird thing that flashes for non-admin users upon entering the page*/
+  position: fixed;
+  width: 250px;
+  height: 122px;
+  right: 0;
+  top: 135px;
+  display: none;
+  background-color: azure;
+  border: outset;
 }
-#adminPanel input{			/*For styling the admin panel input fields*/
-	font-size: 16px;
-	width: 245px;
+#adminPanel input {
+  /*For styling the admin panel input fields*/
+  font-size: 16px;
+  width: 245px;
 }
-#banButton{
-	width: 32%;
-	height: 35px;
-	font-size: 16px;
+#banButton {
+  width: 32%;
+  height: 35px;
+  font-size: 16px;
 }
-#modifyButton{
-	width: 32%;
-	height: 35px;
-	font-size: 19px;
+#modifyButton {
+  width: 32%;
+  height: 35px;
+  font-size: 19px;
 }
-#dialogButton{
-	width: 32%;
-	height: 35px;
-	font-size: 16px;
+#dialogButton {
+  width: 32%;
+  height: 35px;
+  font-size: 16px;
 }
-#userCanvasOpen{
-	height: 35px;
-	width: 100%;
+#userCanvasOpen {
+  height: 35px;
+  width: 100%;
 }
-#adminDialogContainer{			/*The background around the nuke panel*/
-	width: 100%;
-	height: 100%;
-	background-color:rgb(0, 0, 0, 0.7);
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
+#adminDialogContainer {
+  /*The background around the nuke panel*/
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.7);
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
-#adminDialogBox{			/*The actual nuke panel, cotains two other compartments*/
-	width: 50%;
-	height: 75%;
-	background-color: #000000;
-	color: #fff;
-	display: box;
-	position: fixed;
-	left: 25%;
-	top: 10%;
-	border: inset;
+#adminDialogBox {
+  /*The actual nuke panel, cotains two other compartments*/
+  width: 50%;
+  height: 75%;
+  background-color: #000000;
+  color: #fff;
+  display: box;
+  position: fixed;
+  left: 25%;
+  top: 10%;
+  border: inset;
 }
-#adminMsgList{			/*The part of the message history dialog that displays messages with timestamps*/
-	background-color: #004700;
-	width: 25%;
-	position: fixed;
-	left: 28%;
-	top: 18%;
-	height: 55%;
-	border: inset;
-	overflow-y: auto;
-	overflow-wrap: anywhere;
+#adminMsgList {
+  /*The part of the message history dialog that displays messages with timestamps*/
+  background-color: #004700;
+  width: 25%;
+  position: fixed;
+  left: 28%;
+  top: 18%;
+  height: 55%;
+  border: inset;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
 }
-#msgTools{			/*Contains the two big red buttons and the input field*/
-	position: fixed;
-	right: 28%;
-	top: 18%;
-	width: 15%;
-	height: 55%;
+#msgTools {
+  /*Contains the two big red buttons and the input field*/
+  position: fixed;
+  right: 28%;
+  top: 18%;
+  width: 15%;
+  height: 55%;
 }
-#msgTimestamp{			/*The timestamp input field for deleting messages*/
-	width: 97%;
-	height: 30px;
+#msgTimestamp {
+  /*The timestamp input field for deleting messages*/
+  width: 97%;
+  height: 30px;
 }
-#msgTools button{			/*Applies to both buttons because lazy*/
-	border-radius: 50%;
-	width: 220px;
-	height: 220px;
-	background-color: #AA0000;
-	border: outset #FF0000 10px;
-	font-size: 55px;
-	margin-bottom: 10px;
-	margin-top: 10px;
+#msgTools button {
+  /*Applies to both buttons because lazy*/
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  background-color: #aa0000;
+  border: outset #ff0000 10px;
+  font-size: 55px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-#msgTools button:active{			/*Just used to make the button appear clicked when you press it*/
-	border: inset #FF0000 10px;
+#msgTools button:active {
+  /*Just used to make the button appear clicked when you press it*/
+  border: inset #ff0000 10px;
 }
-#jsBeggingScreen{			/*Just covers the entire screen if JS is disabled*/
-	width: 100%;
-	height: 100%;
-	background-color: #000000;
-	color: #fff;
-	display: box;
-	z-index: 99;
-	position:fixed;
-	left: 0;
-	top: 0;
+#jsBeggingScreen {
+  /*Just covers the entire screen if JS is disabled*/
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  color: #fff;
+  display: box;
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
-#fadeoutElement{			/*Helps cover up some funky shit sometimes, mostly added because it's cool*/
-	position:fixed;
-	z-index: 98;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(0, 0, 0, 1);
-	transition: background-color 1s;
-	pointer-events: none;
+#fadeoutElement {
+  /*Helps cover up some funky shit sometimes, mostly added because it's cool*/
+  position: fixed;
+  z-index: 98;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 1);
+  transition: background-color 1s;
+  pointer-events: none;
 }
 
-#positionMarker{			/*The tiny black thing that shows coordinates*/
-	border: inset;
-	display: block;
-	width: 110px;
-	height: 35px;
-	position: fixed;
-	top: 35%;
-	left: 1%;
-	background-color: #000000;
-	color: #fff;
-	font-size: 16px;
+#positionMarker {
+  /*The tiny black thing that shows coordinates*/
+  border: inset;
+  display: block;
+  width: 110px;
+  height: 35px;
+  position: fixed;
+  top: 35%;
+  left: 1%;
+  background-color: #000000;
+  color: #fff;
+  font-size: 16px;
 }
-#positionMarker p{			/*Text within the position marker*/
-	padding-top: 0px;
-	margin-top: 5px;
-	padding-left: 2px;
+#positionMarker p {
+  /*Text within the position marker*/
+  padding-top: 0px;
+  margin-top: 5px;
+  padding-left: 2px;
 }
-#timeoutCounter{			/*The tiny black thing that shows coordinates*/
-	border: inset;
-	display: block;
-	width: 110px;
-	height: 35px;
-	position: fixed;
-	top: 30%;
-	left: 1%;
-	background-color: #000000;
-	color: #fff;
-	font-size: 16px;
+#timeoutCounter {
+  /*The tiny black thing that shows coordinates*/
+  border: inset;
+  display: block;
+  width: 110px;
+  height: 35px;
+  position: fixed;
+  top: 35%;
+  left: 140px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 16px;
 }
-#timeoutCounter p{			/*Text within the position marker*/
-	padding-top: 0px;
-	margin-top: 5px;
-	padding-left: 2px;
+#timeoutCounter p {
+  /*Text within the position marker*/
+  padding-top: 0px;
+  margin-top: 5px;
+  padding-left: 2px;
 }
-#userCanvasScreen{
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(0, 0, 0, 0.5);
-	display: none;
-	top: 0;
-	left: 0;
-	z-index: 97;
-	overflow: auto;
+#userCanvasScreen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 97;
+  overflow: auto;
 }
-#userCanvas{
-	margin-left: 25%;
-	margin-top: 0px;
-	border: dotted red 5px;
+#userCanvas {
+  margin-left: 25%;
+  margin-top: 0px;
+  border: dotted red 5px;
 }
-#closeUserCanvas{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	margin-left: 5%;
-	margin-bottom: 5%;
-	width: 90px;
-	height: 50px;
-	background: #AA0000;
-	color: #FFF;
+#closeUserCanvas {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  width: 90px;
+  height: 50px;
+  background: #aa0000;
+  color: #fff;
 }

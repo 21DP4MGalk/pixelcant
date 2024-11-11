@@ -1,64 +1,84 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Manage your account</title>
-		<script src="js/account.js"></script>
-		<link rel="stylesheet" href="css/account.css">
-		<link rel="stylesheet" href="css/navbar_uni.css" />
-		<script src="js/navbar_uni.js"></script>
-	</head>
-	<body onload="getInfo()">
-		<header>
-			<nav id="navbarUni">
-			  <div id="titleText">
-				<a href="index.html" id="titleText"><i>PixelCan't</i></a>
-			  </div>
-			  <p id="usernameMsg"></p>
-			  <div id="navlinks">
-				<a href="index.html" class="navlink">BEGINNING</a>
-				<a href="instruction.html" class="navlink">HOW TO USE</a>
-				<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-				<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
-				<a href="about.html" class="navlink">ABOUT</a>
-				<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
-				<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
-				<a id="navReport" href="report.html" class="navlink">REPORT</a>
-				<a id="navAdminReports" href="admin_reports.html" class="navlink">REPORTS</a>
-			  </div>
-			</nav>
-		  </header>
+  <head>
+    <title>Manage your account</title>
+    <script src="js/account.js"></script>
+    <link rel="stylesheet" href="css/account.css" />
+    <link rel="stylesheet" href="css/navbar_uni.css" />
+    <script src="js/navbar_uni.js"></script>
+  </head>
+  <body onload="getInfo()">
+    <header>
+      <nav id="navbarUni">
+        <div id="titleText">
+          <a href="index.html" id="titleText"><i>PixelCan't</i></a>
+        </div>
+        <p id="usernameMsg"></p>
+        <div id="navlinks">
+          <a href="index.html" class="navlink">BEGINNING</a>
+          <a href="instruction.html" class="navlink">HOW TO USE</a>
+          <a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+          <a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+          <a href="about.html" class="navlink">ABOUT</a>
+          <a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+          <a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+        </div>
+      </nav>
+    </header>
 
-
-		<div id="container">
-			<h1 id="pageTitle">ACCOUNT INFO</h1>
-			<div id="userData">
-				<h2> Your current info </h2>
-				<p id="currentName">Username: </p> 
-				<p id="currentAdmin">Admin: </p> 
-				<p id="currentBanned">Banned: </p> 
-				<p id="userMessage"></p>
-			</div>
-			<hr>
-			<div id="infoEdit">
-				<h2>Info editing</h2>
-				<div id="changeName">
-					<h4>Change name</h4>
-					<input type="text" id="nameField" placeholder="Enter your name here"><br>
-					<input type="password" id="nameChangePass" placeholder="Password"><br>
-					<button onclick="submitNameChange()">Change name</button>
-				</div>
-				<div id="changePass">
-					<h4>Change password</h4>
-					<input type="password" id="oldPass" placeholder="Old password"><br>
-					<input type="password" id="newPass" placeholder="New password"><br>
-					<input type="password" id="confirmPass" placeholder="Confirm the new password"><br>
-					<button onclick="submitPassChange()">Change password</button>
-				</div>
-			</div>
-		</div>
-		<div id="disclaimer">
-			<p>!!! Please note when choosing your username: anything considered offensive or innapropriate, your name may be changed by administrators</p>
-			<button onclick="hideDisclaimer()" id="hideDisclaimer">x</button>
-		</div>
-	</body>
+    <div id="container">
+      <h1 id="pageTitle">ACCOUNT INFO</h1>
+      <div id="userData">
+        <h2>Your current info</h2>
+        <p id="currentName">Username:</p>
+        <p id="currentAdmin">Admin:</p>
+        <p id="currentBanned">Banned:</p>
+        <p id="userMessage"></p>
+      </div>
+      <hr />
+      <div id="infoEdit">
+        <h2>Info editing</h2>
+        <div id="changeName">
+          <h4>Change name</h4>
+          <input
+            type="text"
+            id="nameField"
+            placeholder="Enter your name here"
+          /><br />
+          <input
+            type="password"
+            id="nameChangePass"
+            placeholder="Password"
+          /><br />
+          <button onclick="submitNameChange()">Change name</button>
+        </div>
+        <div id="changePass">
+          <h4>Change password</h4>
+          <input
+            type="password"
+            id="oldPass"
+            placeholder="Old password"
+          /><br />
+          <input
+            type="password"
+            id="newPass"
+            placeholder="New password"
+          /><br />
+          <input
+            type="password"
+            id="confirmPass"
+            placeholder="Confirm the new password"
+          /><br />
+          <button onclick="submitPassChange()">Change password</button>
+        </div>
+      </div>
+    </div>
+    <div id="disclaimer">
+      <p>
+        !!! Please note when choosing your username: anything considered
+        offensive or innapropriate, your name may be changed by administrators
+      </p>
+      <button onclick="hideDisclaimer()" id="hideDisclaimer">x</button>
+    </div>
+  </body>
 </html>

@@ -94,7 +94,7 @@ router user:
   
   get "/status":
     if not request.cookies.hasKey("token"):
-      resp Http401
+      resp Http204
     let token = request.cookies["token"]
     var userQuery = newUser();
     withDb:

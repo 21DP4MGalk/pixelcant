@@ -1,295 +1,305 @@
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif; /* Use a clean sans-serif font */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    background-color: #f4f4f4; /* Light gray background */
-    color: #333; /* Dark gray text color */
+  font-family: Arial, sans-serif; /* Use a clean sans-serif font */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  background-color: #f4f4f4; /* Light gray background */
+  color: #333; /* Dark gray text color */
 }
 
 /* Container Styles */
 .container {
-    width: 90%; /* Use 90% of the width */
-    max-width: 1200px; /* Maximum width of 1200px */
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Add padding */
+  width: 90%; /* Use 90% of the width */
+  max-width: 1200px; /* Maximum width of 1200px */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Add padding */
 }
 
 /* Header Styles */
 header {
-    background: linear-gradient(to right, #4e54c8, #8f94fb); /* Gradient background */
-    color: #fff; /* White text color */
-    padding: 40px 0; /* Vertical padding */
-    text-align: center; /* Center the text */
+  background: linear-gradient(
+    to right,
+    #4e54c8,
+    #8f94fb
+  ); /* Gradient background */
+  color: #fff; /* White text color */
+  padding: 40px 0; /* Vertical padding */
+  text-align: center; /* Center the text */
 }
 
 header h1 {
-    font-size: 2.5em; /* Large font size for the heading */
-    margin: 0; /* Remove default margin */
+  font-size: 2.5em; /* Large font size for the heading */
+  margin: 0; /* Remove default margin */
 }
 
 header p {
-    font-size: 1.2em; /* Slightly smaller font size for the paragraph */
-    margin-top: 10px; /* Space above the paragraph */
+  font-size: 1.2em; /* Slightly smaller font size for the paragraph */
+  margin-top: 10px; /* Space above the paragraph */
 }
 
 /* Section Styles */
 section {
-    margin: 40px 0; /* Space between sections */
-    padding: 20px; /* Padding inside sections */
-    background: #fff; /* White background for sections */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin: 40px 0; /* Space between sections */
+  padding: 20px; /* Padding inside sections */
+  background: #fff; /* White background for sections */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 h2 {
-    color: #4e54c8; /* Blue color for subheadings */
-    font-size: 2em; /* Large font size for h2 */
-    border-bottom: 2px solid #4e54c8; /* Bottom border */
-    padding-bottom: 10px; /* Space below the h2 */
+  color: #4e54c8; /* Blue color for subheadings */
+  font-size: 2em; /* Large font size for h2 */
+  border-bottom: 2px solid #4e54c8; /* Bottom border */
+  padding-bottom: 10px; /* Space below the h2 */
 }
 
 .step {
-    margin: 20px 0; /* Space between steps */
+  margin: 20px 0; /* Space between steps */
 }
 
 .step h3 {
-    font-size: 1.5em; /* Medium font size for step titles */
-    color: #4e54c8; /* Blue color for step titles */
+  font-size: 1.5em; /* Medium font size for step titles */
+  color: #4e54c8; /* Blue color for step titles */
 }
 
 .step p {
-    margin: 10px 0; /* Space around step paragraphs */
+  margin: 10px 0; /* Space around step paragraphs */
 }
 
 /* Rules List Styles */
 .rules-list ul {
-    list-style-type: disc; /* Use disc for list items */
-    margin-left: 20px; /* Indent the list */
+  list-style-type: disc; /* Use disc for list items */
+  margin-left: 20px; /* Indent the list */
 }
 
 .rules-list li {
-    margin: 10px 0; /* Space between list items */
+  margin: 10px 0; /* Space between list items */
 }
 
 /* Footer Styles */
 footer {
-    background: #4e54c8; /* Blue background */
-    color: #fff; /* White text color */
-    text-align: center; /* Center the text */
-    padding: 20px 0; /* Vertical padding */
-    position: relative; /* Position relative for layout */
-    bottom: 0; /* Stick to the bottom */
-    width: 100%; /* Full width */
+  background: #4e54c8; /* Blue background */
+  color: #fff; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 20px 0; /* Vertical padding */
+  position: relative; /* Position relative for layout */
+  bottom: 0; /* Stick to the bottom */
+  width: 100%; /* Full width */
 }
 
 footer p {
-    margin: 0; /* Remove default margin */
+  margin: 0; /* Remove default margin */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2em; /* Smaller font size for mobile */
-    }
+  header h1 {
+    font-size: 2em; /* Smaller font size for mobile */
+  }
 
-    header p, h2 {
-        font-size: 1em; /* Smaller font size for mobile */
-    }
+  header p,
+  h2 {
+    font-size: 1em; /* Smaller font size for mobile */
+  }
 
-    .step h3 {
-        font-size: 1.2em; /* Smaller font size for step titles */
-    }
+  .step h3 {
+    font-size: 1.2em; /* Smaller font size for step titles */
+  }
 
-    section {
-        padding: 10px; /* Less padding for mobile */
-    }
+  section {
+    padding: 10px; /* Less padding for mobile */
+  }
 }
+
+/* Progress Bar Styles */
 #progress-bar-container {
-    margin: 20px 0;
-    color:#8f94fb
-}
-
-.step.completed {
-    background-color: #e0f7fa; /* Gaiši zils fons izpildītiem soļiem */
-    border-left: 5px solid #4e54c8; /* Izcelt ar zilu joslu kreisajā pusē */
-    transition: background-color 0.3s, border-left 0.3s;
-}
-
- /* Progress Bar Styles */
- #progress-bar {
+  margin: 20px 0;
+  color: #8f94fb;
+  width: 80%;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  > #progress-percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-weight: bold;
+  }
+  > #progress-bar {
     height: 20px;
     background: #8f94fb; /* Green color */
     width: 0%;
     transition: width 0.5s;
+  }
+}
+
+.step.completed {
+  background-color: #e0f7fa; /* Gaiši zils fons izpildītiem soļiem */
+  border-left: 5px solid #4e54c8; /* Izcelt ar zilu joslu kreisajā pusē */
+  transition:
+    background-color 0.3s,
+    border-left 0.3s;
 }
 
 /* Step Hover Effect */
 .step {
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background 0.3s;
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background 0.3s;
 }
 
 .step:hover {
-    background: #f0f0f0; /* Light gray background on hover */
+  background: #f0f0f0; /* Light gray background on hover */
 }
 .checkmark {
-    color: green; /* Color for the checkmark */
-    display: none; /* Initially hidden */
-    font-size: 1.5em; /* Adjust size as needed */
-    margin-left: 10px; /* Space between the title and checkmark */
+  color: green; /* Color for the checkmark */
+  display: none; /* Initially hidden */
+  font-size: 1.5em; /* Adjust size as needed */
+  margin-left: 10px; /* Space between the title and checkmark */
 }
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Slide from below */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Slide from below */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {
-    animation: fadeIn 0.5s ease forwards; /* Apply fade-in animation to the body */
+  animation: fadeIn 0.5s ease forwards; /* Apply fade-in animation to the body */
 }
 
 /* Existing styles */
 .step {
-    opacity: 0; /* Initially hidden */
-    animation: fadeIn 0.5s ease forwards; /* Fade-in animation */
-    animation-delay: 0.3s; /* Delay to stagger the appearance of steps */
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 0.5s ease forwards; /* Fade-in animation */
+  animation-delay: 0.3s; /* Delay to stagger the appearance of steps */
 }
 
 .step.visible {
-    opacity: 1; /* Make visible when the class is added */
-    animation: fadeIn 0.5s ease forwards; /* Ensure it fades in when visible */
+  opacity: 1; /* Make visible when the class is added */
+  animation: fadeIn 0.5s ease forwards; /* Ensure it fades in when visible */
 }
 /* Modal Styles */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #333;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
 }
-#navbarUni{
-	background: #fff;
-	width: 100%;
-	height: 120px;
-	display: block;
-	box-sizing: border-box;
-	font-family: 'Lato', sans-serif;
-	box-shadow: 0 0 10px rgba(0,0,0,.1);
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	z-index: 89;
+#navbarUni {
+  background: #fff;
+  width: 100%;
+  height: 120px;
+  display: block;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 89;
 }
 
-#titleText{
-	position: absolute;
-	top: 23px;
-	left: 6.5%;
-	color: #00ADB5;
-	text-decoration: none;
-	font-size: 25px;
-	/*padding: 58px 0;*/
-	float: left;
-	width: 100px;
+#titleText {
+  position: absolute;
+  top: 23px;
+  left: 6.5%;
+  color: #00adb5;
+  text-decoration: none;
+  font-size: 25px;
+  /*padding: 58px 0;*/
+  float: left;
+  width: 100px;
 }
-a.navlink{
-	color: #333;
-	font-family: 'Lato', sans-serif;
-	font-size: 16px;
-	text-decoration: none;
-	margin-left: 2px;
-	padding-top: 50px;
-	padding-bottom: 25px;
-	padding-left: 5px;
-	padding-right: 5px;
-	transition: all 0.3s ease-in-out;
-	position: relative;
-	top: 5px;
-
+a.navlink {
+  color: #333;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  margin-left: 2px;
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  top: 5px;
 }
 a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 3px;
-    background: #3498db;
-    transition: width 0.3s;
-    position: absolute;
-    left: 0;
-	top: 95px;
-	padding: 0 0 0 0;
-	margin: 0 0 0 0;
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #3498db;
+  transition: width 0.3s;
+  position: absolute;
+  left: 0;
+  top: 95px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
 }
-div#navlinks{
-	float: right;
-	position: absolute;
-	right: 10%;
-	top: 50px;
-	cursor: pointer;
+div#navlinks {
+  float: right;
+  position: absolute;
+  right: 10%;
+  top: 50px;
+  cursor: pointer;
 }
-#navlinks a:hover{
-	color:#3498db;
-	background-color: #26a85d;
-	top: 0px;
+#navlinks a:hover {
+  color: #3498db;
+  background-color: #26a85d;
+  top: 0px;
 }
 
 a:hover::after {
-	width: 100%;
+  width: 100%;
 }
 
-#contentStart{
-	margin-top: 130px;
+#contentStart {
+  margin-top: 130px;
 }
 #contentStart {
-    /*container pixelcan't - start playing now*/
-    background-color: #8f94fb; 
-    color: #fff; 
-    padding: 60px 30px; 
-    text-align: center; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-    width: 80%; 
-    max-width: 1200px; 
-    margin: 0 auto 30px auto; 
+  /*container pixelcan't - start playing now*/
+  background-color: #8f94fb;
+  color: #fff;
+  padding: 60px 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
 }
-
-
-
-
-
-
-
-
-
-

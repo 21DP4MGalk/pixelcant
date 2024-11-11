@@ -1,47 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<link rel="stylesheet" href="css/report.css"/>
-		<link rel="stylesheet" href="css/navbar_uni.css" />
-		<script src="js/navbar_uni.js"></script>
-		<script src="js/report.js"></script>
+  <head>
+    <link rel="stylesheet" href="css/report.css" />
+    <link rel="stylesheet" href="css/navbar_uni.css" />
+    <script src="js/navbar_uni.js"></script>
+    <script src="js/report.js"></script>
 
-		<title>Report wrongdoers</title>
-	</head>
-	<body>
-		<header>
-			<nav id="navbarUni">
-			  <div id="titleText">
-				<a href="index.html" id="titleText"><i>PixelCan't</i></a>
-			  </div>
-			  <p id="usernameMsg"></p>
-			  <div id="navlinks">
-				<a href="index.html" class="navlink">BEGINNING</a>
-				<a href="instruction.html" class="navlink">HOW TO USE</a>
-				<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-				<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
-				<a href="about.html" class="navlink">ABOUT</a>
-				<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
-				<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
-				<a id="navReport" href="report.html" class="navlink">REPORT</a>
-				<a id="navAdminReports" href="admin_reports.html" class="navlink">REPORTS</a>
-			  </div>
-			</nav>
-		  </header>
+    <title>Report wrongdoers</title>
+  </head>
+  <body>
+    <header>
+      <nav id="navbarUni">
+        <div id="titleText">
+          <a href="index.html" id="titleText"><i>PixelCan't</i></a>
+        </div>
+        <p id="usernameMsg"></p>
+        <div id="navlinks">
+          <a href="index.html" class="navlink">BEGINNING</a>
+          <a href="instruction.html" class="navlink">HOW TO USE</a>
+          <a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+          <a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+          <a href="about.html" class="navlink">ABOUT</a>
+          <a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+          <a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+          <a id="navReport" href="report.html" class="navlink">REPORT</a>
+          <a id="navAdminReports" href="admin_reports.html" class="navlink"
+            >REPORTS</a
+          >
+        </div>
+      </nav>
+    </header>
 
-		<div id="container">
-			<h1 align="center">REPORT THESE SCULLYWAGS</h1>
-			<hr>
-			<h2 align="center">Please enter the offender's username and shortly (or verbosely) describe what they did</h2>
-			<div id="form">
-				<input type="text" id="username" placeholder="Poor bastard's username">
-				<textarea id="description" placeholder="What did he do that deserves a ban?"></textarea>
-				<button onclick="sendReport()">Submit report</button>
-			</div>
-			<br>
-		</div>
-		<div id="contact">
-			<p align="center">In case you wish to have your problems resolved in a more urgent manner or if you've found some bugs, feel free to contact us at <b>issues.pixelcant@proton.me</b></p>
-		</div>
-	</body>
+    <div id="container">
+      <h1 align="center">REPORT THESE SCULLYWAGS</h1>
+      <hr />
+      <h2 align="center">
+        Please enter the offender's username and shortly (or verbosely) describe
+        what they did
+      </h2>
+      <div id="form">
+        <input
+          type="text"
+          id="username"
+          placeholder="Poor bastard's username"
+        />
+        <textarea
+          id="description"
+          placeholder="What did he do that deserves a ban?"
+        ></textarea>
+        <button onclick="sendReport()">Submit report</button>
+      </div>
+      <br />
+    </div>
+    <div id="contact">
+      <p align="center">
+        In case you wish to have your problems resolved in a more urgent manner
+        or if you've found some bugs, feel free to contact us at
+        <b>issues.pixelcant@proton.me</b>
+      </p>
+    </div>
+  </body>
 </html>
