@@ -1,20 +1,20 @@
-#container{
-    margin-top: 130px;
-    font-family: Arial, sans-serif;
-    color: #4e54c8;
+#container {
+  margin-top: 130px;
+  font-family: Arial, sans-serif;
+  color: #4e54c8;
 }
 
-hr{
-    width: 50%;
+hr {
+  width: 50%;
 }
-#reports{
-    margin-left: 25%;
+#reports {
+  margin-left: 25%;
 }
-#container button{
-    border-radius: 69px;
-    width: 35px;
-    height: 35px;
-    margin-left: 25px;
-    background-color: #8f94fb;
-    color: #FFF;
+#container button {
+  border-radius: 69px;
+  width: 35px;
+  height: 35px;
+  margin-left: 25px;
+  background-color: #8f94fb;
+  color: #fff;
 }

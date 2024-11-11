@@ -1,106 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<title>THE Canvas</title>
-		<script src="js/canvas_chat.js"></script>
-		<script src="js/canvas_admin.js"></script>
-		<script src="js/canvas.js"></script>
-		<script src="js/navbar_uni.js"></script>				<!--Necessary for logout function and that's it-->
-		<link rel="stylesheet" href="css/canvas.css">
-		<link rel="stylesheet" href="css/navbar_uni.css">		<!--Imports the portable navbar for convenience, not animated or pretty but it's useful-->
-	</head>
-	<body onload="init()">
+  <head>
+    <title>THE Canvas</title>
+    <script src="js/canvas_chat.js"></script>
+    <script src="js/canvas_admin.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/navbar_uni.js"></script>
+    <!--Necessary for logout function and that's it-->
+    <link rel="stylesheet" href="css/canvas.css" />
+    <link rel="stylesheet" href="css/navbar_uni.css" />
+    <!--Imports the portable navbar for convenience, not animated or pretty but it's useful-->
+  </head>
+  <body onload="init()">
+    <header>
+      <nav id="navbarUni">
+        <div id="titleText">
+          <a href="index.html" id="titleText"><i>PixelCan't</i></a>
+        </div>
+        <p id="usernameMsg"></p>
+        <div id="navlinks">
+          <a href="index.html" class="navlink">BEGINNING</a>
+          <a href="instruction.html" class="navlink">HOW TO USE</a>
+          <a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+          <a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+          <a href="about.html" class="navlink">ABOUT</a>
+          <a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+          <a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+          <a id="navReport" href="report.html" class="navlink">REPORT</a>
+          <a id="navAdminReports" href="admin_reports.html" class="navlink"
+            >REPORTS</a
+          >
+        </div>
+      </nav>
+    </header>
 
-		<header>
-			<nav id="navbarUni">
-			  <div id="titleText">
-				<a href="index.html" id="titleText"><i>PixelCan't</i></a>
-			  </div>
-			  <p id="usernameMsg"></p>
-			  <div id="navlinks">
-				<a href="index.html" class="navlink">BEGINNING</a>
-				<a href="instruction.html" class="navlink">HOW TO USE</a>
-				<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-				<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
-				<a href="about.html" class="navlink">ABOUT</a>
-				<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
-				<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
-				<a id="navReport" href="report.html" class="navlink">REPORT</a>
-				<a id="navAdminReports" href="admin_reports.html" class="navlink">REPORTS</a>
-			  </div>
-			</nav>
-		  </header>
-
-		<div id="canvasContainer">
-			<canvas id="canvas" width="1000px" height="1000px" onclick="interpretClick()" onmousemove="updateCoords(event)"></canvas>			
-		</div>
-		<div id="picker" onclick="updateColour()">			<!--Honestly could use a redoing altogether considering we're using
+    <div id="canvasContainer">
+      <canvas
+        id="canvas"
+        width="1000px"
+        height="1000px"
+        onclick="interpretClick()"
+        onmousemove="updateCoords(event)"
+      ></canvas>
+    </div>
+    <div id="picker" onclick="updateColour()">
+      <!--Honestly could use a redoing altogether considering we're using
 															integers to represent colours, but it works and is visually okay.-->
-			<button class="colourchoice" style="background-color: #FF0000"></button>
-			<button class="colourchoice" style="background-color: #00FF00"></button>
-			<button class="colourchoice" style="background-color: #0000FF"></button>
-			<button class="colourchoice" style="background-color: #FFFF00"></button>
-			<button class="colourchoice" style="background-color: #FF00FF"></button>
-			<button class="colourchoice" style="background-color: #00FFFF"></button>
-			<button class="colourchoice" style="background-color: #FFFFFF"></button>
-			<button class="colourchoice" style="background-color: #000000"></button>
-			<button class="colourchoice" style="background-color: #4A412A"></button>
-			<button class="colourchoice" style="background-color: #013220"></button>
-		</div>
-		<div id="chat">			<!--The chat box, probably needs a redesign-->
-			<div id="chatDrag"> CHAT </div>
-			<div id="messageBox"><p></p></div>
-			<input type="text" id="textInput" placeholder="Type your message here..." onkeypress="keyPress(event)"> 
-			<input type="button" id="messageSend" value="&#10148;" onclick="sendMessage()">
-		</div>
-		
-		<div id="positionMarker">
-			<p id="coords"></p>
-		</div>
+      <button class="colourchoice" style="background-color: #ff0000"></button>
+      <button class="colourchoice" style="background-color: #00ff00"></button>
+      <button class="colourchoice" style="background-color: #0000ff"></button>
+      <button class="colourchoice" style="background-color: #ffff00"></button>
+      <button class="colourchoice" style="background-color: #ff00ff"></button>
+      <button class="colourchoice" style="background-color: #00ffff"></button>
+      <button class="colourchoice" style="background-color: #ffffff"></button>
+      <button class="colourchoice" style="background-color: #000000"></button>
+      <button class="colourchoice" style="background-color: #4a412a"></button>
+      <button class="colourchoice" style="background-color: #013220"></button>
+    </div>
+    <div id="chat">
+      <!--The chat box, probably needs a redesign-->
+      <div id="chatDrag">CHAT</div>
+      <div id="messageBox"><p></p></div>
+      <input
+        type="text"
+        id="textInput"
+        placeholder="Type your message here..."
+        onkeypress="keyPress(event)"
+      />
+      <input
+        type="button"
+        id="messageSend"
+        value="&#10148;"
+        onclick="sendMessage()"
+      />
+    </div>
 
-		<div id="adminPanel">		<!--Pisspoor design is a major flaw of mine, if someone is not lazy, they should probably work on it-->
-			<input id="username" placeholder="Offending username" required>
-			<input id="newName" placeholder="New name (optional)">
-			<button id="banButton" title="Ban a user" onclick="banUser()">&#x1F5E1;</button>
-			<button id="modifyButton" title="Modify a user" onclick="modifyUser()">&#9998;</button>
-			<button id="dialogButton" title="Delete a user's messages" onclick="openMsgDialog()">&#x1f5d1;</button>
-			<button id="userCanvasOpen" title="See the user's pixels" onclick="openUserCanvas()">PIXELCUNT</button>
-		</div>
+    <div id="positionMarker">
+      <p id="coords"></p>
+    </div>
 
-		<div id="adminDialogContainer">			<!--Another case of poor visual design, but you gotta admit nuking messages away is
+    <div id="adminPanel">
+      <!--Pisspoor design is a major flaw of mine, if someone is not lazy, they should probably work on it-->
+      <input id="username" placeholder="Offending username" required />
+      <input id="newName" placeholder="New name (optional)" />
+      <button id="banButton" title="Ban a user" onclick="banUser()">
+        &#x1F5E1;
+      </button>
+      <button id="modifyButton" title="Modify a user" onclick="modifyUser()">
+        &#9998;
+      </button>
+      <button
+        id="dialogButton"
+        title="Delete a user's messages"
+        onclick="openMsgDialog()"
+      >
+        &#x1f5d1;
+      </button>
+      <button
+        id="userCanvasOpen"
+        title="See the user's pixels"
+        onclick="openUserCanvas()"
+      >
+        PIXELCUNT
+      </button>
+    </div>
+
+    <div id="adminDialogContainer">
+      <!--Another case of poor visual design, but you gotta admit nuking messages away is
 												 way cooler than just deleting them.-->
-			<div id="adminDialogBox">
-				<div id="adminMsgList"></div>
-				<div id="msgTools">
-					<input id="msgTimestamp" placeholder="Offending message timestamp" required>
-					<button id="deleteButton" onclick="deleteByTimestamp()">Nuke</button>
-					<button id="cancelButton" onclick="closeMsgDialog()">Cancel</button>
-				</div>
-			</div>
-		</div>
+      <div id="adminDialogBox">
+        <div id="adminMsgList"></div>
+        <div id="msgTools">
+          <input
+            id="msgTimestamp"
+            placeholder="Offending message timestamp"
+            required
+          />
+          <button id="deleteButton" onclick="deleteByTimestamp()">Nuke</button>
+          <button id="cancelButton" onclick="closeMsgDialog()">Cancel</button>
+        </div>
+      </div>
+    </div>
 
-		<div id="timeoutCounter">
-			<center>
-				<p id="timeout_p"></p>
-			</center>
-		</div>
+    <div id="timeoutCounter">
+      <center>
+        <p id="timeout_p"></p>
+      </center>
+    </div>
 
     <noscript>
-      <div id="jsBeggingScreen">			<!--For those cases of paranoid people such as me who like blocking javascript by default. 
+      <div id="jsBeggingScreen">
+        <!--For those cases of paranoid people such as me who like blocking javascript by default. 
                         Or people connecting through lynx for some reason. Gets hidden first thing in init()-->
         <center>
-          <h1> THIS SITE USES JAVASCRIPT </h1>
-          <hr>
-          <p> Look, we don't like it either, but it is what it is. The entire site is open source if you don't trust us.</p>
+          <h1>THIS SITE USES JAVASCRIPT</h1>
+          <hr />
+          <p>
+            Look, we don't like it either, but it is what it is. The entire site
+            is open source if you don't trust us.
+          </p>
           <a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
         </center>
       </div>
     </noscript>
-	
-      <div id="userCanvasScreen">
-        <canvas id="userCanvas" width="1000px" height="1000px"></canvas>
-        <button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
-      </div>
-    
-	</body>
+
+    <div id="userCanvasScreen">
+      <canvas id="userCanvas" width="1000px" height="1000px"></canvas>
+      <button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
+    </div>
+  </body>
 </html>

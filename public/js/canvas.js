@@ -1,7 +1,5 @@
 var colour = "#FF0000";
-var messages = [
-  [],
-]; 
+var messages = [[]];
 var colours = [
   "rgb(255, 0, 0)",
   "rgb(0, 255, 0)",
@@ -26,7 +24,7 @@ async function interpretClick() {
   posY = event.clientY - rect.top;
   posX = event.clientX - rect.left;
   posX = Math.floor(posX / 20);
-  posY = Math.floor(posY / 20); 
+  posY = Math.floor(posY / 20);
 
   for (var i = 0; i < 10; i++) {
     if (colours[i] == colour) {
@@ -36,10 +34,10 @@ async function interpretClick() {
 
   var response = await fetch("/canvas/placepixel", {
     method: "POST",
-    body: JSON.stringify({ x: posX, y: posY, c: c }), 
+    body: JSON.stringify({ x: posX, y: posY, c: c }),
   });
-  if(response.ok){
-  	startTimeout(await response.text());
+  if (response.ok) {
+    startTimeout(await response.text());
   }
 }
 
@@ -57,14 +55,23 @@ async function establishPixelConn() {
     newPixel = JSON.parse(event.data);
     drawPixel(newPixel.x, newPixel.y, newPixel.c);
   });
-  var pingMessages = ["AAAAAAAAAAAA OH GOD HELP", "AAAAA IT BURNS IT BURNS AAA", "OH FUCK PLEASE HELP SAVE OUR SOULS PLEASE", "...---...   ...---.../", "MAYDAY MAYDAY WE ARE GOING DOWN", "HI MY NAME IS JERRY WHY IS EVERYONE SCREAMING"];
+  var pingMessages = [
+    "AAAAAAAAAAAA OH GOD HELP",
+    "AAAAA IT BURNS IT BURNS AAA",
+    "OH FUCK PLEASE HELP SAVE OUR SOULS PLEASE",
+    "...---...   ...---.../",
+    "MAYDAY MAYDAY WE ARE GOING DOWN",
+    "HI MY NAME IS JERRY WHY IS EVERYONE SCREAMING",
+  ];
   setInterval(() => {
-    pSock.send(pingMessages[ Math.floor(Math.random*(pingMessages.length-1)) ]);
-  }, 45000)
+    pSock.send(
+      pingMessages[Math.floor(Math.random * (pingMessages.length - 1))],
+    );
+  }, 45000);
 }
 
 async function getCanvas() {
-  //pixelsY = window.screen.width / 20; 
+  //pixelsY = window.screen.width / 20;
   //pixelsX = window.screen.height / 20;
 
   var response = await fetch("canvas/fullcanvas/0/0/1000/1000");
@@ -82,20 +89,18 @@ function drawPixel(x, y, c) {
 }
 
 async function init() {
-  
   var status = await fetch("/user/status");
-  if(status.status == 200){
-    status = JSON.parse(await status.text())
-  }
-  else{
+  if (status.status == 200) {
+    status = JSON.parse(await status.text());
+  } else {
     status = {
       username: "",
       banned: false,
-      admin: false
-    }
+      admin: false,
+    };
   }
-  if(status.username){
-    sessionStorage.setItem("username", status.username)
+  if (status.username) {
+    sessionStorage.setItem("username", status.username);
   }
 
   if ((await adminCheck()) == "true") {
@@ -121,18 +126,20 @@ function updateCoords(event) {
     "X: " + posX + "; Y: " + posY + ";";
 }
 
-function startTimeout(newTime){
-	x = 5; // amount of seconds of timeout
-	var timeoutText = document.getElementById("timeout_p");  // ( ͡° ͜ʖ ͡°)
-	timeoutText.innerText = x;
-	for(var i = 0; i < x; i++){
-		setTimeout(function(){
-			timeoutText.innerText = x;
-			x -= 1;
-		},1000 *i)
-	}
-	setTimeout(function(){
-		timeoutText.innerText = "READY";
-	}, 1000* x+1)
+function startTimeout(newTime) {
+  x = 5; // amount of seconds of timeout
+  var timeoutText = document.getElementById("timeout_p"); // ( ͡° ͜ʖ ͡°)
+  timeoutText.innerText = x;
+  for (var i = 0; i < x; i++) {
+    setTimeout(function () {
+      timeoutText.innerText = x;
+      x -= 1;
+    }, 1000 * i);
+  }
+  setTimeout(
+    function () {
+      timeoutText.innerText = "READY";
+    },
+    1000 * x + 1,
+  );
 }
-

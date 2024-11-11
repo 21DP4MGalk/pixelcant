@@ -1,4 +1,3 @@
-
 /* -------------------------------- 
 
 Slider
@@ -11,7 +10,8 @@ Slider
   /* hide horizontal scrollbar on IE11 */
   overflow: hidden;
 }
-.cd-slider-wrapper .cd-slider, .cd-slider-wrapper .cd-slider > li {
+.cd-slider-wrapper .cd-slider,
+.cd-slider-wrapper .cd-slider > li {
   height: 100%;
   width: 100%;
 }
@@ -51,7 +51,10 @@ Slider
   background-color: #ff625a;
   background-image: url(../img/img-4.jpg);
 }
-.cd-slider > li:first-of-type, .cd-slider > li:nth-of-type(2), .cd-slider > li:nth-of-type(3), .cd-slider > li:nth-of-type(4) {
+.cd-slider > li:first-of-type,
+.cd-slider > li:nth-of-type(2),
+.cd-slider > li:nth-of-type(3),
+.cd-slider > li:nth-of-type(4) {
   background-size: cover;
 }
 .cd-slider > li > div {
@@ -60,7 +63,8 @@ Slider
   vertical-align: middle;
   text-align: center;
 }
-.cd-slider > li h2, .cd-slider > li p {
+.cd-slider > li h2,
+.cd-slider > li p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   line-height: 1.2;
   margin: 0 auto 14px;
@@ -78,9 +82,9 @@ Slider
 .cd-slider > li .cd-btn {
   display: inline-block;
   padding: 1.2em 1.4em;
-  margin-top: .8em;
+  margin-top: 0.8em;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: .25em;
+  border-radius: 0.25em;
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -94,7 +98,8 @@ Slider
   background-color: rgba(0, 0, 0, 0.8);
 }
 @media only screen and (min-width: 768px) {
-  .cd-slider > li h2, .cd-slider > li p {
+  .cd-slider > li h2,
+  .cd-slider > li p {
     max-width: 520px;
   }
   .cd-slider > li h2 {
@@ -106,7 +111,8 @@ Slider
   }
 }
 @media only screen and (min-width: 1170px) {
-  .cd-slider > li h2, .cd-slider > li p {
+  .cd-slider > li h2,
+  .cd-slider > li p {
     margin-bottom: 20px;
   }
   .cd-slider > li h2 {
@@ -167,9 +173,18 @@ Slider navigation
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
-  -webkit-transition: opacity 0.2s 0s, visibility 0s 0s, -webkit-transform 0.2s 0s;
-  -moz-transition: opacity 0.2s 0s, visibility 0s 0s, -moz-transform 0.2s 0s;
-  transition: opacity 0.2s 0s, visibility 0s 0s, transform 0.2s 0s;
+  -webkit-transition:
+    opacity 0.2s 0s,
+    visibility 0s 0s,
+    -webkit-transform 0.2s 0s;
+  -moz-transition:
+    opacity 0.2s 0s,
+    visibility 0s 0s,
+    -moz-transform 0.2s 0s;
+  transition:
+    opacity 0.2s 0s,
+    visibility 0s 0s,
+    transform 0.2s 0s;
 }
 .cd-slider-navigation li.selected:first-of-type a {
   /* change custom icon using image sprites */
@@ -211,13 +226,22 @@ Slider navigation
   -ms-transform: translateX(-50%) translateY(3px);
   -o-transform: translateX(-50%) translateY(3px);
   transform: translateX(-50%) translateY(3px);
-  -webkit-transition: opacity 0.2s 0s, visibility 0s 0.2s, -webkit-transform 0.2s 0s;
-  -moz-transition: opacity 0.2s 0s, visibility 0s 0.2s, -moz-transform 0.2s 0s;
-  transition: opacity 0.2s 0s, visibility 0s 0.2s, transform 0.2s 0s;
+  -webkit-transition:
+    opacity 0.2s 0s,
+    visibility 0s 0.2s,
+    -webkit-transform 0.2s 0s;
+  -moz-transition:
+    opacity 0.2s 0s,
+    visibility 0s 0.2s,
+    -moz-transform 0.2s 0s;
+  transition:
+    opacity 0.2s 0s,
+    visibility 0s 0.2s,
+    transform 0.2s 0s;
 }
 .cd-slider-navigation em::after {
   /* tooltip arrow */
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   right: auto;
@@ -280,7 +304,7 @@ svg cover layer
   opacity: 0;
 }
 .cd-svg-cover path {
-  fill: #00ADB5;
+  fill: #00adb5;
 }
 .cd-svg-cover.is-animating {
   z-index: 4;

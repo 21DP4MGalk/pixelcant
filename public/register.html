@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Registration Page</title>
-		<link rel="stylesheet" href="css/style_d.css">
-		<link rel="stylesheet" href="css/navbar_uni.css">
-	        <script src="js/navbar_uni.js"></script>
-	</head>
-	<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="css/style_d.css" />
+    <link rel="stylesheet" href="css/navbar_uni.css" />
+    <script src="js/navbar_uni.js"></script>
+  </head>
+  <body>
     <header>
       <nav id="navbarUni">
         <div id="titleText">
@@ -16,46 +16,55 @@
         </div>
         <p id="usernameMsg"></p>
         <div id="navlinks">
-      		<a href="index.html" class="navlink">BEGINNING</a>
-      		<a href="instruction.html" class="navlink">HOW TO USE</a>
-      		<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-      		<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>      
-      		<a href="about.html" class="navlink">ABOUT</a>
-	        <a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
-      		<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
-      		<a href="report.html" class="navlink">REPORT</a>
-			    <a id="navAdminReports" href="admin_reports.html" class="navlink">REPORTS</a>
+          <a href="index.html" class="navlink">BEGINNING</a>
+          <a href="instruction.html" class="navlink">HOW TO USE</a>
+          <a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+          <a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+          <a href="about.html" class="navlink">ABOUT</a>
+          <a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+          <a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+          <a href="report.html" class="navlink">REPORT</a>
+          <a id="navAdminReports" href="admin_reports.html" class="navlink"
+            >REPORTS</a
+          >
         </div>
       </nav>
     </header>
-		<div id="contentStart">
-			<div class="container">
-				<h1> Create your account</h1>
-			</div>
-				<main>
-          <canvas id="confettiCanvas" style="display: none;"></canvas>
-          <div id="container">	
-					<h1>Register</h1>
-					<div id="authForm">
-						<label for="username">Username:</label>
-						<input type="text" id="username" name="username" required>
-						    
-						<label for="password">Password:</label>
-						<input type="password" id="password" name="password" required>
-					    
-						<label for="confirmPassword">Confirm Password:</label>
-						<input type="password" id="confirmPassword" name="confirmPassword" required>
-						<p id="errorMessage"></p>
-						<button id="RegisterButton" onclick="submitRegistrationForm()">Register</button>
-					</div>
-				    </div>
-				</main>
+    <div id="contentStart">
+      <div class="container">
+        <h1>Create your account</h1>
+      </div>
+      <main>
+        <canvas id="confettiCanvas" style="display: none"></canvas>
+        <div id="container">
+          <h1>Register</h1>
+          <div id="authForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
 
-			<footer>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              required
+            />
+            <p id="errorMessage"></p>
+            <button id="RegisterButton" onclick="submitRegistrationForm()">
+              Register
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <footer>
         <p>© 2024 Pixelcan't. All rights reserved.</p>
-			</footer>
+      </footer>
 
-			<script src="js/register.js"></script>
-		</div>
-	</body>
+      <script src="js/register.js"></script>
+    </div>
+  </body>
 </html>
