@@ -12,8 +12,11 @@ async function checkStatus() {
   const registerElement = document.getElementById("navRegister");
   const accountElement = document.getElementById("navAccount");
   const usernameMsg = document.getElementById("usernameMsg");
+  const reportElement = document.getElementById("navReport");
+  const adminReportElement = document.getElementById("navAdminReports");
   
   if (!resp.ok || resp.status == 204) {
+  adminReportElement.style.display = "none";
     logoutElement.style.display = "none";
     accountElement.style.display = "none";
     loginElement.style.display = "initial";
@@ -29,12 +32,21 @@ async function checkStatus() {
   
   let status = JSON.parse(await resp.text());
   let greeting = "";
+  
   if (status.banned) {
+  
     greeting = "ew, ";
+    reportElement.style.display = "initial";
+  
   } else if (status.admin) {
+
     greeting = "HELLO, you're bald, ";
+    adminReportElement.style.display = "initial";
+    reportElement.style.display = "none";
+  
   } else {
     greeting = "WELCOME, HIGHLY REGARDED ";
+    reportElement.style.display = "initial";
   }
 
   usernameMsg.innerText = greeting + status.username + "!";

@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<title>THE Canvas</title>
+		<script src="js/canvas_chat.js"></script>
+		<script src="js/canvas_admin.js"></script>
 		<script src="js/canvas.js"></script>
 		<script src="js/navbar_uni.js"></script>				<!--Necessary for logout function and that's it-->
 		<link rel="stylesheet" href="css/canvas.css">
@@ -11,24 +13,23 @@
 
 		<header>
 			<nav id="navbarUni">
-				<div id="titleText">
-					<a href="index.html" id="titleText"><i>PixelCan't</i></a>
-         
-				</div>
-				<p id="usernameMsg"></p>
-				<div id="navlinks">
-					<a href="index.html" class="navlink">BEGINNING</a>
-					<a href="instruction.html" class="navlink">HOW TO USE</a>
-					<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
-					<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
-					<a href="about.html" class="navlink">ABOUT</a>
-					<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
-					<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
-	        			<a href="report.html" class="navlink">REPORT</a>
-
-				</div>
+			  <div id="titleText">
+				<a href="index.html" id="titleText"><i>PixelCan't</i></a>
+			  </div>
+			  <p id="usernameMsg"></p>
+			  <div id="navlinks">
+				<a href="index.html" class="navlink">BEGINNING</a>
+				<a href="instruction.html" class="navlink">HOW TO USE</a>
+				<a id="navLogin" href="login.html" class="navlink">LOGIN</a>
+				<a id="navRegister" href="register.html" class="navlink">SIGN UP</a>
+				<a href="about.html" class="navlink">ABOUT</a>
+				<a href="account.html" id="navAccount" class="navlink">ACCOUNT</a>
+				<a id="navLogout" onclick="logout()" class="navlink">LOGOUT</a>
+				<a id="navReport" href="report.html" class="navlink">REPORT</a>
+				<a id="navAdminReports" href="admin_reports.html" class="navlink">REPORTS</a>
+			  </div>
 			</nav>
-		</header>
+		  </header>
 
 		<div id="canvasContainer">
 			<canvas id="canvas" width="1000px" height="1000px" onclick="interpretClick()" onmousemove="updateCoords(event)"></canvas>			
@@ -94,11 +95,12 @@
           <a href="https://github.com/21DP4MGalk/pixelcant">Our repo</a>
         </center>
       </div>
-      <div id="fadeoutElement"></div>
+    </noscript>
+	
       <div id="userCanvasScreen">
         <canvas id="userCanvas" width="1000px" height="1000px"></canvas>
         <button id="closeUserCanvas" onclick="closeUserCanvas()">Close</button>
       </div>
-    </noscript>
+    
 	</body>
 </html>

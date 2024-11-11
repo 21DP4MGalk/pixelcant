@@ -131,3 +131,19 @@ router user:
       db.select(reports, "true ORDER BY id asc")
       
       resp Http200, $(%* reports)
+  
+  post "/deletereport":
+    var token = request.cookies["token"]
+    var reportID = parseInt(request.formData["reportID"].body)
+    var report = newReport()
+
+    withDb:
+      if(not db.exists(User, "loginToken = $1 AND admin = true", token)):
+        resp Http401, "You are not admin or your token is invalid"
+      
+      if(not db.exists(Report, "id = $1", reportID)):
+        resp Http404, "Report not found, perhaps it was already resolved"
+
+      db.select(report, "id = $1", reportID)
+      db.delete(report)
+    resp Http200

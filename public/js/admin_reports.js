@@ -14,9 +14,27 @@ function refreshReports(){
         username = document.createElement("h2");
         username.appendChild(document.createTextNode(reports[i].id + ": " + reports[i].username));
         description = document.createTextNode(reports[i].description);
+        console.log(reports[i])
+        
+        username.innerHTML += " <button onclick='deleteReport(" + reports[i].id +  ")'>X</button>"
+
         reportsElement.appendChild(username);
         reportsElement.appendChild(description);
     }
+}
+
+async function deleteReport(reportID){
+    console.log("deletion called");
+    var requestData = new FormData();
+    requestData.append("reportID", reportID);
+    var response = await fetch("/user/deletereport", {
+        method: "POST",
+        body: requestData
+    });
+    if(response.ok){
+        alert("YAAAAAAY");
+    }
+    location.reload()
 }
 
 async function init(){
